@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Frecuencias CeMMU</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+      background: #f3f4f6;
+    }
+
+    .report-container {
+      max-width: 210mm;
+      /* A4 width */
+      margin: 0 auto;
+      background: white;
+      padding: 0mm 0mm;
+    }
+
+    .print-header {
+      margin-bottom: 25px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 15px;
+    }
+
+    .print-header h1 {
+      font-size: 1.4rem;
+      margin: 0 0 5px 0;
+      color: #111827;
+    }
+
+    .print-header p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    /* Cada bloque de línea es una página nueva si es posible o respeta bordes */
+    .line-block {
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+      /* page-break-before: always; -- se puede activar si desean hojas en blanco*/
+    }
+
+    .line-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 10px;
+      border-left: 4px solid #111827;
+      padding-left: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.80rem;
+      border: 1px solid #d1d5db;
+      margin-bottom: 10px;
+    }
+
+    thead th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      text-align: left;
+      padding: 8px;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    tbody td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* FOOTER FLOTANTE CON LOGO */
+    .print-footer {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      display: none;
+      /* solo se ve en impresión */
+    }
+
+    .print-footer img {
+      width: 80px;
+      opacity: 0.8;
+    }
+
+    .controls {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn-print {
+      background-color: #2563eb;
+    }
+
+    .btn-close {
+      background-color: #6b7280;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .controls {
+        display: none !important;
+      }
+
+      .print-footer {
+        display: block;
+      }
+
+      .report-container {
+        box-shadow: none;
+        max-width: 100%;
+      }
+
+      @page {
+        margin: 15mm 15mm 30mm 15mm;
+        /* Margen inferior ampliado a 30mm para que la tabla no toque el logo */
+        size: A4;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="controls">
+    <div>
+      <h3 style="margin:0">Vista Previa de Reporte</h3>
+      <p style="margin:0; font-size:0.8rem; color:#6b7280;">Ajusta los márgenes en las opciones de impresión.</p>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="btn btn-close" onclick="window.close()">Volver</button>
+      <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir (Ctrl+P)</button>
+    </div>
+  </div>
+
+  <div class="report-container">
+    <div class="print-header">
+      <h1>Registro de frecuencias y pasos por puntos de control.</h1>
+      <p id="subtFecha">Fecha: - | Turno: -</p>
+      <p style="margin-top:8px;">Puntos de control establecidos en alrededores o periferia de la ciudad, considerando
+        pasos de unidades de un único ramal por líneas de ómnibus.</p>
+    </div>
+
+    <div id="reportContent">
+      <p style="text-align:center; padding: 40px;">⏳ Generando reporte calculados desde PostgreSQL...</p>
+    </div>
+  </div>
+
+  <!-- El logo flotará en la esquina de cada página impresa -->
+  <div class="print-footer">
+    <img src="img/logo_02.png" alt="CeMMU">
+  </div>
+
+  <script>
+    // Parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+    const fecha = params.get('fecha') || new Date().toISOString().slice(0, 10);
+    const turno = params.get('turno') || 'Todos';
+
+    document.getElementById('subtFecha').innerText = `Tiempos expresados en HH:MM:SS. | Fecha: ${fecha.split("-").reverse().join("/")} | Turno: ${turno}`;
+
+    async function fetchData() {
+      const token = localStorage.getItem('cemmu_token');
+      try {
+        const res = await fetch(`/api/registros?fecha=${fecha}&turno=${turno}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401 || res.status === 403) {
+          document.getElementById('reportContent').innerHTML = "<p style='color:red'>Sesión expirada. Volvé a <a href='/login'>iniciar sesión</a>.</p>";
+          return;
+        }
+
+        const json = await res.json();
+
+        if (!json.data || json.data.length === 0) {
+          document.getElementById('reportContent').innerHTML = "<p>No hay registros para en esta fecha/turno.</p>";
+          return;
+        }
+
+        renderReport(json.data);
+      } catch (e) {
+        document.getElementById('reportContent').innerHTML = "<p style='color:red'>Error de conexión.</p>";
+      }
+    }
+
+    function renderReport(data) {
+
+      const grouped = {};
+
+      data.forEach(r => {
+        // Obtenemos el prefijo de la linea ej "L11" buscando hasta el primer espacio
+        const prefixMatch = r.linea.match(/^(L\d+)/);
+        const lineGroup = prefixMatch ? prefixMatch[1] : r.linea;
+        if (!grouped[lineGroup]) grouped[lineGroup] = [];
+        grouped[lineGroup].push(r);
+      });
+
+      // 2. Ordenar las líneas (L1, L3, L4, ..., L11, ...) Para un buen sort natural de L1 vs L11
+      const lineKeys = Object.keys(grouped).sort((a, b) => {
+        const numA = parseInt(a.replace(/\D/g, '')) || 0;
+        const numB = parseInt(b.replace(/\D/g, '')) || 0;
+        return numA - numB;
+      });
+
+      let html = "";
+
+      // 3. Renderizar cada bloque de línea
+      lineKeys.forEach(key => {
+
+        // Orden alfabético/cronológico del ramal interno como en tu captura
+        // Orden 1: Nombre de linea, Orden 2: Hora
+        const rows = grouped[key].sort((a, b) => {
+          if (a.linea < b.linea) return -1;
+          if (a.linea > b.linea) return 1;
+          if (a.hora < b.hora) return -1;
+          if (a.hora > b.hora) return 1;
+          return 0;
+        });
+
+        html += `
+          <div class="line-block">
+            <div class="line-title">Línea ${key.replace('L', '')}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Ramal</th>
+                  <th>Punto de control</th>
+                  <th>Interno</th>
+                  <th>Hora</th>
+                  <th>Intervalo</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        rows.forEach(r => {
+          html += `
+             <tr>
+               <td>${r.linea}</td>
+               <td>${r.direccion}</td>
+               <td>${r.interno}</td>
+               <td>${r.hora}</td>
+               <td><strong>${r.intervalo_formateado}</strong></td>
+             </tr>
+          `;
+        });
+
+        html += `
+              </tbody>
+            </table>
+          </div>
+        `;
+      });
+
+      document.getElementById('reportContent').innerHTML = html;
+
+      // Auto disparar la caja de impresión después de 1 segundo si quieres (opcional)
+      // setTimeout(() => window.print(), 1000); 
+    }
+
+    fetchData();
+  </script>
+</body>
+
+</html>

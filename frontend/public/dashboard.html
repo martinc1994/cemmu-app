@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CeMMU - Dashboard Analítico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+  <!-- ApexCharts CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <style>
+    :root {
+      --dash-bg: var(--color-bg);
+      --dash-card: var(--color-card);
+      --dash-text: var(--color-text);
+      --dash-border: var(--color-border);
+      --kpibox-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+    }
+
+    html.dark-mode {
+      --dash-bg: #0b1120; /* Incluso más oscuro para el dashboard */
+      --dash-card: #1e293b;
+      --dash-border: #334155;
+      --kpibox-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0.4) 100%);
+    }
+
+    body {
+      background-color: var(--dash-bg);
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard-container {
+      width: 95%;
+      max-width: 1400px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header & Filter Controls */
+    .dash-header {
+      background: var(--dash-card);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--dash-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 15px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filter-item label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: 5px;
+    }
+
+    .filter-item input, .filter-item select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--dash-border);
+      background: var(--dash-bg);
+      color: var(--dash-text);
+      font-size: 0.9rem;
+    }
+
+    .btn-apply {
+      padding: 10px 20px;
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-apply:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: var(--dash-card);
+      border: 1px solid var(--dash-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: var(--kpibox-gradient);
+    }
+
+    .kpi-title {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .kpi-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dash-text);
+      margin-top: 10px;
+    }
+
+    .kpi-subtitle {
+     font-size: 0.8rem;
+     color: var(--color-text-muted);
+     margin-top: 5px;
+    }
+
+    /* Charts Grid */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chart-card {
+      background: var(--dash-card);
+      border: 1px solid var(--dash-border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .chart-header {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dash-text);
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--dash-border);
+      padding-bottom: 10px;
+    }
+
+    .data-table-container {
+      background: var(--dash-card);
+      border: 1px solid var(--dash-border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--dash-border);
+    }
+
+    .data-table th {
+      color: var(--color-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    /* Custom scrollbar for table container */
+    .data-table-container::-webkit-scrollbar { height: 8px; }
+    .data-table-container::-webkit-scrollbar-track { background: var(--dash-bg); }
+    .data-table-container::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <button id="themeToggle">🌙</button>
+
+  <div class="dashboard-container">
+    
+    <!-- Filtros Superiores -->
+    <div class="dash-header">
+      <div style="display:flex; align-items:center; gap:15px;">
+        <img src="img/logo_02.png" alt="Logo" style="height: 40px; border-radius: 6px; background: white; padding: 2px;">
+        <div>
+          <h2 style="margin:0; font-size:1.4rem;">Controles de Frecuencia</h2>
+          <p style="margin:0; font-size:0.85rem; color:var(--color-text-muted);">Métricas analíticas de producción</p>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <div class="filter-item">
+          <label>Fecha Desde</label>
+          <input type="date" id="dashDateFrom">
+        </div>
+        <div class="filter-item">
+          <label>Fecha Hasta</label>
+          <input type="date" id="dashDateTo">
+        </div>
+        <div class="filter-item">
+          <label>Turno</label>
+          <select id="dashTurno">
+            <option value="Todos">Todos</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+          </select>
+        </div>
+        <button class="btn-apply" onclick="fetchAndRenderDashboard()">Actualizar Info</button>
+        <button onclick="location.href='/admin'" style="padding: 10px 15px; background:var(--color-secondary); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">Volver</button>
+      </div>
+    </div>
+
+    <!-- Cajas KPI Principales -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">Controles Efectuados</div>
+        <div class="kpi-value" id="kpiControles">-</div>
+        <div class="kpi-subtitle">Actualmente un control diario por turno sobre todas las líneas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Tomas Registradas</div>
+        <div class="kpi-value" id="kpiTomas">-</div>
+        <div class="kpi-subtitle">Pasos por puntos de control</div>
+      </div>
+      <div class="kpi-card" style="border-bottom: 4px solid var(--color-primary);">
+        <div class="kpi-title">Frecuencia Promedio</div>
+        <div class="kpi-value" id="kpiFrecuencia">-</div>
+        <div class="kpi-subtitle">Minutos promedio entre una unidad y otra</div>
+      </div>
+    </div>
+
+    <!-- Grillas Divisibles (Charts) -->
+    <div class="charts-grid">
+      <!-- Barras Horizontales -->
+      <div class="chart-card">
+        <div class="chart-header">Controles por Línea</div>
+        <div id="chart-bar-lineas"></div>
+      </div>
+      
+      <!-- Chart de Area / Línea evolucion temporal -->
+      <div class="chart-card">
+        <div class="chart-header">Línea temporal (tomas registradas por fecha)</div>
+        <div id="chart-area-timeline"></div>
+      </div>
+    </div>
+
+    <!-- Treemap de Frecuencia Promedio por Ramal -->
+    <div class="chart-card">
+      <div class="chart-header">Impacto de Frecuencia Promedio por Ramal (min)</div>
+      <div id="chart-treemap-ramales"></div>
+    </div>
+
+    <!-- Reporte de Operadores -->
+    <div class="chart-card">
+      <div class="chart-header">Productividad por Operador Registrador</div>
+      <div id="chart-bar-operadores"></div>
+    </div>
+
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

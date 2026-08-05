@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Monitoreo - Registro de Flota</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+  <button id="themeToggle">🌙</button>
+
+    <header>
+      <img src="img/logo.png" alt="logo">
+      <h1>Centro de Monitoreo</h1>
+      <p>Registro de pasos de flota</p>
+      
+      <div id="userInfo" style="margin-top: 10px; font-size: 0.9em; font-weight: bold; color: var(--color-primary)"></div>
+      <div style="margin-top:15px; display:flex; justify-content:center; gap: 8px; flex-wrap: wrap;">
+        <button type="button" id="adminBtn" class="btn-pill" style="display:none; background-color: var(--color-secondary); color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/admin'">🛡️ Admin</button>
+        <button type="button" id="usersBtn" class="btn-pill" style="display:none; background-color: #8b5cf6; color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/usuarios'">👥 Usuarios</button>
+        <button type="button" id="evidenciaBtn" class="btn-pill" style="display:none; background-color: var(--color-primary); color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
+        <button type="button" id="repoBtn" class="btn-pill" style="background-color: #10b981; color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/repositorio'">📂 Repositorio</button>
+        <button type="button" class="btn-pill" style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);" onclick="location.href='/cambiar-clave'">🔑 Clave</button>
+        <button type="button" class="btn-pill" style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);" onclick="localStorage.removeItem('cemmu_user'); localStorage.removeItem('cemmu_token'); location.href='/login'">Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <form id="registroForm">
+      <label for="operadorLogin">Operador Actual</label>
+      <input type="text" id="operadorLogin" readonly style="background:#e5e7eb; color:#6b7280; cursor:not-allowed;" />
+
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" readonly />
+
+    <label for="hora">Hora del paso</label>
+    <input type="time" id="hora" step="1" required />
+
+    <label for="direccion">Punto de control</label>
+    <input type="text" id="direccion" placeholder="Ej: Av. Mitre y Salta" required />
+
+    <label for="linea">Linea / Ramal</label>
+    <select id="linea" required>
+      <option value="">Seleccione...</option>
+      <option value="L1 Mitre">L1 Mitre</option>
+      <option value="L1 Salta">L1 Salta</option>
+      <option value="L3 Marcos Paz">L3 Marcos Paz</option>
+      <option value="L3 Lavalle">L3 Lavalle</option>
+      <option value="L3 Auxiliar">L3 Auxiliar</option>
+      <option value="L4 Mercofrut">L4 Mercofrut</option>
+      <option value="L4 Colombres">L4 Colombres</option>
+      <option value="L4 Colombres-Costanera">L4 Colombres-Costanera</option>
+      <option value="L4 Mercofrut-Autopista">L4 Mercofrut-Autopista</option>
+      <option value="L4 Mercofrut-A. Heredia">L4 Mercofrut-A. Heredia</option>
+      <option value="L5 El Molino-SEOC">L5 El Molino-SEOC</option>
+      <option value="L5 Oeste x 25">L5 Oeste x 25</option>
+      <option value="L5 Oeste x Dean Funes">L5 Oeste x Dean Funes</option>
+      <option value="L5 Agrimensor">L5 Agrimensor</option>
+      <option value="L6 San Alberto">L6 San Alberto</option>
+      <option value="L6 San Jose x Cangallo">L6 San Jose x Cangallo</option>
+      <option value="L6 San Jose x Democracia">L6 San Jose x Democracia</option>
+      <option value="L7 O' connors">L7 O' connors</option>
+      <option value="L7 AGET">L7 AGET</option>
+      <option value="L8 El Bosque">L8 El Bosque</option>
+      <option value="L8 San Cayetano x S. Peña">L8 San Cayetano x S. Peña</option>
+      <option value="L8 San Cayetano x B. Teran">L8 San Cayetano x B. Teran</option>
+      <option value="L9 Viamonte">L9 Viamonte</option>
+      <option value="L9 Bulnes">L9 Bulnes</option>
+      <option value="L10 San Cayetano">L10 San Cayetano</option>
+      <option value="L10 V. Amalia">L10 V. Amalia</option>
+      <option value="L11 V. Angelina">L11 V. Angelina</option>
+      <option value="L11 B 11 de Marzo">L11 B 11 de Marzo</option>
+      <option value="L11 Manantial Sur">L11 Manantial Sur</option>
+      <option value="L12 SMATA Manantial Sur">L12 SMATA Manantial Sur</option>
+      <option value="L12 SMATA San Miguel">L12 SMATA San Miguel</option>
+      <option value="L12 Municipal">L12 Municipal</option>
+      <option value="L17 Chañaritos">L17 Chañaritos</option>
+      <option value="L17 Alem-Universidad">L17 Alem-Universidad</option>
+      <option value="L17 Roca-Universidad">L17 Roca-Universidad</option>
+      <option value="L17 Teran-San Lorenzo">L17 Teran-San Lorenzo</option>
+      <option value="L17 Teran-Roca">L17 Teran-Roca</option>
+      <option value="L17 Ejercito Arg">L17 Ejercito Arg</option>
+      <option value="L18 Horario">L18 Horario</option>
+      <option value="L18 Antihorario">L18 Antihorario</option>
+      <option value="L19 Horario">L19 Horario</option>
+      <option value="L19 Antihorario">L19 Antihorario</option>
+    </select>
+
+    <label for="interno">Interno</label>
+    <input type="number" id="interno" required />
+
+    <label for="observaciones">Observaciones</label>
+    <textarea id="observaciones" rows="2"></textarea>
+
+    <button type="submit">Guardar Registro</button>
+  </form>
+
+  <div class="historial">
+    <h3>Últimos registros</h3>
+    <ul id="historialLista"></ul>
+  </div>
+
+  <footer>©2026 Secretaría de Movilidad Urbana</footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CeMMU - Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+  <style>
+    table { width: 95%; max-width: 1200px; margin: 0 auto 20px auto; border-collapse: collapse; background: var(--color-card); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--color-border); font-size: 0.9rem;}
+    th { background-color: var(--color-primary); color: white; font-weight: 600; }
+    td input { padding: 4px; font-size: 0.85rem; border: 1px solid var(--color-border); width: 100%; box-sizing: border-box; }
+    .btn-small { padding: 6px 10px; font-size: 0.8rem; border-radius: 6px; cursor: pointer; border: none; font-weight: 600; color: white;}
+    .btn-edit { background-color: #f59e0b; }
+    .btn-delete { background-color: #ef4444; }
+    .btn-save { background-color: #22c55e; }
+    .btn-cancel { background-color: #6b7280; }
+    .header-panel { display:flex; justify-content:space-between; align-items:center; width:95%; max-width: 1200px; margin: 20px auto; background: var(--color-card); padding: 15px; border-radius: 8px; box-shadow: var(--shadow); box-sizing: border-box; flex-wrap: wrap; gap: 15px;}
+    form { display: none; }
+  </style>
+</head>
+<body>
+  <button id="themeToggle">🌙</button>
+
+  <div class="header-panel">
+    <div style="display:flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+      <div>
+        <label style="font-size:0.8rem; font-weight:600;">Fecha:</label><br>
+        <input type="date" id="filterFecha" style="padding: 8px; font-size: 0.9em; width: auto; border-radius:6px; border:1px solid var(--color-border);" />
+      </div>
+      <div>
+        <label style="font-size:0.8rem; font-weight:600;">Turno:</label><br>
+        <select id="filterTurno" style="padding: 8px; font-size: 0.9em; width: auto; border-radius:6px; border:1px solid var(--color-border);">
+            <option value="Todos">Todos</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+        </select>
+      </div>
+      <button onclick="loadRegistros()" style="padding: 9px 15px; font-size: 0.9em; border-radius:6px; background-color:var(--color-primary); color:white; font-weight:600; cursor:pointer; border:none;">🔍 Filtrar</button>
+      <button onclick="openReporte()" style="padding: 9px 15px; font-size: 0.9em; background-color: #10b981; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">📄 Reporte (PDF)</button>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <button onclick="location.href='/dashboard'" style="background:#8b5cf6; padding: 9px 15px; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">📊 Dashboard</button>
+        <button onclick="location.href='/'" style="background:var(--color-secondary); padding: 9px 15px; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">Volver</button>
+    </div>
+  </div>
+
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>Fecha / Turno</th>
+        <th>Hora</th>
+        <th>Línea</th>
+        <th>Dirección</th>
+        <th>Interno</th>
+        <th>Intervalo</th>
+        <th>Operador</th>
+        <th>Gestión</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"> </tbody>
+  </table>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const userData = localStorage.getItem('cemmu_user');
+    const token = localStorage.getItem('cemmu_token');
+    if(!userData || !token || JSON.parse(userData).role !== 'admin') {
+      window.location.href = '/login';
+    }
+
+    function authHeaders() {
+      return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+    }
+
+    const toast = document.getElementById("toast");
+    function showToast(message, type = "success") {
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    document.getElementById('filterFecha').value = new Date().toISOString().slice(0, 10);
+
+    async function loadRegistros() {
+      const fecha = document.getElementById('filterFecha').value;
+      const turno = document.getElementById('filterTurno').value;
+      
+      try {
+        const res = await fetch(`/api/registros?fecha=${fecha}&turno=${turno}`, {
+          headers: authHeaders()
+        });
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = '/login'; return;
+        }
+        const json = await res.json();
+        
+        let html = "";
+        json.data.forEach(r => {
+            const fechaStr = (r.fecha || "").toString().slice(0,10);
+            html += `<tr id="row-${r.id}">
+                <td>${fechaStr}<br><small style="color:var(--color-primary)">${r.turno_guardado}</small></td>
+                <td><span class="val-hora">${r.hora}</span></td>
+                <td><span class="val-linea">${r.linea}</span></td>
+                <td><span class="val-direccion">${r.direccion}</span></td>
+                <td><span class="val-interno">${r.interno}</span></td>
+                <td><strong>${r.intervalo_formateado || '00:00:00'}</strong></td>
+                <td><span class="val-operador">${r.operador}</span></td>
+                <td style="min-width:130px">
+                   <button class="btn-small btn-edit" onclick="editRow('${r.id}')">Editar</button>
+                   <button class="btn-small btn-delete" onclick="deleteRow('${r.id}')">❌</button>
+                </td>
+            </tr>`;
+        });
+        document.getElementById('tableBody').innerHTML = html;
+      } catch (e) {
+        showToast("Error cargando registros", "error");
+      }
+    }
+
+    function editRow(id) {
+        const row = document.getElementById(`row-${id}`);
+        const horaSpan = row.querySelector('.val-hora');
+        const lineaSpan = row.querySelector('.val-linea');
+        const dirSpan = row.querySelector('.val-direccion');
+        const intSpan = row.querySelector('.val-interno');
+
+        row.dataset.origHora = horaSpan.innerText;
+        row.dataset.origLinea = lineaSpan.innerText;
+        row.dataset.origDir = dirSpan.innerText;
+        row.dataset.origInt = intSpan.innerText;
+
+        horaSpan.innerHTML = `<input type="time" class="inp-hora" value="${horaSpan.innerText}" step="1">`;
+        lineaSpan.innerHTML = `<input type="text" class="inp-linea" value="${lineaSpan.innerText}">`;
+        dirSpan.innerHTML = `<input type="text" class="inp-dir" value="${dirSpan.innerText}">`;
+        intSpan.innerHTML = `<input type="number" class="inp-int" value="${intSpan.innerText}">`;
+
+        row.querySelector('td:last-child').innerHTML = `
+            <button class="btn-small btn-save" onclick="saveRow('${id}')">✔</button>
+            <button class="btn-small btn-cancel" onclick="cancelRow('${id}')">X</button>
+        `;
+    }
+
+    function cancelRow(id) {
+        const row = document.getElementById(`row-${id}`);
+        row.querySelector('.val-hora').innerText = row.dataset.origHora;
+        row.querySelector('.val-linea').innerText = row.dataset.origLinea;
+        row.querySelector('.val-direccion').innerText = row.dataset.origDir;
+        row.querySelector('.val-interno').innerText = row.dataset.origInt;
+        row.querySelector('td:last-child').innerHTML = `
+            <button class="btn-small btn-edit" onclick="editRow('${id}')">Editar</button>
+            <button class="btn-small btn-delete" onclick="deleteRow('${id}')">❌</button>
+        `;
+    }
+
+    async function saveRow(id) {
+        if(!confirm("¿Deseas modificar los valores?")) return;
+        const row = document.getElementById(`row-${id}`);
+        const fechaTxt = row.cells[0].innerText.split(`\n`)[0];
+        
+        const payload = {
+            fecha: fechaTxt,
+            hora: row.querySelector('.inp-hora').value,
+            linea: row.querySelector('.inp-linea').value,
+            direccion: row.querySelector('.inp-dir').value,
+            interno: row.querySelector('.inp-int').value,
+            operador: row.querySelector('.val-operador').innerText,
+            observaciones: ""
+        };
+
+        try {
+            const res = await fetch('/api/registros/'+id, {
+                method: 'PUT',
+                headers: authHeaders(),
+                body: JSON.stringify(payload)
+            });
+            if(res.ok) { showToast("Sincronizado"); loadRegistros(); }
+            else { showToast("Error de autorización", "error"); }
+        } catch(e) { showToast("Error de guardado", "error"); }
+    }
+
+    async function deleteRow(id) {
+        if(!confirm("¿Seguro de eliminar el registro definitivamente?")) return;
+        try {
+            const res = await fetch('/api/registros/'+id, {
+              method: 'DELETE',
+              headers: authHeaders()
+            });
+            if (res.ok) { showToast("Registro eliminado"); loadRegistros(); }
+            else { showToast("Error de autorización", "error"); }
+        } catch(e) { showToast("Error", "error"); }
+    }
+
+    function openReporte() {
+        const f = document.getElementById('filterFecha').value;
+        const t = document.getElementById('filterTurno').value;
+        if(!f) return alert("Selecciona una fecha");
+        window.open(`/reporte?fecha=${f}&turno=${t}`, '_blank');
+    }
+
+    loadRegistros();
+  </script>
+</body>
+</html>

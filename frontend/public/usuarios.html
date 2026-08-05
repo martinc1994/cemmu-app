@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CeMMU - Gestión de Usuarios y Organizaciones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+  <style>
+    /* Panel y tablas */
+    .panel { width: 95%; max-width: 1300px; margin: 0 auto; }
+    .header-panel {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--color-card); padding: 18px 22px; border-radius: 12px;
+      box-shadow: var(--shadow); margin: 20px auto; flex-wrap: wrap; gap: 12px;
+      border: 1px solid var(--color-border);
+    }
+    .header-panel h2 { margin: 0; font-size: 1.3rem; }
+    .header-panel p { margin: 0; font-size: 0.85rem; color: var(--color-text-muted); }
+
+    table {
+      width: 100%; border-collapse: collapse; background: var(--color-card);
+      border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);
+      margin-bottom: 20px; border: 1px solid var(--color-border);
+    }
+    th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem; }
+    th { background-color: var(--color-primary); color: white; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    
+    .badge {
+      padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      display: inline-block; text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .badge-admin { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+    .badge-operator { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .badge-external { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    .badge-active { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .badge-inactive { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+    .btn-small {
+      padding: 6px 12px; font-size: 0.8rem; border-radius: 8px;
+      cursor: pointer; border: none; font-weight: 600; color: white;
+      transition: all 0.2s ease;
+    }
+    .btn-small:hover { transform: translateY(-1px); }
+    .btn-create { background: var(--color-primary); padding: 10px 18px; font-size: 0.9rem; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; border: none; }
+    .btn-create:hover { background: var(--color-primary-hover); }
+    .btn-edit { background-color: #f59e0b; }
+    .btn-delete { background-color: #ef4444; }
+    .btn-reset { background-color: #8b5cf6; }
+    .btn-nav { padding: 10px 16px; background: var(--color-secondary); color: white; font-weight: 600; cursor: pointer; border: none; border-radius: 8px; font-size: 0.9rem; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      z-index: 1000; justify-content: center; align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--color-card); border-radius: 16px; padding: 28px 32px;
+      width: 90%; max-width: 540px; box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal h3 { margin: 0 0 20px 0; font-size: 1.2rem; }
+    .modal label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; margin-top: 14px; color: var(--color-text); }
+    .modal input, .modal select {
+      width: 100%; padding: 10px 12px; border: 2px solid var(--color-border);
+      border-radius: 8px; font-size: 0.95rem; background: var(--color-bg);
+      color: var(--color-text); box-sizing: border-box;
+    }
+    .modal input:focus, .modal select:focus {
+      outline: none; border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .modal-actions {
+      display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px;
+    }
+    .modal-actions button {
+      padding: 10px 20px; border-radius: 8px; font-weight: 600;
+      cursor: pointer; border: none; font-size: 0.95rem;
+    }
+    .btn-modal-cancel { background: var(--color-bg); color: var(--color-text-muted); border: 1px solid var(--color-border) !important; }
+    .btn-modal-save { background: var(--color-primary); color: white; }
+
+    .org-list-table {
+      width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem;
+    }
+    .org-list-table th, .org-list-table td {
+      padding: 8px 10px; border-bottom: 1px solid var(--color-border); text-align: left;
+    }
+    .org-list-table th { background: var(--color-bg); color: var(--color-text-muted); font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <button id="themeToggle">🌙</button>
+
+  <div class="panel">
+    <div class="header-panel">
+      <div>
+        <h2>👥 Gestión de Usuarios y Organizaciones</h2>
+        <p>Administrá cuentas de operadores CeMMU, administradores y organismos externos</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn-create" onclick="openCreateModal()">+ Nuevo Usuario</button>
+        <button class="btn-create" style="background: #10b981;" onclick="openManageOrgsModal()">🏢 Organizaciones</button>
+        <button class="btn-nav" onclick="location.href='/'">Volver</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre Completo</th>
+          <th>Rol</th>
+          <th>Organización</th>
+          <th>Estado</th>
+          <th>Último acceso</th>
+          <th>Gestión</th>
+        </tr>
+      </thead>
+      <tbody id="usersTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Modal: Crear/Editar Usuario -->
+  <div class="modal-overlay" id="userModal">
+    <div class="modal">
+      <h3 id="modalTitle">Nuevo Usuario</h3>
+      <input type="hidden" id="editUserId" />
+
+      <label for="modalUsername">Nombre de usuario *</label>
+      <input type="text" id="modalUsername" placeholder="Ej: JPerez" />
+
+      <label for="modalFullName">Nombre completo</label>
+      <input type="text" id="modalFullName" placeholder="Ej: Juan Pérez" />
+
+      <label for="modalEmail">Email (opcional)</label>
+      <input type="email" id="modalEmail" placeholder="Ej: jperez@ejemplo.com" />
+
+      <label for="modalRole">Rol *</label>
+      <select id="modalRole">
+        <option value="admin">Administrador (CeMMU)</option>
+        <option value="operador">Operador (CeMMU)</option>
+        <option value="externo">Externo (Organismo)</option>
+      </select>
+
+      <label for="modalOrg">Organización *</label>
+      <select id="modalOrg">
+        <!-- Opciones dinámicas de organizaciones -->
+      </select>
+
+      <div id="passwordField">
+        <label for="modalPassword">Contraseña inicial *</label>
+        <input type="text" id="modalPassword" placeholder="Se forzará cambio en primer acceso" />
+        <p style="font-size: 0.78rem; color: var(--color-text-muted); margin: 4px 0 0 0;">
+          🔒 El usuario deberá cambiar su contraseña en el primer inicio de sesión.
+        </p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeModal('userModal')">Cancelar</button>
+        <button class="btn-modal-save" id="btnSaveUser" onclick="saveUser()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Gestionar Organizaciones (Ver / Crear / Eliminar) -->
+  <div class="modal-overlay" id="manageOrgsModal">
+    <div class="modal" style="max-width: 650px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0;">🏢 Gestión de Organizaciones</h3>
+        <button class="btn-create" style="padding: 6px 12px; font-size: 0.82rem; background: #10b981;" onclick="openCreateOrgModal()">+ Nueva Organización</button>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 6px; margin-bottom: 12px;">
+        Lista de organismos y entidades registradas para asociación de usuarios.
+      </p>
+
+      <table class="org-list-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Contacto</th>
+            <th>Usuarios</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="orgsTableBody"></tbody>
+      </table>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeModal('manageOrgsModal')">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Crear Organización -->
+  <div class="modal-overlay" id="createOrgModal">
+    <div class="modal">
+      <h3>Nueva Organización</h3>
+
+      <label for="orgNombre">Nombre de la Organización *</label>
+      <input type="text" id="orgNombre" placeholder="Ej: Juzgado de Instrucción N°2" />
+
+      <label for="orgTipo">Tipo *</label>
+      <select id="orgTipo">
+        <option value="Interno">Interno (CeMMU)</option>
+        <option value="MPF">Ministerio Público Fiscal</option>
+        <option value="Fiscalia">Fiscalía</option>
+        <option value="Juzgado">Juzgado</option>
+        <option value="Otro">Otro</option>
+      </select>
+
+      <label for="orgContacto">Contacto / Referente (opcional)</label>
+      <input type="text" id="orgContacto" placeholder="Nombre, email o teléfono de contacto" />
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeModal('createOrgModal')">Cancelar</button>
+        <button class="btn-modal-save" onclick="saveOrg()">Guardar Organización</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reset Password -->
+  <div class="modal-overlay" id="resetModal">
+    <div class="modal">
+      <h3>🔑 Resetear Contraseña</h3>
+      <input type="hidden" id="resetUserId" />
+      <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+        Se asignará una nueva contraseña temporal y el usuario deberá cambiarla en su próximo inicio de sesión.
+      </p>
+      <label for="resetPassword">Nueva contraseña temporal</label>
+      <input type="text" id="resetPassword" placeholder="Ingresá una contraseña temporal" />
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeModal('resetModal')">Cancelar</button>
+        <button class="btn-modal-save" style="background: #8b5cf6;" onclick="resetPassword()">Resetear</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/usuarios.js"></script>
+</body>
+</html>

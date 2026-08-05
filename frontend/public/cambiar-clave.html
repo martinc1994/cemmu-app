@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CeMMU - Cambiar Contraseña</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+  <style>
+    .password-requirements {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      margin-top: -4px;
+    }
+    .password-requirements p {
+      margin: 0 0 8px 0;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .req-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      color: var(--color-text-muted);
+      transition: color 0.3s ease;
+    }
+    .req-item.valid {
+      color: var(--color-success);
+    }
+    .req-item .icon {
+      width: 18px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .alert-banner {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: -4px;
+    }
+    .alert-banner .alert-icon {
+      font-size: 1.4rem;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-back:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <button id="themeToggle">🌙</button>
+  <header>
+    <img src="img/logo.png" alt="logo">
+    <h1>Cambiar Contraseña</h1>
+    <p>Seguridad de tu cuenta</p>
+  </header>
+
+  <form id="changePasswordForm">
+    <div id="alertBanner" class="alert-banner" style="display: none;">
+      <span class="alert-icon">⚠️</span>
+      <span>Por seguridad, debés cambiar tu contraseña en este primer acceso.</span>
+    </div>
+
+    <label for="currentPassword">Contraseña actual</label>
+    <input type="password" id="currentPassword" required />
+
+    <label for="newPassword">Nueva contraseña</label>
+    <input type="password" id="newPassword" required />
+
+    <div class="password-requirements">
+      <p>Requisitos:</p>
+      <div class="req-item" id="reqLength">
+        <span class="icon">○</span>
+        <span>Mínimo 8 caracteres</span>
+      </div>
+      <div class="req-item" id="reqUpper">
+        <span class="icon">○</span>
+        <span>Al menos una mayúscula</span>
+      </div>
+      <div class="req-item" id="reqNumber">
+        <span class="icon">○</span>
+        <span>Al menos un número</span>
+      </div>
+    </div>
+
+    <label for="confirmPassword">Confirmar nueva contraseña</label>
+    <input type="password" id="confirmPassword" required />
+
+    <button type="submit">Cambiar Contraseña</button>
+
+    <div style="text-align: center; margin-top: 5px;">
+      <button type="button" class="btn-back" id="btnBack">Volver</button>
+    </div>
+  </form>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const token = localStorage.getItem('cemmu_token');
+    const userData = localStorage.getItem('cemmu_user');
+    if (!token || !userData) {
+      window.location.href = '/login';
+    }
+
+    const user = JSON.parse(userData || '{}');
+    const isForced = user.must_change_password === true;
+
+    // Mostrar banner de primer acceso
+    if (isForced) {
+      document.getElementById('alertBanner').style.display = 'flex';
+    }
+
+    // Botón volver
+    document.getElementById('btnBack').addEventListener('click', () => {
+      if (isForced) {
+        // No puede volver si tiene cambio forzado
+        showToast('Debés cambiar tu contraseña antes de continuar', 'error');
+        return;
+      }
+      // Volver a la página correspondiente según rol
+      if (user.role === 'externo') {
+        window.location.href = '/repositorio';
+      } else {
+        window.location.href = '/';
+      }
+    });
+
+    const toast = document.getElementById("toast");
+    function showToast(message, type = "success") {
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    // Validación en tiempo real
+    const newPasswordInput = document.getElementById('newPassword');
+    newPasswordInput.addEventListener('input', () => {
+      const val = newPasswordInput.value;
+      toggleReq('reqLength', val.length >= 8);
+      toggleReq('reqUpper', /[A-Z]/.test(val));
+      toggleReq('reqNumber', /[0-9]/.test(val));
+    });
+
+    function toggleReq(id, valid) {
+      const el = document.getElementById(id);
+      el.classList.toggle('valid', valid);
+      el.querySelector('.icon').textContent = valid ? '✓' : '○';
+    }
+
+    // Submit
+    document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const current_password = document.getElementById('currentPassword').value;
+      const new_password = document.getElementById('newPassword').value;
+      const confirm_password = document.getElementById('confirmPassword').value;
+
+      if (new_password !== confirm_password) {
+        showToast('Las contraseñas nuevas no coinciden', 'error');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/change-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ current_password, new_password })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+          // Actualizar token y user data en localStorage
+          localStorage.setItem('cemmu_token', data.token);
+          localStorage.setItem('cemmu_user', JSON.stringify(data.user));
+
+          showToast('✅ Contraseña actualizada correctamente');
+
+          setTimeout(() => {
+            if (data.user.role === 'externo') {
+              window.location.href = '/repositorio';
+            } else {
+              window.location.href = '/';
+            }
+          }, 1500);
+        } else {
+          showToast(data.error || 'Error al cambiar contraseña', 'error');
+        }
+      } catch (err) {
+        showToast('Error de conexión con el servidor', 'error');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+npm-debug.log
+logs/
+data/
+.env
+.vscode/
+daemon/
+versionProductivaHastaDashboard.rar
+*.js.map

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CeMMU - Iniciar Sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/theme.js"></script>
+  </head>
+  <body>
+    <button id="themeToggle">🌙</button>
+    <header>
+      <img src="img/logo.png" alt="logo">
+      <h1>Centro de Monitoreo</h1>
+      <p>Movilidad Urbana</p>
+    </header>
+
+    <form id="loginForm">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" required />
+      
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" required />
+      
+      <button type="submit">Ingresar</button>
+    </form>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+      const toast = document.getElementById("toast");
+      function showToast(message, type = "success") {
+        toast.textContent = message;
+        toast.className = `toast ${type} show`;
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username, password})
+          });
+          const data = await res.json();
+          if (data.ok) {
+            localStorage.setItem('cemmu_token', data.token);
+            localStorage.setItem('cemmu_user', JSON.stringify(data.user));
+
+            if (data.user.must_change_password) {
+              window.location.href = '/cambiar-clave';
+            } else if (data.user.role === 'externo') {
+              window.location.href = '/repositorio';
+            } else {
+              window.location.href = '/';
+            }
+          } else {
+            showToast(data.error || 'Credenciales inválidas', 'error');
+          }
+        } catch (err) {
+          showToast('Error de conexión con servidor local', 'error');
+        }
+      });
+    </script>
+  </body>
+</html>
