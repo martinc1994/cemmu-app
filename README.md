@@ -48,7 +48,7 @@ flowchart TD
 ## 2. Flujo 1: Gestión de Usuarios y Organizaciones
 
 ### Descripción del Proceso
-Permite administrar las identidades digitales de la plataforma, diferenciando el personal interno del CeMMU de los organismos judiciales solicitantes.
+Permite administrar las identidades digitales de la plataforma, diferenciando el personal interno del CeMMU de los organismos solicitantes.
 
 ```mermaid
 sequenceDiagram
@@ -153,7 +153,7 @@ sequenceDiagram
 
 ## 5. Matriz de Roles y Permisos
 
-| Módulo / Funcionalidad | Administrador CeMMU | Operador CeMMU | Usuario Externo (MPF/Juzgado) |
+| Módulo / Funcionalidad | Administrador CeMMU | Operador CeMMU | Usuario Externo|
 |---|:---:|:---:|:---:|
 | **Acceso a Panel Registros Frecuencia** | ✅ | ✅ | ❌ |
 | **Acceso a Dashboard Analítico** | ✅ | ❌ | ❌ |
