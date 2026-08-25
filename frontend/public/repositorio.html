@@ -239,9 +239,9 @@
           <span>👤 <span id="repoUserText">Cargando...</span></span>
           <button id="btnProfile" style="background: none; border: none; color: var(--color-primary); cursor: pointer; text-decoration: underline; font-weight: 700; padding: 0;" onclick="openProfileModal()">Ver Perfil</button>
         </div>
-        <button class="btn-filter" id="btnUploadNav" style="display: none;" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
-        <button class="btn-nav" id="btnVolver" onclick="location.href='/'">Volver</button>
-        <button class="btn-nav" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);" onclick="logout()">Cerrar Sesión</button>
+        <button class="btn-pill primary" id="btnUploadNav" style="display: none;" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
+        <button class="btn-pill" id="btnVolver" onclick="location.href='/'">Volver</button>
+        <button class="btn-pill" onclick="logout()">Cerrar Sesión</button>
       </div>
     </div>
 
@@ -359,5 +359,10 @@
 
   <div id="toast" class="toast"></div>
   <script src="js/repositorio.js"></script>
+
+  <div class="footer-municipio-logo">
+    <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-black" />
+    <img src="img/smt_white.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-white" />
+  </div>
 </body>
 </html>

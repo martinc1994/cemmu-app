@@ -18,12 +18,12 @@
       
       <div id="userInfo" style="margin-top: 10px; font-size: 0.9em; font-weight: bold; color: var(--color-primary)"></div>
       <div style="margin-top:15px; display:flex; justify-content:center; gap: 8px; flex-wrap: wrap;">
-        <button type="button" id="adminBtn" class="btn-pill" style="display:none; background-color: var(--color-secondary); color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/admin'">🛡️ Admin</button>
-        <button type="button" id="usersBtn" class="btn-pill" style="display:none; background-color: #8b5cf6; color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/usuarios'">👥 Usuarios</button>
-        <button type="button" id="evidenciaBtn" class="btn-pill" style="display:none; background-color: var(--color-primary); color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
-        <button type="button" id="repoBtn" class="btn-pill" style="background-color: #10b981; color: #f8fafc; box-shadow: var(--shadow-sm);" onclick="location.href='/repositorio'">📂 Repositorio</button>
-        <button type="button" class="btn-pill" style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);" onclick="location.href='/cambiar-clave'">🔑 Clave</button>
-        <button type="button" class="btn-pill" style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted);" onclick="localStorage.removeItem('cemmu_user'); localStorage.removeItem('cemmu_token'); location.href='/login'">Cerrar Sesión</button>
+        <button type="button" id="adminBtn" class="btn-pill" style="display:none;" onclick="location.href='/admin'">🛡️ Admin</button>
+        <button type="button" id="usersBtn" class="btn-pill" style="display:none;" onclick="location.href='/usuarios'">👥 Usuarios</button>
+        <button type="button" id="evidenciaBtn" class="btn-pill" style="display:none;" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
+        <button type="button" id="repoBtn" class="btn-pill" onclick="location.href='/repositorio'">📂 Repositorio</button>
+        <button type="button" class="btn-pill" onclick="location.href='/cambiar-clave'">🔑 Clave</button>
+        <button type="button" class="btn-pill" onclick="localStorage.removeItem('cemmu_user'); localStorage.removeItem('cemmu_token'); location.href='/login'">Cerrar Sesión</button>
       </div>
     </header>
 
@@ -106,5 +106,10 @@
   <div id="toast" class="toast"></div>
 
   <script src="js/app.js"></script>
+
+  <div class="footer-municipio-logo">
+    <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-black" />
+    <img src="img/smt_white.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-white" />
+  </div>
 </body>
 </html>

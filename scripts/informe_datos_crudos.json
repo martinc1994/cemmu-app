@@ -1,0 +1,5050 @@
+{
+  "totalControles": [
+    {
+      "total": "174"
+    }
+  ],
+  "controlesPorMes": [
+    {
+      "periodo": "2026-03",
+      "periodo_legible": "Marzo 2026",
+      "controles_efectuados": "4",
+      "dias_con_actividad": "2",
+      "promedio_turnos_por_dia": "2.00"
+    },
+    {
+      "periodo": "2026-04",
+      "periodo_legible": "Abril 2026",
+      "controles_efectuados": "40",
+      "dias_con_actividad": "20",
+      "promedio_turnos_por_dia": "2.00"
+    },
+    {
+      "periodo": "2026-05",
+      "periodo_legible": "Mayo 2026",
+      "controles_efectuados": "37",
+      "dias_con_actividad": "19",
+      "promedio_turnos_por_dia": "1.95"
+    },
+    {
+      "periodo": "2026-06",
+      "periodo_legible": "Junio 2026",
+      "controles_efectuados": "39",
+      "dias_con_actividad": "20",
+      "promedio_turnos_por_dia": "1.95"
+    },
+    {
+      "periodo": "2026-07",
+      "periodo_legible": "Julio 2026",
+      "controles_efectuados": "40",
+      "dias_con_actividad": "21",
+      "promedio_turnos_por_dia": "1.90"
+    },
+    {
+      "periodo": "2026-08",
+      "periodo_legible": "Agosto 2026",
+      "controles_efectuados": "14",
+      "dias_con_actividad": "7",
+      "promedio_turnos_por_dia": "2.00"
+    }
+  ],
+  "controlesPorSemana": [
+    {
+      "semana_inicio": "2026-03-30T03:00:00.000Z",
+      "semana_fin": "2026-04-05T03:00:00.000Z",
+      "controles_efectuados": "6",
+      "dias_con_actividad": "3"
+    },
+    {
+      "semana_inicio": "2026-04-06T03:00:00.000Z",
+      "semana_fin": "2026-04-12T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-04-13T03:00:00.000Z",
+      "semana_fin": "2026-04-19T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-04-20T03:00:00.000Z",
+      "semana_fin": "2026-04-26T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-04-27T03:00:00.000Z",
+      "semana_fin": "2026-05-03T03:00:00.000Z",
+      "controles_efectuados": "8",
+      "dias_con_actividad": "4"
+    },
+    {
+      "semana_inicio": "2026-05-04T03:00:00.000Z",
+      "semana_fin": "2026-05-10T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-05-11T03:00:00.000Z",
+      "semana_fin": "2026-05-17T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-05-18T03:00:00.000Z",
+      "semana_fin": "2026-05-24T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-05-25T03:00:00.000Z",
+      "semana_fin": "2026-05-31T03:00:00.000Z",
+      "controles_efectuados": "7",
+      "dias_con_actividad": "4"
+    },
+    {
+      "semana_inicio": "2026-06-01T03:00:00.000Z",
+      "semana_fin": "2026-06-07T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-06-08T03:00:00.000Z",
+      "semana_fin": "2026-06-14T03:00:00.000Z",
+      "controles_efectuados": "7",
+      "dias_con_actividad": "4"
+    },
+    {
+      "semana_inicio": "2026-06-15T03:00:00.000Z",
+      "semana_fin": "2026-06-21T03:00:00.000Z",
+      "controles_efectuados": "8",
+      "dias_con_actividad": "4"
+    },
+    {
+      "semana_inicio": "2026-06-22T03:00:00.000Z",
+      "semana_fin": "2026-06-28T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-06-29T03:00:00.000Z",
+      "semana_fin": "2026-07-05T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-07-06T03:00:00.000Z",
+      "semana_fin": "2026-07-12T03:00:00.000Z",
+      "controles_efectuados": "5",
+      "dias_con_actividad": "3"
+    },
+    {
+      "semana_inicio": "2026-07-13T03:00:00.000Z",
+      "semana_fin": "2026-07-19T03:00:00.000Z",
+      "controles_efectuados": "9",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-07-20T03:00:00.000Z",
+      "semana_fin": "2026-07-26T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-07-27T03:00:00.000Z",
+      "semana_fin": "2026-08-02T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-08-03T03:00:00.000Z",
+      "semana_fin": "2026-08-09T03:00:00.000Z",
+      "controles_efectuados": "10",
+      "dias_con_actividad": "5"
+    },
+    {
+      "semana_inicio": "2026-08-10T03:00:00.000Z",
+      "semana_fin": "2026-08-16T03:00:00.000Z",
+      "controles_efectuados": "4",
+      "dias_con_actividad": "2"
+    }
+  ],
+  "detalleDiario": [
+    {
+      "fecha": "2026-03-30T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "26",
+      "tomas_tarde": "20",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-03-31T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "260",
+      "tomas_tarde": "177",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-01T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "243",
+      "tomas_tarde": "202",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-02T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-04-03T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-04-06T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "236",
+      "tomas_tarde": "208",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-07T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "234",
+      "tomas_tarde": "209",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-08T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "228",
+      "tomas_tarde": "220",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-09T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "250",
+      "tomas_tarde": "208",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-10T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "242",
+      "tomas_tarde": "203",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-13T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "233",
+      "tomas_tarde": "219",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-14T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "245",
+      "tomas_tarde": "213",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-15T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "231",
+      "tomas_tarde": "216",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-16T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "235",
+      "tomas_tarde": "204",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-17T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "249",
+      "tomas_tarde": "203",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-20T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "261",
+      "tomas_tarde": "184",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-21T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "245",
+      "tomas_tarde": "210",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-22T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "248",
+      "tomas_tarde": "205",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-23T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "241",
+      "tomas_tarde": "193",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-24T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "229",
+      "tomas_tarde": "183",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-27T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "242",
+      "tomas_tarde": "218",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-28T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "246",
+      "tomas_tarde": "189",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-29T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "240",
+      "tomas_tarde": "207",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-04-30T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "240",
+      "tomas_tarde": "198",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-01T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-05-04T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "240",
+      "tomas_tarde": "204",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-05T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "243",
+      "tomas_tarde": "206",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-06T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "264",
+      "tomas_tarde": "181",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-07T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "256",
+      "tomas_tarde": "190",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-08T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "248",
+      "tomas_tarde": "209",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-11T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "243",
+      "tomas_tarde": "85",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-12T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "245",
+      "tomas_tarde": "189",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-13T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "272",
+      "tomas_tarde": "190",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-14T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "253",
+      "tomas_tarde": "202",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-15T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "259",
+      "tomas_tarde": "201",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-18T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "238",
+      "tomas_tarde": "212",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-19T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "283",
+      "tomas_tarde": "195",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-20T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "288",
+      "tomas_tarde": "186",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-21T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "290",
+      "tomas_tarde": "192",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-22T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "292",
+      "tomas_tarde": "179",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-25T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-05-26T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "259",
+      "tomas_tarde": "215",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-27T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "244",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Solo 1 turno"
+    },
+    {
+      "fecha": "2026-05-28T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "252",
+      "tomas_tarde": "223",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-05-29T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "284",
+      "tomas_tarde": "196",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-01T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "245",
+      "tomas_tarde": "213",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-02T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "249",
+      "tomas_tarde": "216",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-03T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "250",
+      "tomas_tarde": "218",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-04T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "261",
+      "tomas_tarde": "195",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-05T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "240",
+      "tomas_tarde": "217",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-08T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "239",
+      "tomas_tarde": "211",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-09T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "266",
+      "tomas_tarde": "204",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-10T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "257",
+      "tomas_tarde": "224",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-11T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "242",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Solo 1 turno"
+    },
+    {
+      "fecha": "2026-06-12T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-06-15T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-06-16T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "231",
+      "tomas_tarde": "212",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-17T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "250",
+      "tomas_tarde": "211",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-18T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "252",
+      "tomas_tarde": "212",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-19T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "244",
+      "tomas_tarde": "212",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-22T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "276",
+      "tomas_tarde": "178",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-23T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "258",
+      "tomas_tarde": "196",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-24T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "273",
+      "tomas_tarde": "188",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-25T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "227",
+      "tomas_tarde": "180",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-26T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "246",
+      "tomas_tarde": "188",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-29T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "254",
+      "tomas_tarde": "218",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-06-30T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "272",
+      "tomas_tarde": "205",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-01T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "244",
+      "tomas_tarde": "220",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-02T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "258",
+      "tomas_tarde": "218",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-03T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "247",
+      "tomas_tarde": "215",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-06T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "264",
+      "tomas_tarde": "223",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-07T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "241",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Solo 1 turno"
+    },
+    {
+      "fecha": "2026-07-08T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "236",
+      "tomas_tarde": "204",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-09T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-07-10T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "0",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Sin actividad"
+    },
+    {
+      "fecha": "2026-07-13T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "194",
+      "tomas_tarde": "172",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-14T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "185",
+      "tomas_tarde": "168",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-15T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "189",
+      "tomas_tarde": "0",
+      "estado_del_dia": "Solo 1 turno"
+    },
+    {
+      "fecha": "2026-07-16T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "189",
+      "tomas_tarde": "168",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-17T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "171",
+      "tomas_tarde": "159",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-20T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "179",
+      "tomas_tarde": "161",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-21T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "169",
+      "tomas_tarde": "168",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-22T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "169",
+      "tomas_tarde": "172",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-23T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "186",
+      "tomas_tarde": "160",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-24T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "194",
+      "tomas_tarde": "177",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-27T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "257",
+      "tomas_tarde": "204",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-28T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "257",
+      "tomas_tarde": "209",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-29T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "268",
+      "tomas_tarde": "207",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-30T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "268",
+      "tomas_tarde": "218",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-07-31T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "261",
+      "tomas_tarde": "228",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-03T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "254",
+      "tomas_tarde": "216",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-04T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "212",
+      "tomas_tarde": "200",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-05T03:00:00.000Z",
+      "dia_semana": "Miércoles",
+      "dow": "3",
+      "tomas_manana": "202",
+      "tomas_tarde": "229",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-06T03:00:00.000Z",
+      "dia_semana": "Jueves",
+      "dow": "4",
+      "tomas_manana": "238",
+      "tomas_tarde": "216",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-07T03:00:00.000Z",
+      "dia_semana": "Viernes",
+      "dow": "5",
+      "tomas_manana": "251",
+      "tomas_tarde": "214",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-10T03:00:00.000Z",
+      "dia_semana": "Lunes",
+      "dow": "1",
+      "tomas_manana": "260",
+      "tomas_tarde": "213",
+      "estado_del_dia": "Completo"
+    },
+    {
+      "fecha": "2026-08-11T03:00:00.000Z",
+      "dia_semana": "Martes",
+      "dow": "2",
+      "tomas_manana": "236",
+      "tomas_tarde": "7",
+      "estado_del_dia": "Completo"
+    }
+  ],
+  "totalTomas": [
+    {
+      "total": "37983"
+    }
+  ],
+  "tomasPorMes": [
+    {
+      "periodo": "2026-03",
+      "periodo_legible": "Marzo 2026",
+      "tomas_registradas": "483",
+      "dias_con_actividad": "2",
+      "promedio_tomas_por_dia": "241.5"
+    },
+    {
+      "periodo": "2026-04",
+      "periodo_legible": "Abril 2026",
+      "tomas_registradas": "8911",
+      "dias_con_actividad": "20",
+      "promedio_tomas_por_dia": "445.6"
+    },
+    {
+      "periodo": "2026-05",
+      "periodo_legible": "Mayo 2026",
+      "tomas_registradas": "8426",
+      "dias_con_actividad": "19",
+      "promedio_tomas_por_dia": "443.5"
+    },
+    {
+      "periodo": "2026-06",
+      "periodo_legible": "Junio 2026",
+      "tomas_registradas": "8935",
+      "dias_con_actividad": "20",
+      "promedio_tomas_por_dia": "446.8"
+    },
+    {
+      "periodo": "2026-07",
+      "periodo_legible": "Julio 2026",
+      "tomas_registradas": "8278",
+      "dias_con_actividad": "21",
+      "promedio_tomas_por_dia": "394.2"
+    },
+    {
+      "periodo": "2026-08",
+      "periodo_legible": "Agosto 2026",
+      "tomas_registradas": "2950",
+      "dias_con_actividad": "7",
+      "promedio_tomas_por_dia": "421.4"
+    }
+  ],
+  "tomasPorSemana": [
+    {
+      "semana_inicio": "2026-03-30T03:00:00.000Z",
+      "tomas_registradas": "928",
+      "dias_con_actividad": "3",
+      "promedio_tomas_por_dia": "309.3"
+    },
+    {
+      "semana_inicio": "2026-04-06T03:00:00.000Z",
+      "tomas_registradas": "2238",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "447.6"
+    },
+    {
+      "semana_inicio": "2026-04-13T03:00:00.000Z",
+      "tomas_registradas": "2248",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "449.6"
+    },
+    {
+      "semana_inicio": "2026-04-20T03:00:00.000Z",
+      "tomas_registradas": "2200",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "440.0"
+    },
+    {
+      "semana_inicio": "2026-04-27T03:00:00.000Z",
+      "tomas_registradas": "1780",
+      "dias_con_actividad": "4",
+      "promedio_tomas_por_dia": "445.0"
+    },
+    {
+      "semana_inicio": "2026-05-04T03:00:00.000Z",
+      "tomas_registradas": "2246",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "449.2"
+    },
+    {
+      "semana_inicio": "2026-05-11T03:00:00.000Z",
+      "tomas_registradas": "2139",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "427.8"
+    },
+    {
+      "semana_inicio": "2026-05-18T03:00:00.000Z",
+      "tomas_registradas": "2366",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "473.2"
+    },
+    {
+      "semana_inicio": "2026-05-25T03:00:00.000Z",
+      "tomas_registradas": "1675",
+      "dias_con_actividad": "4",
+      "promedio_tomas_por_dia": "418.8"
+    },
+    {
+      "semana_inicio": "2026-06-01T03:00:00.000Z",
+      "tomas_registradas": "2304",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "460.8"
+    },
+    {
+      "semana_inicio": "2026-06-08T03:00:00.000Z",
+      "tomas_registradas": "1643",
+      "dias_con_actividad": "4",
+      "promedio_tomas_por_dia": "410.8"
+    },
+    {
+      "semana_inicio": "2026-06-15T03:00:00.000Z",
+      "tomas_registradas": "1824",
+      "dias_con_actividad": "4",
+      "promedio_tomas_por_dia": "456.0"
+    },
+    {
+      "semana_inicio": "2026-06-22T03:00:00.000Z",
+      "tomas_registradas": "2213",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "442.6"
+    },
+    {
+      "semana_inicio": "2026-06-29T03:00:00.000Z",
+      "tomas_registradas": "2353",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "470.6"
+    },
+    {
+      "semana_inicio": "2026-07-06T03:00:00.000Z",
+      "tomas_registradas": "1168",
+      "dias_con_actividad": "3",
+      "promedio_tomas_por_dia": "389.3"
+    },
+    {
+      "semana_inicio": "2026-07-13T03:00:00.000Z",
+      "tomas_registradas": "1595",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "319.0"
+    },
+    {
+      "semana_inicio": "2026-07-20T03:00:00.000Z",
+      "tomas_registradas": "1735",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "347.0"
+    },
+    {
+      "semana_inicio": "2026-07-27T03:00:00.000Z",
+      "tomas_registradas": "2378",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "475.6"
+    },
+    {
+      "semana_inicio": "2026-08-03T03:00:00.000Z",
+      "tomas_registradas": "2232",
+      "dias_con_actividad": "5",
+      "promedio_tomas_por_dia": "446.4"
+    },
+    {
+      "semana_inicio": "2026-08-10T03:00:00.000Z",
+      "tomas_registradas": "718",
+      "dias_con_actividad": "2",
+      "promedio_tomas_por_dia": "359.0"
+    }
+  ],
+  "resumenPorLinea": [
+    {
+      "linea_base": "L1",
+      "total_tomas": "1620",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "18.2",
+      "internos_unicos_relevados": "18"
+    },
+    {
+      "linea_base": "L10",
+      "total_tomas": "1912",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "21.7",
+      "internos_unicos_relevados": "22"
+    },
+    {
+      "linea_base": "L11",
+      "total_tomas": "3559",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "40.0",
+      "internos_unicos_relevados": "31"
+    },
+    {
+      "linea_base": "L12",
+      "total_tomas": "3689",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "41.9",
+      "internos_unicos_relevados": "39"
+    },
+    {
+      "linea_base": "L17",
+      "total_tomas": "5422",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "60.9",
+      "internos_unicos_relevados": "40"
+    },
+    {
+      "linea_base": "L18",
+      "total_tomas": "3342",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "37.6",
+      "internos_unicos_relevados": "30"
+    },
+    {
+      "linea_base": "L19",
+      "total_tomas": "3257",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "36.6",
+      "internos_unicos_relevados": "22"
+    },
+    {
+      "linea_base": "L3",
+      "total_tomas": "1781",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "20.0",
+      "internos_unicos_relevados": "21"
+    },
+    {
+      "linea_base": "L4",
+      "total_tomas": "2214",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "25.2",
+      "internos_unicos_relevados": "28"
+    },
+    {
+      "linea_base": "L5",
+      "total_tomas": "2011",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "22.9",
+      "internos_unicos_relevados": "22"
+    },
+    {
+      "linea_base": "L6",
+      "total_tomas": "2915",
+      "dias_controlados": "89",
+      "promedio_tomas_por_dia": "32.8",
+      "internos_unicos_relevados": "39"
+    },
+    {
+      "linea_base": "L7",
+      "total_tomas": "1863",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "21.2",
+      "internos_unicos_relevados": "21"
+    },
+    {
+      "linea_base": "L8",
+      "total_tomas": "2273",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "25.8",
+      "internos_unicos_relevados": "22"
+    },
+    {
+      "linea_base": "L9",
+      "total_tomas": "2125",
+      "dias_controlados": "88",
+      "promedio_tomas_por_dia": "24.1",
+      "internos_unicos_relevados": "28"
+    }
+  ],
+  "frecuenciaLineaMes": [
+    {
+      "periodo": "2026-03",
+      "linea_base": "L1",
+      "tomas": "33",
+      "frecuencia_promedio_min": "20.10"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L10",
+      "tomas": "26",
+      "frecuencia_promedio_min": "20.16"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L11",
+      "tomas": "30",
+      "frecuencia_promedio_min": "17.53"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L12",
+      "tomas": "36",
+      "frecuencia_promedio_min": "18.70"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L17",
+      "tomas": "69",
+      "frecuencia_promedio_min": "22.23"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L18",
+      "tomas": "46",
+      "frecuencia_promedio_min": "14.25"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L19",
+      "tomas": "43",
+      "frecuencia_promedio_min": "11.76"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L3",
+      "tomas": "27",
+      "frecuencia_promedio_min": "30.46"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L4",
+      "tomas": "28",
+      "frecuencia_promedio_min": "32.19"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L5",
+      "tomas": "25",
+      "frecuencia_promedio_min": "28.00"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L6",
+      "tomas": "37",
+      "frecuencia_promedio_min": "14.78"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L7",
+      "tomas": "22",
+      "frecuencia_promedio_min": "22.26"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L8",
+      "tomas": "30",
+      "frecuencia_promedio_min": "19.05"
+    },
+    {
+      "periodo": "2026-03",
+      "linea_base": "L9",
+      "tomas": "31",
+      "frecuencia_promedio_min": "15.34"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L1",
+      "tomas": "399",
+      "frecuencia_promedio_min": "23.26"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L10",
+      "tomas": "442",
+      "frecuencia_promedio_min": "22.24"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L11",
+      "tomas": "855",
+      "frecuencia_promedio_min": "17.21"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L12",
+      "tomas": "827",
+      "frecuencia_promedio_min": "16.24"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L17",
+      "tomas": "1329",
+      "frecuencia_promedio_min": "18.34"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L18",
+      "tomas": "785",
+      "frecuencia_promedio_min": "11.86"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L19",
+      "tomas": "794",
+      "frecuencia_promedio_min": "11.90"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L3",
+      "tomas": "433",
+      "frecuencia_promedio_min": "25.15"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L4",
+      "tomas": "505",
+      "frecuencia_promedio_min": "37.75"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L5",
+      "tomas": "453",
+      "frecuencia_promedio_min": "32.48"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L6",
+      "tomas": "608",
+      "frecuencia_promedio_min": "17.96"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L7",
+      "tomas": "416",
+      "frecuencia_promedio_min": "21.57"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L8",
+      "tomas": "534",
+      "frecuencia_promedio_min": "24.97"
+    },
+    {
+      "periodo": "2026-04",
+      "linea_base": "L9",
+      "tomas": "531",
+      "frecuencia_promedio_min": "19.27"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L1",
+      "tomas": "342",
+      "frecuencia_promedio_min": "26.27"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L10",
+      "tomas": "456",
+      "frecuencia_promedio_min": "21.46"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L11",
+      "tomas": "765",
+      "frecuencia_promedio_min": "16.94"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L12",
+      "tomas": "844",
+      "frecuencia_promedio_min": "15.55"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L17",
+      "tomas": "1239",
+      "frecuencia_promedio_min": "18.28"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L18",
+      "tomas": "752",
+      "frecuencia_promedio_min": "11.41"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L19",
+      "tomas": "715",
+      "frecuencia_promedio_min": "11.70"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L3",
+      "tomas": "400",
+      "frecuencia_promedio_min": "26.72"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L4",
+      "tomas": "470",
+      "frecuencia_promedio_min": "38.77"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L5",
+      "tomas": "425",
+      "frecuencia_promedio_min": "32.05"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L6",
+      "tomas": "646",
+      "frecuencia_promedio_min": "18.80"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L7",
+      "tomas": "415",
+      "frecuencia_promedio_min": "19.40"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L8",
+      "tomas": "510",
+      "frecuencia_promedio_min": "25.82"
+    },
+    {
+      "periodo": "2026-05",
+      "linea_base": "L9",
+      "tomas": "447",
+      "frecuencia_promedio_min": "18.49"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L1",
+      "tomas": "368",
+      "frecuencia_promedio_min": "26.77"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L10",
+      "tomas": "458",
+      "frecuencia_promedio_min": "21.11"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L11",
+      "tomas": "831",
+      "frecuencia_promedio_min": "16.74"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L12",
+      "tomas": "897",
+      "frecuencia_promedio_min": "15.69"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L17",
+      "tomas": "1279",
+      "frecuencia_promedio_min": "18.69"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L18",
+      "tomas": "756",
+      "frecuencia_promedio_min": "11.83"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L19",
+      "tomas": "779",
+      "frecuencia_promedio_min": "11.77"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L3",
+      "tomas": "396",
+      "frecuencia_promedio_min": "23.54"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L4",
+      "tomas": "537",
+      "frecuencia_promedio_min": "35.29"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L5",
+      "tomas": "487",
+      "frecuencia_promedio_min": "31.17"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L6",
+      "tomas": "710",
+      "frecuencia_promedio_min": "18.88"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L7",
+      "tomas": "460",
+      "frecuencia_promedio_min": "19.30"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L8",
+      "tomas": "518",
+      "frecuencia_promedio_min": "24.72"
+    },
+    {
+      "periodo": "2026-06",
+      "linea_base": "L9",
+      "tomas": "459",
+      "frecuencia_promedio_min": "18.76"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L1",
+      "tomas": "360",
+      "frecuencia_promedio_min": "24.62"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L10",
+      "tomas": "396",
+      "frecuencia_promedio_min": "24.17"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L11",
+      "tomas": "807",
+      "frecuencia_promedio_min": "17.61"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L12",
+      "tomas": "787",
+      "frecuencia_promedio_min": "17.71"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L17",
+      "tomas": "1082",
+      "frecuencia_promedio_min": "22.06"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L18",
+      "tomas": "738",
+      "frecuencia_promedio_min": "12.33"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L19",
+      "tomas": "676",
+      "frecuencia_promedio_min": "13.26"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L3",
+      "tomas": "393",
+      "frecuencia_promedio_min": "24.62"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L4",
+      "tomas": "514",
+      "frecuencia_promedio_min": "35.79"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L5",
+      "tomas": "466",
+      "frecuencia_promedio_min": "32.32"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L6",
+      "tomas": "653",
+      "frecuencia_promedio_min": "20.78"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L7",
+      "tomas": "414",
+      "frecuencia_promedio_min": "21.13"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L8",
+      "tomas": "502",
+      "frecuencia_promedio_min": "26.04"
+    },
+    {
+      "periodo": "2026-07",
+      "linea_base": "L9",
+      "tomas": "490",
+      "frecuencia_promedio_min": "19.02"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L1",
+      "tomas": "118",
+      "frecuencia_promedio_min": "23.88"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L10",
+      "tomas": "134",
+      "frecuencia_promedio_min": "23.08"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L11",
+      "tomas": "271",
+      "frecuencia_promedio_min": "17.01"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L12",
+      "tomas": "298",
+      "frecuencia_promedio_min": "15.40"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L17",
+      "tomas": "424",
+      "frecuencia_promedio_min": "19.04"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L18",
+      "tomas": "265",
+      "frecuencia_promedio_min": "10.59"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L19",
+      "tomas": "250",
+      "frecuencia_promedio_min": "12.02"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L3",
+      "tomas": "132",
+      "frecuencia_promedio_min": "25.06"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L4",
+      "tomas": "160",
+      "frecuencia_promedio_min": "35.87"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L5",
+      "tomas": "155",
+      "frecuencia_promedio_min": "30.74"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L6",
+      "tomas": "261",
+      "frecuencia_promedio_min": "17.91"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L7",
+      "tomas": "136",
+      "frecuencia_promedio_min": "19.97"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L8",
+      "tomas": "179",
+      "frecuencia_promedio_min": "25.02"
+    },
+    {
+      "periodo": "2026-08",
+      "linea_base": "L9",
+      "tomas": "167",
+      "frecuencia_promedio_min": "18.42"
+    }
+  ],
+  "rankingLineas": [
+    {
+      "linea_base": "L4",
+      "total_tomas": "2214",
+      "frecuencia_promedio_min": "36.68",
+      "frecuencia_minima_min": "0.05",
+      "frecuencia_maxima_min": "270.13"
+    },
+    {
+      "linea_base": "L5",
+      "total_tomas": "2011",
+      "frecuencia_promedio_min": "31.85",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "676.93"
+    },
+    {
+      "linea_base": "L8",
+      "total_tomas": "2273",
+      "frecuencia_promedio_min": "25.26",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "522.00"
+    },
+    {
+      "linea_base": "L3",
+      "total_tomas": "1781",
+      "frecuencia_promedio_min": "25.11",
+      "frecuencia_minima_min": "0.13",
+      "frecuencia_maxima_min": "266.83"
+    },
+    {
+      "linea_base": "L1",
+      "total_tomas": "1620",
+      "frecuencia_promedio_min": "24.96",
+      "frecuencia_minima_min": "0.40",
+      "frecuencia_maxima_min": "178.63"
+    },
+    {
+      "linea_base": "L10",
+      "total_tomas": "1912",
+      "frecuencia_promedio_min": "22.19",
+      "frecuencia_minima_min": "0.02",
+      "frecuencia_maxima_min": "487.03"
+    },
+    {
+      "linea_base": "L7",
+      "total_tomas": "1863",
+      "frecuencia_promedio_min": "20.31",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "109.73"
+    },
+    {
+      "linea_base": "L17",
+      "total_tomas": "5422",
+      "frecuencia_promedio_min": "19.22",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "570.87"
+    },
+    {
+      "linea_base": "L6",
+      "total_tomas": "2915",
+      "frecuencia_promedio_min": "18.94",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "195.20"
+    },
+    {
+      "linea_base": "L9",
+      "total_tomas": "2125",
+      "frecuencia_promedio_min": "18.81",
+      "frecuencia_minima_min": "0.02",
+      "frecuencia_maxima_min": "565.60"
+    },
+    {
+      "linea_base": "L11",
+      "total_tomas": "3559",
+      "frecuencia_promedio_min": "17.12",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "196.87"
+    },
+    {
+      "linea_base": "L12",
+      "total_tomas": "3689",
+      "frecuencia_promedio_min": "16.21",
+      "frecuencia_minima_min": "0.02",
+      "frecuencia_maxima_min": "353.47"
+    },
+    {
+      "linea_base": "L19",
+      "total_tomas": "3257",
+      "frecuencia_promedio_min": "12.11",
+      "frecuencia_minima_min": "0.03",
+      "frecuencia_maxima_min": "47.03"
+    },
+    {
+      "linea_base": "L18",
+      "total_tomas": "3342",
+      "frecuencia_promedio_min": "11.78",
+      "frecuencia_minima_min": "0.02",
+      "frecuencia_maxima_min": "85.10"
+    }
+  ],
+  "tomasPorPuntoControl": [
+    {
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "3435",
+      "dias_usados": "89",
+      "lineas_controladas": "8"
+    },
+    {
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "2823",
+      "dias_usados": "88",
+      "lineas_controladas": "5"
+    },
+    {
+      "punto_de_control": "Amador Lucero 3200",
+      "total_tomas": "1930",
+      "dias_usados": "88",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "1645",
+      "dias_usados": "87",
+      "lineas_controladas": "9"
+    },
+    {
+      "punto_de_control": "Av Saenz Peña 800",
+      "total_tomas": "1580",
+      "dias_usados": "65",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "1264",
+      "dias_usados": "88",
+      "lineas_controladas": "6"
+    },
+    {
+      "punto_de_control": "Castro Barros 2600",
+      "total_tomas": "1224",
+      "dias_usados": "72",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "1191",
+      "dias_usados": "78",
+      "lineas_controladas": "8"
+    },
+    {
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "1122",
+      "dias_usados": "88",
+      "lineas_controladas": "6"
+    },
+    {
+      "punto_de_control": "Av. américa 1700",
+      "total_tomas": "1105",
+      "dias_usados": "46",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Marina Alfaro 1200",
+      "total_tomas": "1001",
+      "dias_usados": "53",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "9 de Julio 1900",
+      "total_tomas": "949",
+      "dias_usados": "80",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "25 de mayo 1900",
+      "total_tomas": "941",
+      "dias_usados": "67",
+      "lineas_controladas": "4"
+    },
+    {
+      "punto_de_control": "Lavalle 2300",
+      "total_tomas": "916",
+      "dias_usados": "88",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "General Paz 2300",
+      "total_tomas": "889",
+      "dias_usados": "88",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Luis Alberto Spinetta 100",
+      "total_tomas": "854",
+      "dias_usados": "88",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300",
+      "total_tomas": "758",
+      "dias_usados": "46",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Coronel Olleros 500",
+      "total_tomas": "751",
+      "dias_usados": "57",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Ejercito del Norte 600",
+      "total_tomas": "701",
+      "dias_usados": "32",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "679",
+      "dias_usados": "54",
+      "lineas_controladas": "6"
+    },
+    {
+      "punto_de_control": "Congreso 2700",
+      "total_tomas": "670",
+      "dias_usados": "82",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "669",
+      "dias_usados": "57",
+      "lineas_controladas": "8"
+    },
+    {
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "656",
+      "dias_usados": "52",
+      "lineas_controladas": "5"
+    },
+    {
+      "punto_de_control": "Av. Ejercito del Norte 600",
+      "total_tomas": "648",
+      "dias_usados": "34",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Americo Vespucio 1700",
+      "total_tomas": "635",
+      "dias_usados": "62",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Berutti 200",
+      "total_tomas": "607",
+      "dias_usados": "78",
+      "lineas_controladas": "4"
+    },
+    {
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "600",
+      "dias_usados": "70",
+      "lineas_controladas": "7"
+    },
+    {
+      "punto_de_control": "Avenida Americo Vespucio 1700",
+      "total_tomas": "587",
+      "dias_usados": "54",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Francisco de Aguirre 2100",
+      "total_tomas": "569",
+      "dias_usados": "56",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Coronel Zelaya 700",
+      "total_tomas": "569",
+      "dias_usados": "59",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "550",
+      "dias_usados": "86",
+      "lineas_controladas": "6"
+    },
+    {
+      "punto_de_control": "Av. Benjamin Araoz 950",
+      "total_tomas": "404",
+      "dias_usados": "61",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Av. América 1700",
+      "total_tomas": "399",
+      "dias_usados": "18",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "371",
+      "dias_usados": "35",
+      "lineas_controladas": "6"
+    },
+    {
+      "punto_de_control": "Av. America 1700",
+      "total_tomas": "368",
+      "dias_usados": "21",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Marina Alfaro 1200",
+      "total_tomas": "312",
+      "dias_usados": "19",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Ramirez de Velazco 2800",
+      "total_tomas": "307",
+      "dias_usados": "43",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Isabel la Católica 2900",
+      "total_tomas": "303",
+      "dias_usados": "49",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Democracia 50",
+      "total_tomas": "292",
+      "dias_usados": "35",
+      "lineas_controladas": "4"
+    },
+    {
+      "punto_de_control": "Lavalle 2700",
+      "total_tomas": "278",
+      "dias_usados": "44",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Isabel La Catolica 2100",
+      "total_tomas": "224",
+      "dias_usados": "35",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Luis Alberto Spinnetta 100",
+      "total_tomas": "210",
+      "dias_usados": "37",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Mexico 3600",
+      "total_tomas": "201",
+      "dias_usados": "21",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Monteagudo 500",
+      "total_tomas": "174",
+      "dias_usados": "18",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Araoz 850",
+      "total_tomas": "140",
+      "dias_usados": "24",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Nestor Kirchner 2700",
+      "total_tomas": "124",
+      "dias_usados": "21",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Ejercito del Norte 700",
+      "total_tomas": "115",
+      "dias_usados": "7",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av Saenz Peña 800 ",
+      "total_tomas": "88",
+      "dias_usados": "5",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Americo vespucio 1700",
+      "total_tomas": "79",
+      "dias_usados": "10",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Néstor Kirchner 2700",
+      "total_tomas": "78",
+      "dias_usados": "14",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "78",
+      "dias_usados": "7",
+      "lineas_controladas": "5"
+    },
+    {
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300 ",
+      "total_tomas": "57",
+      "dias_usados": "4",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Castros Barros 2600",
+      "total_tomas": "56",
+      "dias_usados": "4",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Av Saenz Peña 800",
+      "total_tomas": "52",
+      "dias_usados": "3",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Nestor Kirchner 2300",
+      "total_tomas": "49",
+      "dias_usados": "8",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " 9 de Julio 1900",
+      "total_tomas": "42",
+      "dias_usados": "5",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Ejercito del Norte 600 ",
+      "total_tomas": "37",
+      "dias_usados": "2",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Marina Alfaro 1200 ",
+      "total_tomas": "31",
+      "dias_usados": "2",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Buenos Aires 1600",
+      "total_tomas": "30",
+      "dias_usados": "2",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "9 de Julio 1900 ",
+      "total_tomas": "29",
+      "dias_usados": "3",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "26",
+      "dias_usados": "1",
+      "lineas_controladas": "5"
+    },
+    {
+      "punto_de_control": "Ejercito de Norte 600",
+      "total_tomas": "24",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Amador Lucero 1700",
+      "total_tomas": "24",
+      "dias_usados": "3",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Jujuy 4300",
+      "total_tomas": "22",
+      "dias_usados": "3",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Buenos Aires 1700",
+      "total_tomas": "22",
+      "dias_usados": "2",
+      "lineas_controladas": "3"
+    },
+    {
+      "punto_de_control": "Av. Ejercito del Norte 700 ",
+      "total_tomas": "21",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Av. américa 1700",
+      "total_tomas": "20",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Marcos Paz 600",
+      "total_tomas": "19",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Marina Alfaro 2100",
+      "total_tomas": "19",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "25 de mayo 1900 ",
+      "total_tomas": "18",
+      "dias_usados": "2",
+      "lineas_controladas": "4"
+    },
+    {
+      "punto_de_control": "Avenida Americe Vespucio 1700",
+      "total_tomas": "17",
+      "dias_usados": "2",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Berutti 200",
+      "total_tomas": "17",
+      "dias_usados": "3",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Berutti 500",
+      "total_tomas": "16",
+      "dias_usados": "2",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Ejercito del Nortes 600",
+      "total_tomas": "16",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "15",
+      "dias_usados": "1",
+      "lineas_controladas": "5"
+    },
+    {
+      "punto_de_control": " Rivadavia 2100",
+      "total_tomas": "14",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Francisco de aguirre 2100",
+      "total_tomas": "13",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Berutti 200 ",
+      "total_tomas": "13",
+      "dias_usados": "3",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " 25 de mayo 1900",
+      "total_tomas": "11",
+      "dias_usados": "1",
+      "lineas_controladas": "4"
+    },
+    {
+      "punto_de_control": "Castro Barros 1700",
+      "total_tomas": "11",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Francisco Aguirre 2100",
+      "total_tomas": "11",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Belisario roldan 1200",
+      "total_tomas": "10",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Mexico 3600",
+      "total_tomas": "10",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Av Saenz Peña 800 ",
+      "total_tomas": "9",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " 9 de Julio 1900 ",
+      "total_tomas": "9",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Cnel. Zelaya 700",
+      "total_tomas": "8",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Américo Vespucio 1700",
+      "total_tomas": "8",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Benjamin Araoz",
+      "total_tomas": "8",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Ramirez de Velazco 1700 ",
+      "total_tomas": "7",
+      "dias_usados": "3",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "General Paz 2200",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Néstor Kirchner 2300",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "General Paz 2700",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Luis Alberto Spinetta 100",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Nestor Kirchner2700",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Lavalle 2200",
+      "total_tomas": "6",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Néstor Kirchner 2700",
+      "total_tomas": "5",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Mario Bravo 400",
+      "total_tomas": "5",
+      "dias_usados": "1",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": " Avenida Americo Vespucio 1700",
+      "total_tomas": "5",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Berutti 500 ",
+      "total_tomas": "4",
+      "dias_usados": "3",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Av. Benjamín Araoz 950",
+      "total_tomas": "4",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Monteagudo 500 ",
+      "total_tomas": "4",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Luis Alberto Spinnetta ",
+      "total_tomas": "4",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Coronel 700",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av Benjamin Araoz 950",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Luis Alberto Spinnetta",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Adolfo de la Vega 450",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Ramirez de Velazco 1700",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Lavalle 2700",
+      "total_tomas": "3",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Buenos Aires 445",
+      "total_tomas": "2",
+      "dias_usados": "2",
+      "lineas_controladas": "2"
+    },
+    {
+      "punto_de_control": "Berutii 500",
+      "total_tomas": "2",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av Bejamin Araoz 950",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Lavalle Paz 2300",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Piedras 2300",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "\tNéstor Kirchner 2700",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Américo Vespucio 1700",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Av. Araoz 500",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Ramrez de Velazco 1700",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "\tAv. Democracia 50",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": " Isabel la Católica 2900",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    },
+    {
+      "punto_de_control": "Luis ALberto Spinetta 100",
+      "total_tomas": "1",
+      "dias_usados": "1",
+      "lineas_controladas": "1"
+    }
+  ],
+  "frecuenciaPorRamal": [
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": " 9 de Julio 1900",
+      "total_tomas": "21",
+      "frecuencia_promedio_min": "23.37"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": " 9 de Julio 1900 ",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "23.27"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": "9 de Julio 1900",
+      "total_tomas": "496",
+      "frecuencia_promedio_min": "24.80"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": "9 de Julio 1900 ",
+      "total_tomas": "14",
+      "frecuencia_promedio_min": "24.24"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": "Francisco Aguirre 2100",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "21.93"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": "Francisco de aguirre 2100",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "21.54"
+    },
+    {
+      "ramal": "L1 Mitre",
+      "punto_de_control": "Francisco de Aguirre 2100",
+      "total_tomas": "294",
+      "frecuencia_promedio_min": "22.16"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": " 9 de Julio 1900",
+      "total_tomas": "21",
+      "frecuencia_promedio_min": "27.92"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": " 9 de Julio 1900 ",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "31.69"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": "9 de Julio 1900",
+      "total_tomas": "451",
+      "frecuencia_promedio_min": "28.38"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": "9 de Julio 1900 ",
+      "total_tomas": "15",
+      "frecuencia_promedio_min": "21.13"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": "Francisco Aguirre 2100",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "16.61"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": "Francisco de aguirre 2100",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "17.58"
+    },
+    {
+      "ramal": "L1 Salta",
+      "punto_de_control": "Francisco de Aguirre 2100",
+      "total_tomas": "275",
+      "frecuencia_promedio_min": "23.48"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": " Berutti 200",
+      "total_tomas": "17",
+      "frecuencia_promedio_min": "23.53"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": " Lavalle 2700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "52.27"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Av. Nestor Kirchner 2700",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "115.97"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Berutti 200",
+      "total_tomas": "570",
+      "frecuencia_promedio_min": "23.03"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Berutti 200 ",
+      "total_tomas": "13",
+      "frecuencia_promedio_min": "17.95"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "15",
+      "frecuencia_promedio_min": "30.55"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Congreso 2700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "21.17"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Lavalle 2300",
+      "total_tomas": "53",
+      "frecuencia_promedio_min": "21.40"
+    },
+    {
+      "ramal": "L10 San Cayetano",
+      "punto_de_control": "Lavalle 2700",
+      "total_tomas": "260",
+      "frecuencia_promedio_min": "21.57"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "\tNéstor Kirchner 2700",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Av. Nestor Kirchner 2300",
+      "total_tomas": "49",
+      "frecuencia_promedio_min": "20.21"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Av. Néstor Kirchner 2300",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.21"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Av. Nestor Kirchner 2700",
+      "total_tomas": "122",
+      "frecuencia_promedio_min": "20.61"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Av. Néstor Kirchner 2700",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "24.77"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Av. Nestor Kirchner2700",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.51"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Berutti 200",
+      "total_tomas": "22",
+      "frecuencia_promedio_min": "19.26"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "19.50"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Congreso 2700",
+      "total_tomas": "667",
+      "frecuencia_promedio_min": "22.11"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Lavalle 2700",
+      "total_tomas": "13",
+      "frecuencia_promedio_min": "18.51"
+    },
+    {
+      "ramal": "L10 V. Amalia",
+      "punto_de_control": "Néstor Kirchner 2700",
+      "total_tomas": "77",
+      "frecuencia_promedio_min": "21.91"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": " Avenida Americo Vespucio 1700",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "13.13"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Amador Lucero 1700",
+      "total_tomas": "24",
+      "frecuencia_promedio_min": "14.33"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Americo vespucio 1700",
+      "total_tomas": "79",
+      "frecuencia_promedio_min": "15.37"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Americo Vespucio 1700",
+      "total_tomas": "635",
+      "frecuencia_promedio_min": "15.34"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Américo Vespucio 1700",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "15.51"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Av. Américo Vespucio 1700",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Avenida Americe Vespucio 1700",
+      "total_tomas": "17",
+      "frecuencia_promedio_min": "14.07"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Avenida Americo Vespucio 1700",
+      "total_tomas": "580",
+      "frecuencia_promedio_min": "15.40"
+    },
+    {
+      "ramal": "L11 B 11 de Marzo",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "76.10"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": " Luis Alberto Spinetta 100",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "20.51"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "18.25"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Luis Alberto Spinetta 100",
+      "total_tomas": "843",
+      "frecuencia_promedio_min": "18.47"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Luis ALberto Spinetta 100",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Luis Alberto Spinnetta",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "11.65"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Luis Alberto Spinnetta ",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "32.34"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Luis Alberto Spinnetta 100",
+      "total_tomas": "210",
+      "frecuencia_promedio_min": "19.43"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "3.00"
+    },
+    {
+      "ramal": "L11 Manantial Sur",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "11.50"
+    },
+    {
+      "ramal": "L11 V. Angelina",
+      "punto_de_control": " Jujuy 4300",
+      "total_tomas": "22",
+      "frecuencia_promedio_min": "16.56"
+    },
+    {
+      "ramal": "L11 V. Angelina",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "1095",
+      "frecuencia_promedio_min": "17.83"
+    },
+    {
+      "ramal": "L11 V. Angelina",
+      "punto_de_control": "Luis Alberto Spinetta 100",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "22.21"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": " Ramirez de Velazco 1700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "11.55"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Cnel. Zelaya 700",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "11.63"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Coronel 700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "8.02"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Coronel Olleros 500",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "44.66"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Coronel Zelaya 700",
+      "total_tomas": "560",
+      "frecuencia_promedio_min": "12.77"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Néstor Kirchner 2700",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "976",
+      "frecuencia_promedio_min": "13.35"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Ramirez de Velazco 1700 ",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "36.25"
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Ramrez de Velazco 1700",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L12 Municipal",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "22.94"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Coronel Olleros 500",
+      "total_tomas": "381",
+      "frecuencia_promedio_min": "17.77"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Coronel Zelaya 700",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "21.00"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Luis Alberto Spinetta 100",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Monteagudo 500",
+      "total_tomas": "91",
+      "frecuencia_promedio_min": "21.15"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Monteagudo 500 ",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "36.01"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "23",
+      "frecuencia_promedio_min": "21.04"
+    },
+    {
+      "ramal": "L12 SMATA Manantial Sur",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "598",
+      "frecuencia_promedio_min": "17.61"
+    },
+    {
+      "ramal": "L12 SMATA San Miguel",
+      "punto_de_control": "Coronel Olleros 500",
+      "total_tomas": "365",
+      "frecuencia_promedio_min": "17.64"
+    },
+    {
+      "ramal": "L12 SMATA San Miguel",
+      "punto_de_control": "Coronel Zelaya 700",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "38.60"
+    },
+    {
+      "ramal": "L12 SMATA San Miguel",
+      "punto_de_control": "Monteagudo 500",
+      "total_tomas": "83",
+      "frecuencia_promedio_min": "21.65"
+    },
+    {
+      "ramal": "L12 SMATA San Miguel",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "13",
+      "frecuencia_promedio_min": "20.75"
+    },
+    {
+      "ramal": "L12 SMATA San Miguel",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "547",
+      "frecuencia_promedio_min": "19.46"
+    },
+    {
+      "ramal": "L17 Alem-Universidad",
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "22.11"
+    },
+    {
+      "ramal": "L17 Alem-Universidad",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "729",
+      "frecuencia_promedio_min": "24.62"
+    },
+    {
+      "ramal": "L17 Alem-Universidad",
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "18.00"
+    },
+    {
+      "ramal": "L17 Alem-Universidad",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "19.00"
+    },
+    {
+      "ramal": "L17 Chañaritos",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "56",
+      "frecuencia_promedio_min": "11.04"
+    },
+    {
+      "ramal": "L17 Chañaritos",
+      "punto_de_control": "Amador Lucero 3200",
+      "total_tomas": "1928",
+      "frecuencia_promedio_min": "10.56"
+    },
+    {
+      "ramal": "L17 Ejercito Arg",
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "67.57"
+    },
+    {
+      "ramal": "L17 Ejercito Arg",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "245",
+      "frecuencia_promedio_min": "69.81"
+    },
+    {
+      "ramal": "L17 Ejercito Arg",
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "78.80"
+    },
+    {
+      "ramal": "L17 Ejercito Arg",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "68.07"
+    },
+    {
+      "ramal": "L17 Ejercito Argentino",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L17 Roca-Universidad",
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "19.11"
+    },
+    {
+      "ramal": "L17 Roca-Universidad",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "825",
+      "frecuencia_promedio_min": "23.02"
+    },
+    {
+      "ramal": "L17 Roca-Universidad",
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "29.73"
+    },
+    {
+      "ramal": "L17 Roca-Universidad",
+      "punto_de_control": "Jujuy 4300",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "15.20"
+    },
+    {
+      "ramal": "L17 San Lorenzo-Roca",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "11.57"
+    },
+    {
+      "ramal": "L17 Teran-Roca",
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "18.61"
+    },
+    {
+      "ramal": "L17 Teran-Roca",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "808",
+      "frecuencia_promedio_min": "22.99"
+    },
+    {
+      "ramal": "L17 Teran-Roca",
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "12.50"
+    },
+    {
+      "ramal": "L17 Teran-San Lorenzo",
+      "punto_de_control": " Alem 1200",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "27.75"
+    },
+    {
+      "ramal": "L17 Teran-San Lorenzo",
+      "punto_de_control": "Alem 1200",
+      "total_tomas": "769",
+      "frecuencia_promedio_min": "23.17"
+    },
+    {
+      "ramal": "L17 Teran-San Lorenzo",
+      "punto_de_control": "Amador Lucero 3200",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L17 Teran-San Lorenzo",
+      "punto_de_control": "Av. Alem 1200",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "23.28"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": " Av Saenz Peña 800",
+      "total_tomas": "25",
+      "frecuencia_promedio_min": "12.85"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": " Av Saenz Peña 800 ",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "20.53"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av Saenz Peña 800",
+      "total_tomas": "770",
+      "frecuencia_promedio_min": "11.78"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av Saenz Peña 800 ",
+      "total_tomas": "50",
+      "frecuencia_promedio_min": "11.20"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av. Ejercito del Norte 600",
+      "total_tomas": "313",
+      "frecuencia_promedio_min": "12.88"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av. Ejercito del Norte 700",
+      "total_tomas": "56",
+      "frecuencia_promedio_min": "13.58"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av. Ejercito del Norte 700 ",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "12.22"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Av. Ejercito del Nortes 600",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.08"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Avenida Americo Vespucio 1700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "11.78"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Ejercito de Norte 600",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "12.25"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Ejercito del Norte 600",
+      "total_tomas": "359",
+      "frecuencia_promedio_min": "10.77"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Ejercito del Norte 600 ",
+      "total_tomas": "19",
+      "frecuencia_promedio_min": "11.97"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Marcos Paz 600",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "11.14"
+    },
+    {
+      "ramal": "L18 Antihorario",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "15",
+      "frecuencia_promedio_min": "9.71"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": " Av Saenz Peña 800",
+      "total_tomas": "27",
+      "frecuencia_promedio_min": "11.57"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": " Av Saenz Peña 800 ",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "26.53"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av Saenz Peña 800",
+      "total_tomas": "809",
+      "frecuencia_promedio_min": "11.52"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av Saenz Peña 800 ",
+      "total_tomas": "38",
+      "frecuencia_promedio_min": "12.35"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av. Ejercito del Norte 600",
+      "total_tomas": "335",
+      "frecuencia_promedio_min": "12.47"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av. Ejercito del Norte 700",
+      "total_tomas": "59",
+      "frecuencia_promedio_min": "12.86"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av. Ejercito del Norte 700 ",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "9.75"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Av. Ejercito del Nortes 600",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "9.72"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Avenida Americo Vespucio 1700",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "23.51"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Ejercito de Norte 600",
+      "total_tomas": "15",
+      "frecuencia_promedio_min": "7.96"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Ejercito del Norte 600",
+      "total_tomas": "342",
+      "frecuencia_promedio_min": "11.22"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Ejercito del Norte 600 ",
+      "total_tomas": "18",
+      "frecuencia_promedio_min": "12.63"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Marcos Paz 600",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "13.87"
+    },
+    {
+      "ramal": "L18 Horario",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "10.26"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": " Av. américa 1700",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "12.81"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Av. America 1700",
+      "total_tomas": "189",
+      "frecuencia_promedio_min": "12.30"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Av. américa 1700",
+      "total_tomas": "554",
+      "frecuencia_promedio_min": "11.61"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Av. América 1700",
+      "total_tomas": "200",
+      "frecuencia_promedio_min": "12.81"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Av. Marina Alfaro 1200",
+      "total_tomas": "150",
+      "frecuencia_promedio_min": "13.43"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Av. Marina Alfaro 1200 ",
+      "total_tomas": "22",
+      "frecuencia_promedio_min": "11.23"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Marina Alfaro 1200",
+      "total_tomas": "507",
+      "frecuencia_promedio_min": "12.28"
+    },
+    {
+      "ramal": "L19 Antihorario",
+      "punto_de_control": "Marina Alfaro 2100",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "12.38"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": " Av. américa 1700",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "12.19"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Amador Lucero 3200",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av Saenz Peña 800",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av. America 1700",
+      "total_tomas": "179",
+      "frecuencia_promedio_min": "11.97"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av. américa 1700",
+      "total_tomas": "551",
+      "frecuencia_promedio_min": "11.76"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av. América 1700",
+      "total_tomas": "199",
+      "frecuencia_promedio_min": "12.62"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av. Marina Alfaro 1200",
+      "total_tomas": "162",
+      "frecuencia_promedio_min": "12.57"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Av. Marina Alfaro 1200 ",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "12.76"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Marina Alfaro 1200",
+      "total_tomas": "494",
+      "frecuencia_promedio_min": "11.86"
+    },
+    {
+      "ramal": "L19 Horario",
+      "punto_de_control": "Marina Alfaro 2100",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "11.61"
+    },
+    {
+      "ramal": "L3 Auxiliar",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L3 Auxiliar",
+      "punto_de_control": "General Paz 2300",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "30.57"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "Adolfo de la Vega 450",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "120.64"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "General Paz 2300",
+      "total_tomas": "30",
+      "frecuencia_promedio_min": "23.79"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "Lavalle 2200",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "21.31"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "Lavalle 2300",
+      "total_tomas": "847",
+      "frecuencia_promedio_min": "25.27"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "Lavalle 2700",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "23.56"
+    },
+    {
+      "ramal": "L3 Lavalle",
+      "punto_de_control": "Piedras 2300",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L3 Marcos Paz",
+      "punto_de_control": "General Paz 2200",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "20.49"
+    },
+    {
+      "ramal": "L3 Marcos Paz",
+      "punto_de_control": "General Paz 2300",
+      "total_tomas": "853",
+      "frecuencia_promedio_min": "24.82"
+    },
+    {
+      "ramal": "L3 Marcos Paz",
+      "punto_de_control": "General Paz 2700",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.73"
+    },
+    {
+      "ramal": "L3 Marcos Paz",
+      "punto_de_control": "Lavalle 2300",
+      "total_tomas": "16",
+      "frecuencia_promedio_min": "25.35"
+    },
+    {
+      "ramal": "L3 Marcos Paz",
+      "punto_de_control": "Lavalle Paz 2300",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L4 Colombres",
+      "punto_de_control": " Mario Bravo 400",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "33.50"
+    },
+    {
+      "ramal": "L4 Colombres",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "23.29"
+    },
+    {
+      "ramal": "L4 Colombres",
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "20",
+      "frecuencia_promedio_min": "33.07"
+    },
+    {
+      "ramal": "L4 Colombres",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "284",
+      "frecuencia_promedio_min": "40.38"
+    },
+    {
+      "ramal": "L4 Colombres",
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "132",
+      "frecuencia_promedio_min": "38.74"
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": " Mario Bravo 400",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "42.43"
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "46.50"
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "13",
+      "frecuencia_promedio_min": "39.61"
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": "Democracia 50",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "256",
+      "frecuencia_promedio_min": "39.14"
+    },
+    {
+      "ramal": "L4 Colombres-Costanera",
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "106",
+      "frecuencia_promedio_min": "47.20"
+    },
+    {
+      "ramal": "L4 Mercofrut",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "239",
+      "frecuencia_promedio_min": "31.18"
+    },
+    {
+      "ramal": "L4 Mercofrut",
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "12",
+      "frecuencia_promedio_min": "31.16"
+    },
+    {
+      "ramal": "L4 Mercofrut",
+      "punto_de_control": "Democracia 50",
+      "total_tomas": "127",
+      "frecuencia_promedio_min": "32.11"
+    },
+    {
+      "ramal": "L4 Mercofrut",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "26.61"
+    },
+    {
+      "ramal": "L4 Mercofrut",
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "154",
+      "frecuencia_promedio_min": "32.27"
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "\tAv. Democracia 50",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "169",
+      "frecuencia_promedio_min": "41.15"
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "12",
+      "frecuencia_promedio_min": "42.23"
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "Democracia 50",
+      "total_tomas": "65",
+      "frecuencia_promedio_min": "42.27"
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "54.97"
+    },
+    {
+      "ramal": "L4 Mercofrut-A. Heredia",
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "107",
+      "frecuencia_promedio_min": "44.81"
+    },
+    {
+      "ramal": "L4 Mercofrut-Autopista",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "213",
+      "frecuencia_promedio_min": "32.85"
+    },
+    {
+      "ramal": "L4 Mercofrut-Autopista",
+      "punto_de_control": "Av. Mate de Luna 4200",
+      "total_tomas": "21",
+      "frecuencia_promedio_min": "26.82"
+    },
+    {
+      "ramal": "L4 Mercofrut-Autopista",
+      "punto_de_control": "Democracia 50",
+      "total_tomas": "99",
+      "frecuencia_promedio_min": "36.82"
+    },
+    {
+      "ramal": "L4 Mercofrut-Autopista",
+      "punto_de_control": "Mario Bravo 400",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "26.53"
+    },
+    {
+      "ramal": "L4 Mercofrut-Autopista",
+      "punto_de_control": "Mate de Luna 4200",
+      "total_tomas": "157",
+      "frecuencia_promedio_min": "33.19"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": " 25 de mayo 1900",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "35.14"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "191",
+      "frecuencia_promedio_min": "34.50"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "25 de mayo 1900",
+      "total_tomas": "379",
+      "frecuencia_promedio_min": "23.06"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "195",
+      "frecuencia_promedio_min": "25.35"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "25 de mayo 1900 ",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "27.77"
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "Buenos Aires 445",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L5 Agrimensor",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "17.17"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": " 25 de mayo 1900",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "33.05"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "193",
+      "frecuencia_promedio_min": "31.77"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": "25 de mayo 1900",
+      "total_tomas": "237",
+      "frecuencia_promedio_min": "35.07"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "96",
+      "frecuencia_promedio_min": "43.30"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": "25 de mayo 1900 ",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "57.38"
+    },
+    {
+      "ramal": "L5 El Molino-SEOC",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "43.72"
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": " 25 de mayo 1900",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "194",
+      "frecuencia_promedio_min": "31.86"
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": "25 de mayo 1900",
+      "total_tomas": "196",
+      "frecuencia_promedio_min": "37.16"
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "45",
+      "frecuencia_promedio_min": "51.98"
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": "25 de mayo 1900 ",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L5 Oeste x 25",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": " 25 de mayo 1900",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "26.45"
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "89",
+      "frecuencia_promedio_min": "46.86"
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": "25 de mayo 1900",
+      "total_tomas": "129",
+      "frecuencia_promedio_min": "38.29"
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "27",
+      "frecuencia_promedio_min": "42.46"
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": "25 de mayo 1900 ",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "62.40"
+    },
+    {
+      "ramal": "L5 Oeste x Dean Funes",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "110.00"
+    },
+    {
+      "ramal": "L6 San Alberto",
+      "punto_de_control": " Buenos Aires 1700",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "15.30"
+    },
+    {
+      "ramal": "L6 San Alberto",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "14.76"
+    },
+    {
+      "ramal": "L6 San Alberto",
+      "punto_de_control": "Buenos Aires 1600",
+      "total_tomas": "12",
+      "frecuencia_promedio_min": "18.81"
+    },
+    {
+      "ramal": "L6 San Alberto",
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "961",
+      "frecuencia_promedio_min": "19.08"
+    },
+    {
+      "ramal": "L6 San Alberto",
+      "punto_de_control": "Buenos Aires 445",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L6 San Jose x Cangallo",
+      "punto_de_control": " Buenos Aires 1700",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "23.09"
+    },
+    {
+      "ramal": "L6 San Jose x Cangallo",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "11.66"
+    },
+    {
+      "ramal": "L6 San Jose x Cangallo",
+      "punto_de_control": "Belisario roldan 1200",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.53"
+    },
+    {
+      "ramal": "L6 San Jose x Cangallo",
+      "punto_de_control": "Buenos Aires 1600",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "20.37"
+    },
+    {
+      "ramal": "L6 San Jose x Cangallo",
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "786",
+      "frecuencia_promedio_min": "20.39"
+    },
+    {
+      "ramal": "L6 San Jose x Democracia",
+      "punto_de_control": " Buenos Aires 1700",
+      "total_tomas": "10",
+      "frecuencia_promedio_min": "18.44"
+    },
+    {
+      "ramal": "L6 San Jose x Democracia",
+      "punto_de_control": "Av. Democracia 50",
+      "total_tomas": "19",
+      "frecuencia_promedio_min": "14.93"
+    },
+    {
+      "ramal": "L6 San Jose x Democracia",
+      "punto_de_control": "Belisario roldan 1200",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "24.69"
+    },
+    {
+      "ramal": "L6 San Jose x Democracia",
+      "punto_de_control": "Buenos Aires 1600",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "29.94"
+    },
+    {
+      "ramal": "L6 San Jose x Democracia",
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "1069",
+      "frecuencia_promedio_min": "17.82"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": " Mexico 3600",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "18.15"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": " Rivadavia 2100",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "12.45"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "15.24"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": "9 de Julio 1900",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "15.90"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": "Mexico 3600",
+      "total_tomas": "118",
+      "frecuencia_promedio_min": "20.70"
+    },
+    {
+      "ramal": "L7 AGET",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "919",
+      "frecuencia_promedio_min": "18.39"
+    },
+    {
+      "ramal": "L7 O' connors",
+      "punto_de_control": " Mexico 3600",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "34.68"
+    },
+    {
+      "ramal": "L7 O' connors",
+      "punto_de_control": " Rivadavia 2100",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "50.27"
+    },
+    {
+      "ramal": "L7 O' connors",
+      "punto_de_control": "25 de mayo 1800",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "19.79"
+    },
+    {
+      "ramal": "L7 O' connors",
+      "punto_de_control": "Mexico 3600",
+      "total_tomas": "83",
+      "frecuencia_promedio_min": "23.72"
+    },
+    {
+      "ramal": "L7 O' connors",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "703",
+      "frecuencia_promedio_min": "22.55"
+    },
+    {
+      "ramal": "L7 O'connors",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "23.70"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": " Isabel la Católica 2900",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av Bejamin Araoz 950",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av Benjamin Araoz 950",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "19.30"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av. Araoz 500",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av. Araoz 850",
+      "total_tomas": "140",
+      "frecuencia_promedio_min": "19.40"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av. Benjamin Araoz",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "17.24"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av. Benjamin Araoz 950",
+      "total_tomas": "387",
+      "frecuencia_promedio_min": "20.12"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Av. Benjamín Araoz 950",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "15.37"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Isabel La Catolica 2100",
+      "total_tomas": "224",
+      "frecuencia_promedio_min": "18.87"
+    },
+    {
+      "ramal": "L8 El Bosque",
+      "punto_de_control": "Isabel la Católica 2900",
+      "total_tomas": "303",
+      "frecuencia_promedio_min": "20.09"
+    },
+    {
+      "ramal": "L8 Saenz Peña-Terán",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Saenz Peña",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "1",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": " Berutti 500",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "24.76"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Av. Benjamin Araoz 950",
+      "total_tomas": "9",
+      "frecuencia_promedio_min": "37.73"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Berutti 200",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "33.61"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "299",
+      "frecuencia_promedio_min": "29.53"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Berutti 500 ",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "45.93"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "25.50"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "123",
+      "frecuencia_promedio_min": "32.52"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Ramirez de Velazco 2800",
+      "total_tomas": "152",
+      "frecuencia_promedio_min": "32.48"
+    },
+    {
+      "ramal": "L8 San Cayetano x B. Teran",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "39.93"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": " Berutti 500",
+      "total_tomas": "11",
+      "frecuencia_promedio_min": "22.60"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Av. Benjamin Araoz 950",
+      "total_tomas": "8",
+      "frecuencia_promedio_min": "33.69"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Berutii 500",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": "9.07"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Berutti 200",
+      "total_tomas": "7",
+      "frecuencia_promedio_min": "31.59"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Berutti 500",
+      "total_tomas": "275",
+      "frecuencia_promedio_min": "31.09"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Berutti 500 ",
+      "total_tomas": "2",
+      "frecuencia_promedio_min": null
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Buenos Aires 1700",
+      "total_tomas": "4",
+      "frecuencia_promedio_min": "30.50"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Ramirez de Velazco 1700",
+      "total_tomas": "126",
+      "frecuencia_promedio_min": "31.27"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Ramirez de Velazco 2800",
+      "total_tomas": "155",
+      "frecuencia_promedio_min": "31.91"
+    },
+    {
+      "ramal": "L8 San Cayetano x S. Peña",
+      "punto_de_control": "Santiago del Estero 200",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "22.48"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "3",
+      "frecuencia_promedio_min": "16.20"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300",
+      "total_tomas": "406",
+      "frecuencia_promedio_min": "16.37"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300 ",
+      "total_tomas": "28",
+      "frecuencia_promedio_min": "17.47"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Castro Barros 1700",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "22.65"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Castro Barros 2600",
+      "total_tomas": "629",
+      "frecuencia_promedio_min": "19.87"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Castros Barros 2600",
+      "total_tomas": "28",
+      "frecuencia_promedio_min": "16.58"
+    },
+    {
+      "ramal": "L9 Bulnes",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "22.71"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "25 de Mayo 1900",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "27.39"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300",
+      "total_tomas": "352",
+      "frecuencia_promedio_min": "18.56"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Av. Pres. Néstor Kirchner 2300 ",
+      "total_tomas": "29",
+      "frecuencia_promedio_min": "14.91"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Castro Barros 1700",
+      "total_tomas": "6",
+      "frecuencia_promedio_min": "20.65"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Castro Barros 2600",
+      "total_tomas": "595",
+      "frecuencia_promedio_min": "19.80"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Castros Barros 2600",
+      "total_tomas": "28",
+      "frecuencia_promedio_min": "18.16"
+    },
+    {
+      "ramal": "L9 Viamonte",
+      "punto_de_control": "Rivadavia 2100",
+      "total_tomas": "5",
+      "frecuencia_promedio_min": "22.66"
+    }
+  ],
+  "comparativaTurno": [
+    {
+      "turno": "Mañana",
+      "total_tomas": "21368",
+      "dias_con_actividad": "89",
+      "promedio_tomas_por_dia": "240.1",
+      "frecuencia_promedio_min": "18.72"
+    },
+    {
+      "turno": "Tarde",
+      "total_tomas": "16588",
+      "dias_con_actividad": "85",
+      "promedio_tomas_por_dia": "195.2",
+      "frecuencia_promedio_min": "20.92"
+    }
+  ],
+  "evolucionTurnoMes": [
+    {
+      "periodo": "2026-03",
+      "turno": "Mañana",
+      "tomas": "286",
+      "frecuencia_promedio_min": "17.76"
+    },
+    {
+      "periodo": "2026-03",
+      "turno": "Tarde",
+      "tomas": "197",
+      "frecuencia_promedio_min": "22.31"
+    },
+    {
+      "periodo": "2026-04",
+      "turno": "Mañana",
+      "tomas": "4818",
+      "frecuencia_promedio_min": "17.84"
+    },
+    {
+      "periodo": "2026-04",
+      "turno": "Tarde",
+      "tomas": "4092",
+      "frecuencia_promedio_min": "21.47"
+    },
+    {
+      "periodo": "2026-05",
+      "turno": "Mañana",
+      "tomas": "4953",
+      "frecuencia_promedio_min": "19.04"
+    },
+    {
+      "periodo": "2026-05",
+      "turno": "Tarde",
+      "tomas": "3455",
+      "frecuencia_promedio_min": "19.97"
+    },
+    {
+      "periodo": "2026-06",
+      "turno": "Mañana",
+      "tomas": "5032",
+      "frecuencia_promedio_min": "18.50"
+    },
+    {
+      "periodo": "2026-06",
+      "turno": "Tarde",
+      "tomas": "3898",
+      "frecuencia_promedio_min": "20.34"
+    },
+    {
+      "periodo": "2026-07",
+      "turno": "Mañana",
+      "tomas": "4626",
+      "frecuencia_promedio_min": "19.78"
+    },
+    {
+      "periodo": "2026-07",
+      "turno": "Tarde",
+      "tomas": "3651",
+      "frecuencia_promedio_min": "22.08"
+    },
+    {
+      "periodo": "2026-08",
+      "turno": "Mañana",
+      "tomas": "1653",
+      "frecuencia_promedio_min": "18.27"
+    },
+    {
+      "periodo": "2026-08",
+      "turno": "Tarde",
+      "tomas": "1295",
+      "frecuencia_promedio_min": "20.02"
+    }
+  ],
+  "productividadOperador": [
+    {
+      "operador": "LFernandez",
+      "total_tomas": "11427",
+      "dias_trabajados": "87",
+      "promedio_tomas_por_dia": "131.3",
+      "primer_registro": "2026-03-31T03:00:00.000Z",
+      "ultimo_registro": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "operador": "DSanchez",
+      "total_tomas": "9581",
+      "dias_trabajados": "81",
+      "promedio_tomas_por_dia": "118.3",
+      "primer_registro": "2026-03-31T03:00:00.000Z",
+      "ultimo_registro": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "operador": "PVeliz",
+      "total_tomas": "6643",
+      "dias_trabajados": "84",
+      "promedio_tomas_por_dia": "79.1",
+      "primer_registro": "2026-03-30T03:00:00.000Z",
+      "ultimo_registro": "2026-08-10T03:00:00.000Z"
+    },
+    {
+      "operador": "LCarrer",
+      "total_tomas": "5820",
+      "dias_trabajados": "83",
+      "promedio_tomas_por_dia": "70.1",
+      "primer_registro": "2026-03-30T03:00:00.000Z",
+      "ultimo_registro": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "operador": "AMoya",
+      "total_tomas": "4483",
+      "dias_trabajados": "66",
+      "promedio_tomas_por_dia": "67.9",
+      "primer_registro": "2026-03-30T03:00:00.000Z",
+      "ultimo_registro": "2026-08-10T03:00:00.000Z"
+    },
+    {
+      "operador": "Fernandez, Lucia",
+      "total_tomas": "26",
+      "dias_trabajados": "1",
+      "promedio_tomas_por_dia": "26.0",
+      "primer_registro": "2026-03-30T03:00:00.000Z",
+      "ultimo_registro": "2026-03-30T03:00:00.000Z"
+    },
+    {
+      "operador": "MCastillo",
+      "total_tomas": "3",
+      "dias_trabajados": "3",
+      "promedio_tomas_por_dia": "1.0",
+      "primer_registro": "2026-03-30T03:00:00.000Z",
+      "ultimo_registro": "2026-05-19T03:00:00.000Z"
+    }
+  ],
+  "operadorPorMes": [
+    {
+      "periodo": "2026-03",
+      "operador": "AMoya",
+      "tomas_registradas": "72"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "DSanchez",
+      "tomas_registradas": "115"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "Fernandez, Lucia",
+      "tomas_registradas": "26"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "LCarrer",
+      "tomas_registradas": "57"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "LFernandez",
+      "tomas_registradas": "145"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "MCastillo",
+      "tomas_registradas": "1"
+    },
+    {
+      "periodo": "2026-03",
+      "operador": "PVeliz",
+      "tomas_registradas": "67"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "AMoya",
+      "tomas_registradas": "855"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "DSanchez",
+      "tomas_registradas": "2271"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "LCarrer",
+      "tomas_registradas": "1524"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "LFernandez",
+      "tomas_registradas": "2535"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "MCastillo",
+      "tomas_registradas": "1"
+    },
+    {
+      "periodo": "2026-04",
+      "operador": "PVeliz",
+      "tomas_registradas": "1725"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "AMoya",
+      "tomas_registradas": "681"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "DSanchez",
+      "tomas_registradas": "2318"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "LCarrer",
+      "tomas_registradas": "1578"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "LFernandez",
+      "tomas_registradas": "2385"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "MCastillo",
+      "tomas_registradas": "1"
+    },
+    {
+      "periodo": "2026-05",
+      "operador": "PVeliz",
+      "tomas_registradas": "1463"
+    },
+    {
+      "periodo": "2026-06",
+      "operador": "AMoya",
+      "tomas_registradas": "1090"
+    },
+    {
+      "periodo": "2026-06",
+      "operador": "DSanchez",
+      "tomas_registradas": "2009"
+    },
+    {
+      "periodo": "2026-06",
+      "operador": "LCarrer",
+      "tomas_registradas": "1340"
+    },
+    {
+      "periodo": "2026-06",
+      "operador": "LFernandez",
+      "tomas_registradas": "2957"
+    },
+    {
+      "periodo": "2026-06",
+      "operador": "PVeliz",
+      "tomas_registradas": "1539"
+    },
+    {
+      "periodo": "2026-07",
+      "operador": "AMoya",
+      "tomas_registradas": "1325"
+    },
+    {
+      "periodo": "2026-07",
+      "operador": "DSanchez",
+      "tomas_registradas": "2204"
+    },
+    {
+      "periodo": "2026-07",
+      "operador": "LCarrer",
+      "tomas_registradas": "968"
+    },
+    {
+      "periodo": "2026-07",
+      "operador": "LFernandez",
+      "tomas_registradas": "2416"
+    },
+    {
+      "periodo": "2026-07",
+      "operador": "PVeliz",
+      "tomas_registradas": "1365"
+    },
+    {
+      "periodo": "2026-08",
+      "operador": "AMoya",
+      "tomas_registradas": "460"
+    },
+    {
+      "periodo": "2026-08",
+      "operador": "DSanchez",
+      "tomas_registradas": "664"
+    },
+    {
+      "periodo": "2026-08",
+      "operador": "LCarrer",
+      "tomas_registradas": "353"
+    },
+    {
+      "periodo": "2026-08",
+      "operador": "LFernandez",
+      "tomas_registradas": "989"
+    },
+    {
+      "periodo": "2026-08",
+      "operador": "PVeliz",
+      "tomas_registradas": "484"
+    }
+  ],
+  "internosFrecuentes": [
+    {
+      "interno": 76,
+      "linea_base": "L18",
+      "apariciones": "269",
+      "dias_visto": "82",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-06T03:00:00.000Z"
+    },
+    {
+      "interno": 82,
+      "linea_base": "L18",
+      "apariciones": "258",
+      "dias_visto": "83",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 53,
+      "linea_base": "L18",
+      "apariciones": "238",
+      "dias_visto": "78",
+      "primera_vez_visto": "2026-04-06T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 56,
+      "linea_base": "L18",
+      "apariciones": "220",
+      "dias_visto": "78",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 9,
+      "linea_base": "L19",
+      "apariciones": "217",
+      "dias_visto": "89",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 22,
+      "linea_base": "L17",
+      "apariciones": "217",
+      "dias_visto": "80",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-10T03:00:00.000Z"
+    },
+    {
+      "interno": 80,
+      "linea_base": "L18",
+      "apariciones": "216",
+      "dias_visto": "74",
+      "primera_vez_visto": "2026-04-01T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 55,
+      "linea_base": "L18",
+      "apariciones": "216",
+      "dias_visto": "76",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 10,
+      "linea_base": "L17",
+      "apariciones": "213",
+      "dias_visto": "80",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 77,
+      "linea_base": "L18",
+      "apariciones": "209",
+      "dias_visto": "72",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 21,
+      "linea_base": "L19",
+      "apariciones": "206",
+      "dias_visto": "86",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 20,
+      "linea_base": "L19",
+      "apariciones": "206",
+      "dias_visto": "87",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 5,
+      "linea_base": "L19",
+      "apariciones": "206",
+      "dias_visto": "87",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 40,
+      "linea_base": "L17",
+      "apariciones": "204",
+      "dias_visto": "82",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 7,
+      "linea_base": "L19",
+      "apariciones": "202",
+      "dias_visto": "86",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 12,
+      "linea_base": "L19",
+      "apariciones": "202",
+      "dias_visto": "87",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 3,
+      "linea_base": "L19",
+      "apariciones": "202",
+      "dias_visto": "86",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 1,
+      "linea_base": "L19",
+      "apariciones": "199",
+      "dias_visto": "85",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 6,
+      "linea_base": "L19",
+      "apariciones": "197",
+      "dias_visto": "84",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 15,
+      "linea_base": "L19",
+      "apariciones": "196",
+      "dias_visto": "86",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 8,
+      "linea_base": "L19",
+      "apariciones": "195",
+      "dias_visto": "81",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 14,
+      "linea_base": "L17",
+      "apariciones": "189",
+      "dias_visto": "77",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 79,
+      "linea_base": "L18",
+      "apariciones": "188",
+      "dias_visto": "69",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 81,
+      "linea_base": "L18",
+      "apariciones": "184",
+      "dias_visto": "65",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 11,
+      "linea_base": "L19",
+      "apariciones": "182",
+      "dias_visto": "77",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 1,
+      "linea_base": "L17",
+      "apariciones": "182",
+      "dias_visto": "71",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 33,
+      "linea_base": "L17",
+      "apariciones": "180",
+      "dias_visto": "75",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-11T03:00:00.000Z"
+    },
+    {
+      "interno": 18,
+      "linea_base": "L17",
+      "apariciones": "179",
+      "dias_visto": "70",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-10T03:00:00.000Z"
+    },
+    {
+      "interno": 52,
+      "linea_base": "L18",
+      "apariciones": "178",
+      "dias_visto": "66",
+      "primera_vez_visto": "2026-03-31T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-05T03:00:00.000Z"
+    },
+    {
+      "interno": 17,
+      "linea_base": "L17",
+      "apariciones": "177",
+      "dias_visto": "64",
+      "primera_vez_visto": "2026-03-30T03:00:00.000Z",
+      "ultima_vez_visto": "2026-08-10T03:00:00.000Z"
+    }
+  ],
+  "mediaMovilSemanal": [
+    {
+      "semana": "2026-03-30T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.30",
+      "tomas": "928",
+      "media_movil_4_semanas": "19.30"
+    },
+    {
+      "semana": "2026-04-06T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.28",
+      "tomas": "2238",
+      "media_movil_4_semanas": "19.29"
+    },
+    {
+      "semana": "2026-04-13T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.12",
+      "tomas": "2248",
+      "media_movil_4_semanas": "19.23"
+    },
+    {
+      "semana": "2026-04-20T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.80",
+      "tomas": "2200",
+      "media_movil_4_semanas": "19.38"
+    },
+    {
+      "semana": "2026-04-27T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.88",
+      "tomas": "1780",
+      "media_movil_4_semanas": "19.52"
+    },
+    {
+      "semana": "2026-05-04T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.49",
+      "tomas": "2246",
+      "media_movil_4_semanas": "19.57"
+    },
+    {
+      "semana": "2026-05-11T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.64",
+      "tomas": "2139",
+      "media_movil_4_semanas": "19.70"
+    },
+    {
+      "semana": "2026-05-18T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.82",
+      "tomas": "2366",
+      "media_movil_4_semanas": "19.71"
+    },
+    {
+      "semana": "2026-05-25T03:00:00.000Z",
+      "frecuencia_promedio_min": "18.52",
+      "tomas": "1675",
+      "media_movil_4_semanas": "19.37"
+    },
+    {
+      "semana": "2026-06-01T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.42",
+      "tomas": "2304",
+      "media_movil_4_semanas": "19.35"
+    },
+    {
+      "semana": "2026-06-08T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.18",
+      "tomas": "1643",
+      "media_movil_4_semanas": "19.24"
+    },
+    {
+      "semana": "2026-06-15T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.04",
+      "tomas": "1824",
+      "media_movil_4_semanas": "19.04"
+    },
+    {
+      "semana": "2026-06-22T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.75",
+      "tomas": "2213",
+      "media_movil_4_semanas": "19.35"
+    },
+    {
+      "semana": "2026-06-29T03:00:00.000Z",
+      "frecuencia_promedio_min": "18.71",
+      "tomas": "2353",
+      "media_movil_4_semanas": "19.17"
+    },
+    {
+      "semana": "2026-07-06T03:00:00.000Z",
+      "frecuencia_promedio_min": "18.79",
+      "tomas": "1168",
+      "media_movil_4_semanas": "19.07"
+    },
+    {
+      "semana": "2026-07-13T03:00:00.000Z",
+      "frecuencia_promedio_min": "23.98",
+      "tomas": "1595",
+      "media_movil_4_semanas": "20.31"
+    },
+    {
+      "semana": "2026-07-20T03:00:00.000Z",
+      "frecuencia_promedio_min": "24.01",
+      "tomas": "1735",
+      "media_movil_4_semanas": "21.37"
+    },
+    {
+      "semana": "2026-07-27T03:00:00.000Z",
+      "frecuencia_promedio_min": "18.76",
+      "tomas": "2378",
+      "media_movil_4_semanas": "21.39"
+    },
+    {
+      "semana": "2026-08-03T03:00:00.000Z",
+      "frecuencia_promedio_min": "19.21",
+      "tomas": "2232",
+      "media_movil_4_semanas": "21.49"
+    },
+    {
+      "semana": "2026-08-10T03:00:00.000Z",
+      "frecuencia_promedio_min": "18.48",
+      "tomas": "718",
+      "media_movil_4_semanas": "20.12"
+    }
+  ],
+  "distribucionHoraria": [
+    {
+      "hora_del_dia": 0,
+      "total_tomas": "1",
+      "porcentaje": "0.0"
+    },
+    {
+      "hora_del_dia": 1,
+      "total_tomas": "3",
+      "porcentaje": "0.0"
+    },
+    {
+      "hora_del_dia": 2,
+      "total_tomas": "2",
+      "porcentaje": "0.0"
+    },
+    {
+      "hora_del_dia": 4,
+      "total_tomas": "2",
+      "porcentaje": "0.0"
+    },
+    {
+      "hora_del_dia": 6,
+      "total_tomas": "148",
+      "porcentaje": "0.4"
+    },
+    {
+      "hora_del_dia": 7,
+      "total_tomas": "2124",
+      "porcentaje": "5.6"
+    },
+    {
+      "hora_del_dia": 8,
+      "total_tomas": "5330",
+      "porcentaje": "14.0"
+    },
+    {
+      "hora_del_dia": 9,
+      "total_tomas": "6850",
+      "porcentaje": "18.0"
+    },
+    {
+      "hora_del_dia": 10,
+      "total_tomas": "4690",
+      "porcentaje": "12.3"
+    },
+    {
+      "hora_del_dia": 11,
+      "total_tomas": "2049",
+      "porcentaje": "5.4"
+    },
+    {
+      "hora_del_dia": 12,
+      "total_tomas": "3687",
+      "porcentaje": "9.7"
+    },
+    {
+      "hora_del_dia": 13,
+      "total_tomas": "6512",
+      "porcentaje": "17.1"
+    },
+    {
+      "hora_del_dia": 14,
+      "total_tomas": "4715",
+      "porcentaje": "12.4"
+    },
+    {
+      "hora_del_dia": 15,
+      "total_tomas": "1611",
+      "porcentaje": "4.2"
+    },
+    {
+      "hora_del_dia": 16,
+      "total_tomas": "248",
+      "porcentaje": "0.7"
+    },
+    {
+      "hora_del_dia": 17,
+      "total_tomas": "10",
+      "porcentaje": "0.0"
+    },
+    {
+      "hora_del_dia": 18,
+      "total_tomas": "1",
+      "porcentaje": "0.0"
+    }
+  ],
+  "tasaCumplimiento": [
+    {
+      "total_dias_habiles": "97",
+      "dias_completos": "85",
+      "dias_parciales": "4",
+      "dias_sin_control": "8",
+      "tasa_cumplimiento_pct": "87.6"
+    }
+  ],
+  "resumenEjecutivo": [
+    {
+      "fecha_inicio_operacion": "2026-03-30T03:00:00.000Z",
+      "fecha_actual": "2026-08-11T03:00:00.000Z",
+      "dias_desde_inicio": 134,
+      "total_tomas_registradas": "37983",
+      "total_controles_efectuados": "174",
+      "dias_con_actividad": "89",
+      "lineas_controladas": "14",
+      "internos_relevados": "98",
+      "operadores_activos": "7",
+      "frecuencia_promedio_global_min": "19.67"
+    }
+  ]
+}

@@ -8,16 +8,11 @@
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/theme.js"></script>
   <style>
-    table { width: 95%; max-width: 1200px; margin: 0 auto 20px auto; border-collapse: collapse; background: var(--color-card); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--color-border); font-size: 0.9rem;}
-    th { background-color: var(--color-primary); color: white; font-weight: 600; }
+    table { width: 95%; max-width: 1200px; margin: 0 auto 20px auto; border-collapse: collapse; background: var(--color-card); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--color-border); }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem;}
+    th { background-color: var(--color-bg); color: var(--color-text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--color-border); }
     td input { padding: 4px; font-size: 0.85rem; border: 1px solid var(--color-border); width: 100%; box-sizing: border-box; }
-    .btn-small { padding: 6px 10px; font-size: 0.8rem; border-radius: 6px; cursor: pointer; border: none; font-weight: 600; color: white;}
-    .btn-edit { background-color: #f59e0b; }
-    .btn-delete { background-color: #ef4444; }
-    .btn-save { background-color: #22c55e; }
-    .btn-cancel { background-color: #6b7280; }
-    .header-panel { display:flex; justify-content:space-between; align-items:center; width:95%; max-width: 1200px; margin: 20px auto; background: var(--color-card); padding: 15px; border-radius: 8px; box-shadow: var(--shadow); box-sizing: border-box; flex-wrap: wrap; gap: 15px;}
+    .header-panel { display:flex; justify-content:space-between; align-items:center; width:95%; max-width: 1200px; margin: 20px auto; background: var(--color-card); padding: 18px 22px; border-radius: 12px; box-shadow: var(--shadow); box-sizing: border-box; flex-wrap: wrap; gap: 15px; border: 1px solid var(--color-border); }
     form { display: none; }
   </style>
 </head>
@@ -25,25 +20,25 @@
   <button id="themeToggle">🌙</button>
 
   <div class="header-panel">
-    <div style="display:flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+    <div style="display:flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
       <div>
         <label style="font-size:0.8rem; font-weight:600;">Fecha:</label><br>
-        <input type="date" id="filterFecha" style="padding: 8px; font-size: 0.9em; width: auto; border-radius:6px; border:1px solid var(--color-border);" />
+        <input type="date" id="filterFecha" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);" />
       </div>
       <div>
         <label style="font-size:0.8rem; font-weight:600;">Turno:</label><br>
-        <select id="filterTurno" style="padding: 8px; font-size: 0.9em; width: auto; border-radius:6px; border:1px solid var(--color-border);">
+        <select id="filterTurno" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);">
             <option value="Todos">Todos</option>
             <option value="Mañana">Mañana</option>
             <option value="Tarde">Tarde</option>
         </select>
       </div>
-      <button onclick="loadRegistros()" style="padding: 9px 15px; font-size: 0.9em; border-radius:6px; background-color:var(--color-primary); color:white; font-weight:600; cursor:pointer; border:none;">🔍 Filtrar</button>
-      <button onclick="openReporte()" style="padding: 9px 15px; font-size: 0.9em; background-color: #10b981; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">📄 Reporte (PDF)</button>
+      <button class="btn-pill primary" onclick="loadRegistros()">🔍 Filtrar</button>
+      <button class="btn-pill" onclick="openReporte()">📄 Reporte (PDF)</button>
     </div>
-    <div style="display:flex; gap:10px;">
-        <button onclick="location.href='/dashboard'" style="background:#8b5cf6; padding: 9px 15px; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">📊 Dashboard</button>
-        <button onclick="location.href='/'" style="background:var(--color-secondary); padding: 9px 15px; color:white; font-weight:600; cursor:pointer; border:none; border-radius:6px;">Volver</button>
+    <div style="display:flex; gap:8px;">
+        <button class="btn-pill" onclick="location.href='/dashboard'">📊 Dashboard</button>
+        <button class="btn-pill" onclick="location.href='/'">Volver</button>
     </div>
   </div>
 
@@ -203,5 +198,10 @@
 
     loadRegistros();
   </script>
+
+  <div class="footer-municipio-logo">
+    <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-black" />
+    <img src="img/smt_white.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-white" />
+  </div>
 </body>
 </html>

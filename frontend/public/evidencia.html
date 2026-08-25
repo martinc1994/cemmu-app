@@ -134,9 +134,9 @@
   <div class="container">
     <div class="nav-buttons">
       <h2 style="margin: 0;">📤 Cargar Evidencia Digital</h2>
-      <div style="display: flex; gap: 10px;">
-        <button class="btn-secondary" style="background: #8b5cf6;" onclick="location.href='/repositorio'">📂 Repositorio</button>
-        <button class="btn-secondary" onclick="location.href='/'">Volver</button>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-pill" onclick="location.href='/repositorio'">📂 Repositorio</button>
+        <button class="btn-pill" onclick="location.href='/'">Volver</button>
       </div>
     </div>
 
@@ -200,16 +200,16 @@
           <label>Cámara Origen *</label>
           <div class="radio-group">
             <label class="radio-card">
-              <input type="radio" name="camara" value="frontal" required checked> 📹 Frontal (calle)
+              <input type="radio" name="camara" value="frontal" required checked> Frontal (calle)
             </label>
             <label class="radio-card">
-              <input type="radio" name="camara" value="escalera"> 🪜 Escalera ascenso
+              <input type="radio" name="camara" value="escalera"> Escalera ascenso
             </label>
             <label class="radio-card">
-              <input type="radio" name="camara" value="chofer"> 🚘 Asiento chofer
+              <input type="radio" name="camara" value="chofer"> Asiento chofer
             </label>
             <label class="radio-card">
-              <input type="radio" name="camara" value="interior"> 🚍 Fondo interior
+              <input type="radio" name="camara" value="interior"> Fondo interior
             </label>
           </div>
         </div>
@@ -273,5 +273,10 @@
   <div id="toast" class="toast"></div>
 
   <script src="js/evidencia.js"></script>
+
+  <div class="footer-municipio-logo">
+    <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-black" />
+    <img src="img/smt_white.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-white" />
+  </div>
 </body>
 </html>

@@ -25,7 +25,7 @@
       margin-bottom: 20px; border: 1px solid var(--color-border);
     }
     th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem; }
-    th { background-color: var(--color-primary); color: white; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    th { background-color: var(--color-bg); color: var(--color-text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--color-border); }
     
     .badge {
       padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
@@ -36,19 +36,6 @@
     .badge-external { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
     .badge-active { background: rgba(16, 185, 129, 0.15); color: #10b981; }
     .badge-inactive { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-
-    .btn-small {
-      padding: 6px 12px; font-size: 0.8rem; border-radius: 8px;
-      cursor: pointer; border: none; font-weight: 600; color: white;
-      transition: all 0.2s ease;
-    }
-    .btn-small:hover { transform: translateY(-1px); }
-    .btn-create { background: var(--color-primary); padding: 10px 18px; font-size: 0.9rem; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; border: none; }
-    .btn-create:hover { background: var(--color-primary-hover); }
-    .btn-edit { background-color: #f59e0b; }
-    .btn-delete { background-color: #ef4444; }
-    .btn-reset { background-color: #8b5cf6; }
-    .btn-nav { padding: 10px 16px; background: var(--color-secondary); color: white; font-weight: 600; cursor: pointer; border: none; border-radius: 8px; font-size: 0.9rem; }
 
     /* Modal */
     .modal-overlay {
@@ -66,7 +53,7 @@
     .modal h3 { margin: 0 0 20px 0; font-size: 1.2rem; }
     .modal label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; margin-top: 14px; color: var(--color-text); }
     .modal input, .modal select {
-      width: 100%; padding: 10px 12px; border: 2px solid var(--color-border);
+      width: 100%; padding: 10px 12px; border: 1px solid var(--color-border);
       border-radius: 8px; font-size: 0.95rem; background: var(--color-bg);
       color: var(--color-text); box-sizing: border-box;
     }
@@ -102,10 +89,10 @@
         <h2>👥 Gestión de Usuarios y Organizaciones</h2>
         <p>Administrá cuentas de operadores CeMMU, administradores y organismos externos</p>
       </div>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button class="btn-create" onclick="openCreateModal()">+ Nuevo Usuario</button>
-        <button class="btn-create" style="background: #10b981;" onclick="openManageOrgsModal()">🏢 Organizaciones</button>
-        <button class="btn-nav" onclick="location.href='/'">Volver</button>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn-pill primary" onclick="openCreateModal()">+ Nuevo Usuario</button>
+        <button class="btn-pill" onclick="openManageOrgsModal()">🏢 Organizaciones</button>
+        <button class="btn-pill" onclick="location.href='/'">Volver</button>
       </div>
     </div>
 
@@ -172,7 +159,7 @@
     <div class="modal" style="max-width: 650px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h3 style="margin: 0;">🏢 Gestión de Organizaciones</h3>
-        <button class="btn-create" style="padding: 6px 12px; font-size: 0.82rem; background: #10b981;" onclick="openCreateOrgModal()">+ Nueva Organización</button>
+        <button class="btn-pill primary" style="padding: 6px 14px; font-size: 0.82rem;" onclick="openCreateOrgModal()">+ Nueva Organización</button>
       </div>
 
       <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 6px; margin-bottom: 12px;">
@@ -193,7 +180,7 @@
       </table>
 
       <div class="modal-actions">
-        <button class="btn-modal-cancel" onclick="closeModal('manageOrgsModal')">Cerrar</button>
+        <button class="btn-pill" onclick="closeModal('manageOrgsModal')">Cerrar</button>
       </div>
     </div>
   </div>
@@ -237,12 +224,17 @@
       <input type="text" id="resetPassword" placeholder="Ingresá una contraseña temporal" />
       <div class="modal-actions">
         <button class="btn-modal-cancel" onclick="closeModal('resetModal')">Cancelar</button>
-        <button class="btn-modal-save" style="background: #8b5cf6;" onclick="resetPassword()">Resetear</button>
+        <button class="btn-modal-save" onclick="resetPassword()">Resetear</button>
       </div>
     </div>
   </div>
 
   <div id="toast" class="toast"></div>
   <script src="js/usuarios.js"></script>
+
+  <div class="footer-municipio-logo">
+    <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-black" />
+    <img src="img/smt_white.png" alt="Municipalidad de San Miguel de Tucumán" class="logo-smt-white" />
+  </div>
 </body>
 </html>

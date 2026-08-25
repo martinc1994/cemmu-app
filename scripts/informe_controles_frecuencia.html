@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Analítico — Controles de Frecuencia CeMMU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* ─── DARK THEME (default) ─── */
+    :root, [data-theme="dark"] {
+      --bg-primary: #0a0f1e;
+      --bg-secondary: #111827;
+      --bg-card: #1a2235;
+      --bg-card-alt: #1e293b;
+      --border: #2a3a52;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #3b82f6;
+      --accent-indigo: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-rose: #f43f5e;
+      --gradient-blue: linear-gradient(135deg, #3b82f6, #6366f1);
+      --gradient-emerald: linear-gradient(135deg, #10b981, #06b6d4);
+      --gradient-amber: linear-gradient(135deg, #f59e0b, #ef4444);
+      --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --header-bg: linear-gradient(135deg, #1a2235 0%, #0f172a 50%, #1e1b4b 100%);
+      --header-glow-1: rgba(99,102,241,0.15);
+      --header-glow-2: rgba(59,130,246,0.1);
+      --header-badge-bg: rgba(99,102,241,0.15);
+      --header-badge-border: rgba(99,102,241,0.3);
+      --header-badge-color: #a5b4fc;
+      --header-title-gradient: linear-gradient(135deg, #f1f5f9, #a5b4fc);
+      --table-row-hover: rgba(59,130,246,0.05);
+      --table-border: rgba(42,58,82,0.5);
+      --chart-theme: dark;
+    }
+
+    /* ─── LIGHT THEME ─── */
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f8fafc;
+      --border: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+      --header-bg: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #dbeafe 100%);
+      --header-glow-1: rgba(99,102,241,0.08);
+      --header-glow-2: rgba(59,130,246,0.06);
+      --header-badge-bg: rgba(99,102,241,0.1);
+      --header-badge-border: rgba(99,102,241,0.25);
+      --header-badge-color: #4f46e5;
+      --header-title-gradient: linear-gradient(135deg, #1e293b, #4338ca);
+      --table-row-hover: rgba(59,130,246,0.04);
+      --table-border: #e2e8f0;
+      --chart-theme: light;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+
+    /* ─── THEME TOGGLE ─── */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 8px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .theme-toggle button:hover { background: var(--bg-secondary); }
+    .theme-toggle button.active {
+      border-color: var(--accent-blue);
+      background: rgba(59,130,246,0.1);
+      color: var(--accent-blue);
+    }
+
+    /* ─── HEADER ─── */
+    .report-header {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    .report-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--header-glow-1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .report-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--header-glow-2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .header-content { position: relative; z-index: 1; }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--header-badge-bg);
+      border: 1px solid var(--header-badge-border);
+      color: var(--header-badge-color);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .header-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: var(--header-title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .header-meta-item span { color: var(--text-secondary); font-weight: 500; }
+
+    /* ─── KPI CARDS ─── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+    }
+
+    .kpi-card:nth-child(1)::before { background: var(--gradient-blue); }
+    .kpi-card:nth-child(2)::before { background: var(--gradient-emerald); }
+    .kpi-card:nth-child(3)::before { background: var(--gradient-purple); }
+    .kpi-card:nth-child(4)::before { background: var(--gradient-amber); }
+    .kpi-card:nth-child(5)::before { background: linear-gradient(135deg, #06b6d4, #3b82f6); }
+
+    .kpi-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .kpi-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.6;
+      max-width: 900px;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.3s ease;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* ─── TABLES ─── */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.85rem;
+    }
+
+    thead th {
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+    }
+
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--table-border);
+      color: var(--text-secondary);
+    }
+
+    tbody tr:hover td { background: var(--table-row-hover); color: var(--text-primary); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ─── STATUS BADGES ─── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-success { background: rgba(16,185,129,0.15); color: #059669; }
+    .badge-warning { background: rgba(245,158,11,0.15); color: #d97706; }
+    .badge-danger { background: rgba(239,68,68,0.15); color: #dc2626; }
+    [data-theme="dark"] .badge-success { color: #34d399; }
+    [data-theme="dark"] .badge-warning { color: #fbbf24; }
+    [data-theme="dark"] .badge-danger { color: #f87171; }
+
+    /* ─── STAT BOX (inline) ─── */
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat-box .stat-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-box .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* ─── CUMPLIMIENTO BAR ─── */
+    .cumplimiento-bar {
+      width: 100%;
+      height: 24px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      margin: 12px 0;
+    }
+
+    .cumplimiento-segment {
+      height: 100%;
+      transition: width 0.6s ease;
+    }
+
+    /* ─── FOOTER ─── */
+    .report-footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* ─── PRINT STYLES ─── */
+    @media print {
+      .theme-toggle { display: none !important; }
+      body { background: white !important; color: #111 !important; }
+      .container { max-width: 100%; padding: 10px; }
+      .report-header { background: #f0f4ff !important; border-color: #ddd !important; }
+      .header-title { -webkit-text-fill-color: #1e293b !important; background: none !important; }
+      .header-badge { background: #eef2ff !important; border-color: #c7d2fe !important; color: #4338ca !important; }
+      .header-subtitle, .header-meta-item, .header-meta-item span { color: #475569 !important; }
+      .kpi-card, .card, .stat-box { border-color: #ddd !important; background: #fff !important; box-shadow: none !important; }
+      .kpi-card:hover { transform: none !important; }
+      .kpi-value, .stat-value, .section-title, .card-title { color: #111 !important; }
+      .kpi-label, .kpi-desc, .stat-label, .section-desc { color: #555 !important; }
+      thead th { background: #f1f5f9 !important; color: #374151 !important; }
+      tbody td { color: #374151 !important; border-color: #e5e7eb !important; }
+      .section-header { border-color: #ddd !important; }
+      .section-number { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cumplimiento-bar { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cumplimiento-segment { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .report-footer { color: #666 !important; border-color: #ddd !important; }
+      table { font-size: 0.72rem; }
+      .card-grid-2 { grid-template-columns: 1fr 1fr; }
+      /* Ensure ApexCharts render in print */
+      .apexcharts-canvas { max-width: 100% !important; }
+    }
+
+    /* page break hints for print */
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body data-theme="dark">
+
+<!-- Theme Toggle -->
+<div class="theme-toggle" id="themeToggle">
+  <button id="btnDark" class="active" title="Tema oscuro">🌙</button>
+  <button id="btnLight" title="Tema claro (impresión)">☀️</button>
+</div>
+
+<div class="container">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="report-header">
+    <div class="header-content">
+      <div class="header-badge">📊 Informe generado automáticamente</div>
+      <h1 class="header-title">Informe Analítico de Controles de Frecuencia</h1>
+      <p class="header-subtitle">Análisis integral de la operatoria de control de frecuencia del transporte público</p>
+      <div class="header-meta">
+        <div class="header-meta-item">📅 <span>Generado: 11 de agosto de 2026, 01:59 p. m.</span></div>
+        <div class="header-meta-item">🗂 <span>Desde: 30/03/2026</span></div>
+        <div class="header-meta-item">📍 <span>Hasta: 11/08/2026</span></div>
+        <div class="header-meta-item">⏱ <span>134 días de operación</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ KPI PRINCIPALES ═══ -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Controles Efectuados</div>
+      <div class="kpi-value">174</div>
+      <div class="kpi-desc">Sesiones de control (fecha + turno)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tomas Registradas</div>
+      <div class="kpi-value">37.983</div>
+      <div class="kpi-desc">Pasos individuales en puntos de control</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Frecuencia Promedio</div>
+      <div class="kpi-value">19.67 <small style="font-size:0.4em">min</small></div>
+      <div class="kpi-desc">Intervalo medio entre unidades</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Líneas Controladas</div>
+      <div class="kpi-value">14</div>
+      <div class="kpi-desc">98 internos relevados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Operadores Activos</div>
+      <div class="kpi-value">7</div>
+      <div class="kpi-desc">89 días con actividad</div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 1: CONTROLES EFECTUADOS ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--gradient-blue)">1</div>
+      <h2 class="section-title">Controles Efectuados</h2>
+    </div>
+    <p class="section-desc">
+      Un <strong>control</strong> es una sesión de trabajo donde un inspector registra el paso de unidades en un punto de control.
+      Se realizan <strong>2 controles diarios</strong> (turno Mañana y turno Tarde). Esta sección muestra cuántos controles se han
+      completado desde el inicio de la operación, con desglose mensual y semanal.
+    </p>
+
+    <div class="card">
+      <div class="card-title">📈 Evolución mensual de controles</div>
+      <div id="chart-controles-mes"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Detalle mensual</div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Período</th><th>Controles</th><th>Días con actividad</th><th>Promedio turnos/día</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Marzo 2026</td><td>4</td><td>2</td><td>2</td></tr>
+<tr><td>Abril 2026</td><td>40</td><td>20</td><td>2</td></tr>
+<tr><td>Mayo 2026</td><td>37</td><td>19</td><td>1,95</td></tr>
+<tr><td>Junio 2026</td><td>39</td><td>20</td><td>1,95</td></tr>
+<tr><td>Julio 2026</td><td>40</td><td>21</td><td>1,9</td></tr>
+<tr><td>Agosto 2026</td><td>14</td><td>7</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📅 Detalle semanal</div>
+      <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr><th>Semana (inicio)</th><th>Semana (fin)</th><th>Controles</th><th>Días</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>30/03/2026</td><td>05/04/2026</td><td>6</td><td>3</td></tr>
+<tr><td>06/04/2026</td><td>12/04/2026</td><td>10</td><td>5</td></tr>
+<tr><td>13/04/2026</td><td>19/04/2026</td><td>10</td><td>5</td></tr>
+<tr><td>20/04/2026</td><td>26/04/2026</td><td>10</td><td>5</td></tr>
+<tr><td>27/04/2026</td><td>03/05/2026</td><td>8</td><td>4</td></tr>
+<tr><td>04/05/2026</td><td>10/05/2026</td><td>10</td><td>5</td></tr>
+<tr><td>11/05/2026</td><td>17/05/2026</td><td>10</td><td>5</td></tr>
+<tr><td>18/05/2026</td><td>24/05/2026</td><td>10</td><td>5</td></tr>
+<tr><td>25/05/2026</td><td>31/05/2026</td><td>7</td><td>4</td></tr>
+<tr><td>01/06/2026</td><td>07/06/2026</td><td>10</td><td>5</td></tr>
+<tr><td>08/06/2026</td><td>14/06/2026</td><td>7</td><td>4</td></tr>
+<tr><td>15/06/2026</td><td>21/06/2026</td><td>8</td><td>4</td></tr>
+<tr><td>22/06/2026</td><td>28/06/2026</td><td>10</td><td>5</td></tr>
+<tr><td>29/06/2026</td><td>05/07/2026</td><td>10</td><td>5</td></tr>
+<tr><td>06/07/2026</td><td>12/07/2026</td><td>5</td><td>3</td></tr>
+<tr><td>13/07/2026</td><td>19/07/2026</td><td>9</td><td>5</td></tr>
+<tr><td>20/07/2026</td><td>26/07/2026</td><td>10</td><td>5</td></tr>
+<tr><td>27/07/2026</td><td>02/08/2026</td><td>10</td><td>5</td></tr>
+<tr><td>03/08/2026</td><td>09/08/2026</td><td>10</td><td>5</td></tr>
+<tr><td>10/08/2026</td><td>16/08/2026</td><td>4</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 2: TOMAS REGISTRADAS ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--gradient-emerald)">2</div>
+      <h2 class="section-title">Tomas Registradas</h2>
+    </div>
+    <p class="section-desc">
+      Cada <strong>toma</strong> representa el paso de una unidad de transporte por un punto de control, donde el inspector
+      registra la hora, la línea, el número de interno y la dirección. Es la unidad mínima de información del sistema.
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <div class="card-title">📊 Tomas mensuales</div>
+        <div id="chart-tomas-mes"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 Tomas semanales</div>
+        <div id="chart-tomas-semana"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Detalle mensual de tomas</div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Período</th><th>Tomas</th><th>Días activos</th><th>Promedio tomas/día</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Marzo 2026</td><td>483</td><td>2</td><td>241,5</td></tr>
+<tr><td>Abril 2026</td><td>8.911</td><td>20</td><td>445,6</td></tr>
+<tr><td>Mayo 2026</td><td>8.426</td><td>19</td><td>443,5</td></tr>
+<tr><td>Junio 2026</td><td>8.935</td><td>20</td><td>446,8</td></tr>
+<tr><td>Julio 2026</td><td>8.278</td><td>21</td><td>394,2</td></tr>
+<tr><td>Agosto 2026</td><td>2.950</td><td>7</td><td>421,4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 3: MÉTRICAS POR LÍNEA ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--gradient-purple)">3</div>
+      <h2 class="section-title">Análisis por Línea de Transporte</h2>
+    </div>
+    <p class="section-desc">
+      Cada <strong>línea de transporte</strong> (L1, L3, L11, etc.) tiene sus propias características de frecuencia y cobertura.
+      Un valor alto de frecuencia promedio (en minutos) indica mayor tiempo de espera entre unidades, 
+      lo cual puede señalar un servicio deficiente en esa línea.
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <div class="card-title">📊 Tomas por línea (acumulado)</div>
+        <div id="chart-lineas-bar"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏆 Ranking de frecuencia por línea (mayor = peor)</div>
+        <div id="chart-ranking-freq"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Resumen global por línea</div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Línea</th><th>Total tomas</th><th>Días controlados</th><th>Prom. tomas/día</th><th>Internos únicos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>L1</td><td>1.620</td><td>89</td><td>18,2</td><td>18</td></tr>
+<tr><td>L10</td><td>1.912</td><td>88</td><td>21,7</td><td>22</td></tr>
+<tr><td>L11</td><td>3.559</td><td>89</td><td>40</td><td>31</td></tr>
+<tr><td>L12</td><td>3.689</td><td>88</td><td>41,9</td><td>39</td></tr>
+<tr><td>L17</td><td>5.422</td><td>89</td><td>60,9</td><td>40</td></tr>
+<tr><td>L18</td><td>3.342</td><td>89</td><td>37,6</td><td>30</td></tr>
+<tr><td>L19</td><td>3.257</td><td>89</td><td>36,6</td><td>22</td></tr>
+<tr><td>L3</td><td>1.781</td><td>89</td><td>20</td><td>21</td></tr>
+<tr><td>L4</td><td>2.214</td><td>88</td><td>25,2</td><td>28</td></tr>
+<tr><td>L5</td><td>2.011</td><td>88</td><td>22,9</td><td>22</td></tr>
+<tr><td>L6</td><td>2.915</td><td>89</td><td>32,8</td><td>39</td></tr>
+<tr><td>L7</td><td>1.863</td><td>88</td><td>21,2</td><td>21</td></tr>
+<tr><td>L8</td><td>2.273</td><td>88</td><td>25,8</td><td>22</td></tr>
+<tr><td>L9</td><td>2.125</td><td>88</td><td>24,1</td><td>28</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Ranking de frecuencia (detalle)</div>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">
+        La <strong>frecuencia promedio</strong> mide el tiempo medio (en minutos) entre el paso de una unidad y la siguiente.
+        Valores más bajos indican un servicio más fluido. Se muestra también la frecuencia mínima y máxima registrada.
+      </p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Línea</th><th>Total tomas</th><th>Frec. Promedio (min)</th><th>Frec. Mínima</th><th>Frec. Máxima</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>L4</td><td>2.214</td><td>36,68</td><td>0,05</td><td>270,13</td></tr>
+<tr><td>L5</td><td>2.011</td><td>31,85</td><td>0,03</td><td>676,93</td></tr>
+<tr><td>L8</td><td>2.273</td><td>25,26</td><td>0,03</td><td>522</td></tr>
+<tr><td>L3</td><td>1.781</td><td>25,11</td><td>0,13</td><td>266,83</td></tr>
+<tr><td>L1</td><td>1.620</td><td>24,96</td><td>0,4</td><td>178,63</td></tr>
+<tr><td>L10</td><td>1.912</td><td>22,19</td><td>0,02</td><td>487,03</td></tr>
+<tr><td>L7</td><td>1.863</td><td>20,31</td><td>0,03</td><td>109,73</td></tr>
+<tr><td>L17</td><td>5.422</td><td>19,22</td><td>0,03</td><td>570,87</td></tr>
+<tr><td>L6</td><td>2.915</td><td>18,94</td><td>0,03</td><td>195,2</td></tr>
+<tr><td>L9</td><td>2.125</td><td>18,81</td><td>0,02</td><td>565,6</td></tr>
+<tr><td>L11</td><td>3.559</td><td>17,12</td><td>0,03</td><td>196,87</td></tr>
+<tr><td>L12</td><td>3.689</td><td>16,21</td><td>0,02</td><td>353,47</td></tr>
+<tr><td>L19</td><td>3.257</td><td>12,11</td><td>0,03</td><td>47,03</td></tr>
+<tr><td>L18</td><td>3.342</td><td>11,78</td><td>0,02</td><td>85,1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📈 Evolución mensual de frecuencia por línea</div>
+      <div class="table-container" style="max-height: 500px; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr><th>Período</th><th>Línea</th><th>Tomas</th><th>Frec. Promedio (min)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2026-03</td><td>L1</td><td>33</td><td>20,1</td></tr>
+<tr><td>2026-03</td><td>L10</td><td>26</td><td>20,16</td></tr>
+<tr><td>2026-03</td><td>L11</td><td>30</td><td>17,53</td></tr>
+<tr><td>2026-03</td><td>L12</td><td>36</td><td>18,7</td></tr>
+<tr><td>2026-03</td><td>L17</td><td>69</td><td>22,23</td></tr>
+<tr><td>2026-03</td><td>L18</td><td>46</td><td>14,25</td></tr>
+<tr><td>2026-03</td><td>L19</td><td>43</td><td>11,76</td></tr>
+<tr><td>2026-03</td><td>L3</td><td>27</td><td>30,46</td></tr>
+<tr><td>2026-03</td><td>L4</td><td>28</td><td>32,19</td></tr>
+<tr><td>2026-03</td><td>L5</td><td>25</td><td>28</td></tr>
+<tr><td>2026-03</td><td>L6</td><td>37</td><td>14,78</td></tr>
+<tr><td>2026-03</td><td>L7</td><td>22</td><td>22,26</td></tr>
+<tr><td>2026-03</td><td>L8</td><td>30</td><td>19,05</td></tr>
+<tr><td>2026-03</td><td>L9</td><td>31</td><td>15,34</td></tr>
+<tr><td>2026-04</td><td>L1</td><td>399</td><td>23,26</td></tr>
+<tr><td>2026-04</td><td>L10</td><td>442</td><td>22,24</td></tr>
+<tr><td>2026-04</td><td>L11</td><td>855</td><td>17,21</td></tr>
+<tr><td>2026-04</td><td>L12</td><td>827</td><td>16,24</td></tr>
+<tr><td>2026-04</td><td>L17</td><td>1.329</td><td>18,34</td></tr>
+<tr><td>2026-04</td><td>L18</td><td>785</td><td>11,86</td></tr>
+<tr><td>2026-04</td><td>L19</td><td>794</td><td>11,9</td></tr>
+<tr><td>2026-04</td><td>L3</td><td>433</td><td>25,15</td></tr>
+<tr><td>2026-04</td><td>L4</td><td>505</td><td>37,75</td></tr>
+<tr><td>2026-04</td><td>L5</td><td>453</td><td>32,48</td></tr>
+<tr><td>2026-04</td><td>L6</td><td>608</td><td>17,96</td></tr>
+<tr><td>2026-04</td><td>L7</td><td>416</td><td>21,57</td></tr>
+<tr><td>2026-04</td><td>L8</td><td>534</td><td>24,97</td></tr>
+<tr><td>2026-04</td><td>L9</td><td>531</td><td>19,27</td></tr>
+<tr><td>2026-05</td><td>L1</td><td>342</td><td>26,27</td></tr>
+<tr><td>2026-05</td><td>L10</td><td>456</td><td>21,46</td></tr>
+<tr><td>2026-05</td><td>L11</td><td>765</td><td>16,94</td></tr>
+<tr><td>2026-05</td><td>L12</td><td>844</td><td>15,55</td></tr>
+<tr><td>2026-05</td><td>L17</td><td>1.239</td><td>18,28</td></tr>
+<tr><td>2026-05</td><td>L18</td><td>752</td><td>11,41</td></tr>
+<tr><td>2026-05</td><td>L19</td><td>715</td><td>11,7</td></tr>
+<tr><td>2026-05</td><td>L3</td><td>400</td><td>26,72</td></tr>
+<tr><td>2026-05</td><td>L4</td><td>470</td><td>38,77</td></tr>
+<tr><td>2026-05</td><td>L5</td><td>425</td><td>32,05</td></tr>
+<tr><td>2026-05</td><td>L6</td><td>646</td><td>18,8</td></tr>
+<tr><td>2026-05</td><td>L7</td><td>415</td><td>19,4</td></tr>
+<tr><td>2026-05</td><td>L8</td><td>510</td><td>25,82</td></tr>
+<tr><td>2026-05</td><td>L9</td><td>447</td><td>18,49</td></tr>
+<tr><td>2026-06</td><td>L1</td><td>368</td><td>26,77</td></tr>
+<tr><td>2026-06</td><td>L10</td><td>458</td><td>21,11</td></tr>
+<tr><td>2026-06</td><td>L11</td><td>831</td><td>16,74</td></tr>
+<tr><td>2026-06</td><td>L12</td><td>897</td><td>15,69</td></tr>
+<tr><td>2026-06</td><td>L17</td><td>1.279</td><td>18,69</td></tr>
+<tr><td>2026-06</td><td>L18</td><td>756</td><td>11,83</td></tr>
+<tr><td>2026-06</td><td>L19</td><td>779</td><td>11,77</td></tr>
+<tr><td>2026-06</td><td>L3</td><td>396</td><td>23,54</td></tr>
+<tr><td>2026-06</td><td>L4</td><td>537</td><td>35,29</td></tr>
+<tr><td>2026-06</td><td>L5</td><td>487</td><td>31,17</td></tr>
+<tr><td>2026-06</td><td>L6</td><td>710</td><td>18,88</td></tr>
+<tr><td>2026-06</td><td>L7</td><td>460</td><td>19,3</td></tr>
+<tr><td>2026-06</td><td>L8</td><td>518</td><td>24,72</td></tr>
+<tr><td>2026-06</td><td>L9</td><td>459</td><td>18,76</td></tr>
+<tr><td>2026-07</td><td>L1</td><td>360</td><td>24,62</td></tr>
+<tr><td>2026-07</td><td>L10</td><td>396</td><td>24,17</td></tr>
+<tr><td>2026-07</td><td>L11</td><td>807</td><td>17,61</td></tr>
+<tr><td>2026-07</td><td>L12</td><td>787</td><td>17,71</td></tr>
+<tr><td>2026-07</td><td>L17</td><td>1.082</td><td>22,06</td></tr>
+<tr><td>2026-07</td><td>L18</td><td>738</td><td>12,33</td></tr>
+<tr><td>2026-07</td><td>L19</td><td>676</td><td>13,26</td></tr>
+<tr><td>2026-07</td><td>L3</td><td>393</td><td>24,62</td></tr>
+<tr><td>2026-07</td><td>L4</td><td>514</td><td>35,79</td></tr>
+<tr><td>2026-07</td><td>L5</td><td>466</td><td>32,32</td></tr>
+<tr><td>2026-07</td><td>L6</td><td>653</td><td>20,78</td></tr>
+<tr><td>2026-07</td><td>L7</td><td>414</td><td>21,13</td></tr>
+<tr><td>2026-07</td><td>L8</td><td>502</td><td>26,04</td></tr>
+<tr><td>2026-07</td><td>L9</td><td>490</td><td>19,02</td></tr>
+<tr><td>2026-08</td><td>L1</td><td>118</td><td>23,88</td></tr>
+<tr><td>2026-08</td><td>L10</td><td>134</td><td>23,08</td></tr>
+<tr><td>2026-08</td><td>L11</td><td>271</td><td>17,01</td></tr>
+<tr><td>2026-08</td><td>L12</td><td>298</td><td>15,4</td></tr>
+<tr><td>2026-08</td><td>L17</td><td>424</td><td>19,04</td></tr>
+<tr><td>2026-08</td><td>L18</td><td>265</td><td>10,59</td></tr>
+<tr><td>2026-08</td><td>L19</td><td>250</td><td>12,02</td></tr>
+<tr><td>2026-08</td><td>L3</td><td>132</td><td>25,06</td></tr>
+<tr><td>2026-08</td><td>L4</td><td>160</td><td>35,87</td></tr>
+<tr><td>2026-08</td><td>L5</td><td>155</td><td>30,74</td></tr>
+<tr><td>2026-08</td><td>L6</td><td>261</td><td>17,91</td></tr>
+<tr><td>2026-08</td><td>L7</td><td>136</td><td>19,97</td></tr>
+<tr><td>2026-08</td><td>L8</td><td>179</td><td>25,02</td></tr>
+<tr><td>2026-08</td><td>L9</td><td>167</td><td>18,42</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 4: PUNTOS DE CONTROL Y RAMALES ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--gradient-amber)">4</div>
+      <h2 class="section-title">Puntos de Control y Recorridos</h2>
+    </div>
+    <p class="section-desc">
+      Los <strong>puntos de control</strong> son las ubicaciones donde los inspectores se posicionan para registrar el paso de unidades. 
+      Cada combinación de línea + punto de control conforma un <strong>ramal</strong>, que representa un recorrido específico.
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <div class="card-title">📍 Tomas por punto de control</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Punto de control</th><th>Total tomas</th><th>Días usados</th><th>Líneas controladas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Alem 1200</td><td>3.435</td><td>89</td><td>8</td></tr>
+<tr><td>Buenos Aires 1700</td><td>2.823</td><td>88</td><td>5</td></tr>
+<tr><td>Amador Lucero 3200</td><td>1.930</td><td>88</td><td>3</td></tr>
+<tr><td>Rivadavia 2100</td><td>1.645</td><td>87</td><td>9</td></tr>
+<tr><td>Av Saenz Peña 800</td><td>1.580</td><td>65</td><td>3</td></tr>
+<tr><td>Ramirez de Velazco 1700</td><td>1.264</td><td>88</td><td>6</td></tr>
+<tr><td>Castro Barros 2600</td><td>1.224</td><td>72</td><td>2</td></tr>
+<tr><td>Santiago del Estero 200</td><td>1.191</td><td>78</td><td>8</td></tr>
+<tr><td>Jujuy 4300</td><td>1.122</td><td>88</td><td>6</td></tr>
+<tr><td>Av. américa 1700</td><td>1.105</td><td>46</td><td>2</td></tr>
+<tr><td>Marina Alfaro 1200</td><td>1.001</td><td>53</td><td>2</td></tr>
+<tr><td>9 de Julio 1900</td><td>949</td><td>80</td><td>3</td></tr>
+<tr><td>25 de mayo 1900</td><td>941</td><td>67</td><td>4</td></tr>
+<tr><td>Lavalle 2300</td><td>916</td><td>88</td><td>3</td></tr>
+<tr><td>General Paz 2300</td><td>889</td><td>88</td><td>3</td></tr>
+<tr><td>Luis Alberto Spinetta 100</td><td>854</td><td>88</td><td>3</td></tr>
+<tr><td>Av. Pres. Néstor Kirchner 2300</td><td>758</td><td>46</td><td>2</td></tr>
+<tr><td>Coronel Olleros 500</td><td>751</td><td>57</td><td>3</td></tr>
+<tr><td>Ejercito del Norte 600</td><td>701</td><td>32</td><td>2</td></tr>
+<tr><td>25 de mayo 1800</td><td>679</td><td>54</td><td>6</td></tr>
+<tr><td>Congreso 2700</td><td>670</td><td>82</td><td>2</td></tr>
+<tr><td>Av. Democracia 50</td><td>669</td><td>57</td><td>8</td></tr>
+<tr><td>Mate de Luna 4200</td><td>656</td><td>52</td><td>5</td></tr>
+<tr><td>Av. Ejercito del Norte 600</td><td>648</td><td>34</td><td>2</td></tr>
+<tr><td>Americo Vespucio 1700</td><td>635</td><td>62</td><td>1</td></tr>
+<tr><td>Berutti 200</td><td>607</td><td>78</td><td>4</td></tr>
+<tr><td>Berutti 500</td><td>600</td><td>70</td><td>7</td></tr>
+<tr><td>Avenida Americo Vespucio 1700</td><td>587</td><td>54</td><td>3</td></tr>
+<tr><td>Francisco de Aguirre 2100</td><td>569</td><td>56</td><td>2</td></tr>
+<tr><td>Coronel Zelaya 700</td><td>569</td><td>59</td><td>3</td></tr>
+<tr><td>Mario Bravo 400</td><td>550</td><td>86</td><td>6</td></tr>
+<tr><td>Av. Benjamin Araoz 950</td><td>404</td><td>61</td><td>3</td></tr>
+<tr><td>Av. América 1700</td><td>399</td><td>18</td><td>2</td></tr>
+<tr><td>25 de Mayo 1900</td><td>371</td><td>35</td><td>6</td></tr>
+<tr><td>Av. America 1700</td><td>368</td><td>21</td><td>2</td></tr>
+<tr><td>Av. Marina Alfaro 1200</td><td>312</td><td>19</td><td>2</td></tr>
+<tr><td>Ramirez de Velazco 2800</td><td>307</td><td>43</td><td>2</td></tr>
+<tr><td>Isabel la Católica 2900</td><td>303</td><td>49</td><td>1</td></tr>
+<tr><td>Democracia 50</td><td>292</td><td>35</td><td>4</td></tr>
+<tr><td>Lavalle 2700</td><td>278</td><td>44</td><td>3</td></tr>
+<tr><td>Isabel La Catolica 2100</td><td>224</td><td>35</td><td>1</td></tr>
+<tr><td>Luis Alberto Spinnetta 100</td><td>210</td><td>37</td><td>1</td></tr>
+<tr><td>Mexico 3600</td><td>201</td><td>21</td><td>2</td></tr>
+<tr><td>Monteagudo 500</td><td>174</td><td>18</td><td>2</td></tr>
+<tr><td>Av. Araoz 850</td><td>140</td><td>24</td><td>1</td></tr>
+<tr><td>Av. Nestor Kirchner 2700</td><td>124</td><td>21</td><td>2</td></tr>
+<tr><td>Av. Ejercito del Norte 700</td><td>115</td><td>7</td><td>2</td></tr>
+<tr><td>Av Saenz Peña 800 </td><td>88</td><td>5</td><td>2</td></tr>
+<tr><td>Americo vespucio 1700</td><td>79</td><td>10</td><td>1</td></tr>
+<tr><td>Néstor Kirchner 2700</td><td>78</td><td>14</td><td>2</td></tr>
+<tr><td>Av. Mate de Luna 4200</td><td>78</td><td>7</td><td>5</td></tr>
+<tr><td>Av. Pres. Néstor Kirchner 2300 </td><td>57</td><td>4</td><td>2</td></tr>
+<tr><td>Castros Barros 2600</td><td>56</td><td>4</td><td>2</td></tr>
+<tr><td> Av Saenz Peña 800</td><td>52</td><td>3</td><td>2</td></tr>
+<tr><td>Av. Nestor Kirchner 2300</td><td>49</td><td>8</td><td>1</td></tr>
+<tr><td> 9 de Julio 1900</td><td>42</td><td>5</td><td>2</td></tr>
+<tr><td>Ejercito del Norte 600 </td><td>37</td><td>2</td><td>2</td></tr>
+<tr><td>Av. Marina Alfaro 1200 </td><td>31</td><td>2</td><td>2</td></tr>
+<tr><td>Buenos Aires 1600</td><td>30</td><td>2</td><td>3</td></tr>
+<tr><td>9 de Julio 1900 </td><td>29</td><td>3</td><td>2</td></tr>
+<tr><td> Alem 1200</td><td>26</td><td>1</td><td>5</td></tr>
+<tr><td>Ejercito de Norte 600</td><td>24</td><td>1</td><td>2</td></tr>
+<tr><td>Amador Lucero 1700</td><td>24</td><td>3</td><td>1</td></tr>
+<tr><td> Jujuy 4300</td><td>22</td><td>3</td><td>1</td></tr>
+<tr><td> Buenos Aires 1700</td><td>22</td><td>2</td><td>3</td></tr>
+<tr><td>Av. Ejercito del Norte 700 </td><td>21</td><td>1</td><td>2</td></tr>
+<tr><td> Av. américa 1700</td><td>20</td><td>1</td><td>2</td></tr>
+<tr><td>Marcos Paz 600</td><td>19</td><td>1</td><td>2</td></tr>
+<tr><td>Marina Alfaro 2100</td><td>19</td><td>1</td><td>2</td></tr>
+<tr><td>25 de mayo 1900 </td><td>18</td><td>2</td><td>4</td></tr>
+<tr><td>Avenida Americe Vespucio 1700</td><td>17</td><td>2</td><td>1</td></tr>
+<tr><td> Berutti 200</td><td>17</td><td>3</td><td>1</td></tr>
+<tr><td> Berutti 500</td><td>16</td><td>2</td><td>2</td></tr>
+<tr><td>Av. Ejercito del Nortes 600</td><td>16</td><td>1</td><td>2</td></tr>
+<tr><td>Av. Alem 1200</td><td>15</td><td>1</td><td>5</td></tr>
+<tr><td> Rivadavia 2100</td><td>14</td><td>1</td><td>2</td></tr>
+<tr><td>Francisco de aguirre 2100</td><td>13</td><td>1</td><td>2</td></tr>
+<tr><td>Berutti 200 </td><td>13</td><td>3</td><td>1</td></tr>
+<tr><td> 25 de mayo 1900</td><td>11</td><td>1</td><td>4</td></tr>
+<tr><td>Castro Barros 1700</td><td>11</td><td>1</td><td>2</td></tr>
+<tr><td>Francisco Aguirre 2100</td><td>11</td><td>1</td><td>2</td></tr>
+<tr><td>Belisario roldan 1200</td><td>10</td><td>1</td><td>2</td></tr>
+<tr><td> Mexico 3600</td><td>10</td><td>1</td><td>2</td></tr>
+<tr><td> Av Saenz Peña 800 </td><td>9</td><td>1</td><td>2</td></tr>
+<tr><td> 9 de Julio 1900 </td><td>9</td><td>1</td><td>2</td></tr>
+<tr><td>Cnel. Zelaya 700</td><td>8</td><td>1</td><td>1</td></tr>
+<tr><td>Américo Vespucio 1700</td><td>8</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Benjamin Araoz</td><td>8</td><td>1</td><td>1</td></tr>
+<tr><td>Ramirez de Velazco 1700 </td><td>7</td><td>3</td><td>1</td></tr>
+<tr><td>General Paz 2200</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Néstor Kirchner 2300</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td>General Paz 2700</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td> Luis Alberto Spinetta 100</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Nestor Kirchner2700</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td>Lavalle 2200</td><td>6</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Néstor Kirchner 2700</td><td>5</td><td>1</td><td>1</td></tr>
+<tr><td> Mario Bravo 400</td><td>5</td><td>1</td><td>2</td></tr>
+<tr><td> Avenida Americo Vespucio 1700</td><td>5</td><td>1</td><td>1</td></tr>
+<tr><td>Berutti 500 </td><td>4</td><td>3</td><td>2</td></tr>
+<tr><td>Av. Benjamín Araoz 950</td><td>4</td><td>1</td><td>1</td></tr>
+<tr><td>Monteagudo 500 </td><td>4</td><td>1</td><td>1</td></tr>
+<tr><td>Luis Alberto Spinnetta </td><td>4</td><td>1</td><td>1</td></tr>
+<tr><td>Coronel 700</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td>Av Benjamin Araoz 950</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td>Luis Alberto Spinnetta</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td>Adolfo de la Vega 450</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td> Ramirez de Velazco 1700</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td> Lavalle 2700</td><td>3</td><td>1</td><td>1</td></tr>
+<tr><td>Buenos Aires 445</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td>Berutii 500</td><td>2</td><td>1</td><td>1</td></tr>
+<tr><td>Av Bejamin Araoz 950</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Lavalle Paz 2300</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Piedras 2300</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>	Néstor Kirchner 2700</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Américo Vespucio 1700</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Av. Araoz 500</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Ramrez de Velazco 1700</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>	Av. Democracia 50</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td> Isabel la Católica 2900</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Luis ALberto Spinetta 100</td><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🚌 Frecuencia por ramal</div>
+        <div class="table-container" style="max-height: 450px; overflow-y: auto;">
+          <table>
+            <thead>
+              <tr><th>Ramal</th><th>Punto</th><th>Tomas</th><th>Frec. Prom. (min)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>L1 Mitre</td><td> 9 de Julio 1900</td><td>21</td><td>23,37</td></tr>
+<tr><td>L1 Mitre</td><td> 9 de Julio 1900 </td><td>5</td><td>23,27</td></tr>
+<tr><td>L1 Mitre</td><td>9 de Julio 1900</td><td>496</td><td>24,8</td></tr>
+<tr><td>L1 Mitre</td><td>9 de Julio 1900 </td><td>14</td><td>24,24</td></tr>
+<tr><td>L1 Mitre</td><td>Francisco Aguirre 2100</td><td>6</td><td>21,93</td></tr>
+<tr><td>L1 Mitre</td><td>Francisco de aguirre 2100</td><td>6</td><td>21,54</td></tr>
+<tr><td>L1 Mitre</td><td>Francisco de Aguirre 2100</td><td>294</td><td>22,16</td></tr>
+<tr><td>L1 Salta</td><td> 9 de Julio 1900</td><td>21</td><td>27,92</td></tr>
+<tr><td>L1 Salta</td><td> 9 de Julio 1900 </td><td>4</td><td>31,69</td></tr>
+<tr><td>L1 Salta</td><td>9 de Julio 1900</td><td>451</td><td>28,38</td></tr>
+<tr><td>L1 Salta</td><td>9 de Julio 1900 </td><td>15</td><td>21,13</td></tr>
+<tr><td>L1 Salta</td><td>Francisco Aguirre 2100</td><td>5</td><td>16,61</td></tr>
+<tr><td>L1 Salta</td><td>Francisco de aguirre 2100</td><td>7</td><td>17,58</td></tr>
+<tr><td>L1 Salta</td><td>Francisco de Aguirre 2100</td><td>275</td><td>23,48</td></tr>
+<tr><td>L10 San Cayetano</td><td> Berutti 200</td><td>17</td><td>23,53</td></tr>
+<tr><td>L10 San Cayetano</td><td> Lavalle 2700</td><td>3</td><td>52,27</td></tr>
+<tr><td>L10 San Cayetano</td><td>Av. Nestor Kirchner 2700</td><td>2</td><td>115,97</td></tr>
+<tr><td>L10 San Cayetano</td><td>Berutti 200</td><td>570</td><td>23,03</td></tr>
+<tr><td>L10 San Cayetano</td><td>Berutti 200 </td><td>13</td><td>17,95</td></tr>
+<tr><td>L10 San Cayetano</td><td>Berutti 500</td><td>15</td><td>30,55</td></tr>
+<tr><td>L10 San Cayetano</td><td>Congreso 2700</td><td>3</td><td>21,17</td></tr>
+<tr><td>L10 San Cayetano</td><td>Lavalle 2300</td><td>53</td><td>21,4</td></tr>
+<tr><td>L10 San Cayetano</td><td>Lavalle 2700</td><td>260</td><td>21,57</td></tr>
+<tr><td>L10 V. Amalia</td><td>	Néstor Kirchner 2700</td><td>1</td><td>-</td></tr>
+<tr><td>L10 V. Amalia</td><td>Av. Nestor Kirchner 2300</td><td>49</td><td>20,21</td></tr>
+<tr><td>L10 V. Amalia</td><td>Av. Néstor Kirchner 2300</td><td>6</td><td>18,21</td></tr>
+<tr><td>L10 V. Amalia</td><td>Av. Nestor Kirchner 2700</td><td>122</td><td>20,61</td></tr>
+<tr><td>L10 V. Amalia</td><td>Av. Néstor Kirchner 2700</td><td>5</td><td>24,77</td></tr>
+<tr><td>L10 V. Amalia</td><td>Av. Nestor Kirchner2700</td><td>6</td><td>18,51</td></tr>
+<tr><td>L10 V. Amalia</td><td>Berutti 200</td><td>22</td><td>19,26</td></tr>
+<tr><td>L10 V. Amalia</td><td>Berutti 500</td><td>8</td><td>19,5</td></tr>
+<tr><td>L10 V. Amalia</td><td>Congreso 2700</td><td>667</td><td>22,11</td></tr>
+<tr><td>L10 V. Amalia</td><td>Lavalle 2700</td><td>13</td><td>18,51</td></tr>
+<tr><td>L10 V. Amalia</td><td>Néstor Kirchner 2700</td><td>77</td><td>21,91</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td> Avenida Americo Vespucio 1700</td><td>5</td><td>13,13</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Amador Lucero 1700</td><td>24</td><td>14,33</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Americo vespucio 1700</td><td>79</td><td>15,37</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Americo Vespucio 1700</td><td>635</td><td>15,34</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Américo Vespucio 1700</td><td>8</td><td>15,51</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Av. Américo Vespucio 1700</td><td>1</td><td>-</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Avenida Americe Vespucio 1700</td><td>17</td><td>14,07</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Avenida Americo Vespucio 1700</td><td>580</td><td>15,4</td></tr>
+<tr><td>L11 B 11 de Marzo</td><td>Jujuy 4300</td><td>2</td><td>76,1</td></tr>
+<tr><td>L11 Manantial Sur</td><td> Luis Alberto Spinetta 100</td><td>6</td><td>20,51</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Jujuy 4300</td><td>8</td><td>18,25</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Luis Alberto Spinetta 100</td><td>843</td><td>18,47</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Luis ALberto Spinetta 100</td><td>1</td><td>-</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Luis Alberto Spinnetta</td><td>3</td><td>11,65</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Luis Alberto Spinnetta </td><td>4</td><td>32,34</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Luis Alberto Spinnetta 100</td><td>210</td><td>19,43</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Ramirez de Velazco 1700</td><td>3</td><td>3</td></tr>
+<tr><td>L11 Manantial Sur</td><td>Santiago del Estero 200</td><td>3</td><td>11,5</td></tr>
+<tr><td>L11 V. Angelina</td><td> Jujuy 4300</td><td>22</td><td>16,56</td></tr>
+<tr><td>L11 V. Angelina</td><td>Jujuy 4300</td><td>1.095</td><td>17,83</td></tr>
+<tr><td>L11 V. Angelina</td><td>Luis Alberto Spinetta 100</td><td>10</td><td>22,21</td></tr>
+<tr><td>L12 Municipal</td><td> Ramirez de Velazco 1700</td><td>3</td><td>11,55</td></tr>
+<tr><td>L12 Municipal</td><td>Cnel. Zelaya 700</td><td>8</td><td>11,63</td></tr>
+<tr><td>L12 Municipal</td><td>Coronel 700</td><td>3</td><td>8,02</td></tr>
+<tr><td>L12 Municipal</td><td>Coronel Olleros 500</td><td>5</td><td>44,66</td></tr>
+<tr><td>L12 Municipal</td><td>Coronel Zelaya 700</td><td>560</td><td>12,77</td></tr>
+<tr><td>L12 Municipal</td><td>Mario Bravo 400</td><td>1</td><td>-</td></tr>
+<tr><td>L12 Municipal</td><td>Néstor Kirchner 2700</td><td>1</td><td>-</td></tr>
+<tr><td>L12 Municipal</td><td>Ramirez de Velazco 1700</td><td>976</td><td>13,35</td></tr>
+<tr><td>L12 Municipal</td><td>Ramirez de Velazco 1700 </td><td>7</td><td>36,25</td></tr>
+<tr><td>L12 Municipal</td><td>Ramrez de Velazco 1700</td><td>1</td><td>-</td></tr>
+<tr><td>L12 Municipal</td><td>Santiago del Estero 200</td><td>9</td><td>22,94</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Coronel Olleros 500</td><td>381</td><td>17,77</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Coronel Zelaya 700</td><td>5</td><td>21</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Luis Alberto Spinetta 100</td><td>1</td><td>-</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Monteagudo 500</td><td>91</td><td>21,15</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Monteagudo 500 </td><td>4</td><td>36,01</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Ramirez de Velazco 1700</td><td>23</td><td>21,04</td></tr>
+<tr><td>L12 SMATA Manantial Sur</td><td>Santiago del Estero 200</td><td>598</td><td>17,61</td></tr>
+<tr><td>L12 SMATA San Miguel</td><td>Coronel Olleros 500</td><td>365</td><td>17,64</td></tr>
+<tr><td>L12 SMATA San Miguel</td><td>Coronel Zelaya 700</td><td>4</td><td>38,6</td></tr>
+<tr><td>L12 SMATA San Miguel</td><td>Monteagudo 500</td><td>83</td><td>21,65</td></tr>
+<tr><td>L12 SMATA San Miguel</td><td>Ramirez de Velazco 1700</td><td>13</td><td>20,75</td></tr>
+<tr><td>L12 SMATA San Miguel</td><td>Santiago del Estero 200</td><td>547</td><td>19,46</td></tr>
+<tr><td>L17 Alem-Universidad</td><td> Alem 1200</td><td>6</td><td>22,11</td></tr>
+<tr><td>L17 Alem-Universidad</td><td>Alem 1200</td><td>729</td><td>24,62</td></tr>
+<tr><td>L17 Alem-Universidad</td><td>Av. Alem 1200</td><td>2</td><td>18</td></tr>
+<tr><td>L17 Alem-Universidad</td><td>Jujuy 4300</td><td>7</td><td>19</td></tr>
+<tr><td>L17 Chañaritos</td><td>Alem 1200</td><td>56</td><td>11,04</td></tr>
+<tr><td>L17 Chañaritos</td><td>Amador Lucero 3200</td><td>1.928</td><td>10,56</td></tr>
+<tr><td>L17 Ejercito Arg</td><td> Alem 1200</td><td>2</td><td>67,57</td></tr>
+<tr><td>L17 Ejercito Arg</td><td>Alem 1200</td><td>245</td><td>69,81</td></tr>
+<tr><td>L17 Ejercito Arg</td><td>Av. Alem 1200</td><td>2</td><td>78,8</td></tr>
+<tr><td>L17 Ejercito Arg</td><td>Jujuy 4300</td><td>2</td><td>68,07</td></tr>
+<tr><td>L17 Ejercito Argentino</td><td>Alem 1200</td><td>1</td><td>-</td></tr>
+<tr><td>L17 Roca-Universidad</td><td> Alem 1200</td><td>6</td><td>19,11</td></tr>
+<tr><td>L17 Roca-Universidad</td><td>Alem 1200</td><td>825</td><td>23,02</td></tr>
+<tr><td>L17 Roca-Universidad</td><td>Av. Alem 1200</td><td>3</td><td>29,73</td></tr>
+<tr><td>L17 Roca-Universidad</td><td>Jujuy 4300</td><td>8</td><td>15,2</td></tr>
+<tr><td>L17 San Lorenzo-Roca</td><td>Alem 1200</td><td>2</td><td>11,57</td></tr>
+<tr><td>L17 Teran-Roca</td><td> Alem 1200</td><td>7</td><td>18,61</td></tr>
+<tr><td>L17 Teran-Roca</td><td>Alem 1200</td><td>808</td><td>22,99</td></tr>
+<tr><td>L17 Teran-Roca</td><td>Av. Alem 1200</td><td>5</td><td>12,5</td></tr>
+<tr><td>L17 Teran-San Lorenzo</td><td> Alem 1200</td><td>5</td><td>27,75</td></tr>
+<tr><td>L17 Teran-San Lorenzo</td><td>Alem 1200</td><td>769</td><td>23,17</td></tr>
+<tr><td>L17 Teran-San Lorenzo</td><td>Amador Lucero 3200</td><td>1</td><td>-</td></tr>
+<tr><td>L17 Teran-San Lorenzo</td><td>Av. Alem 1200</td><td>3</td><td>23,28</td></tr>
+<tr><td>L18 Antihorario</td><td> Av Saenz Peña 800</td><td>25</td><td>12,85</td></tr>
+<tr><td>L18 Antihorario</td><td> Av Saenz Peña 800 </td><td>5</td><td>20,53</td></tr>
+<tr><td>L18 Antihorario</td><td>Av Saenz Peña 800</td><td>770</td><td>11,78</td></tr>
+<tr><td>L18 Antihorario</td><td>Av Saenz Peña 800 </td><td>50</td><td>11,2</td></tr>
+<tr><td>L18 Antihorario</td><td>Av. Ejercito del Norte 600</td><td>313</td><td>12,88</td></tr>
+<tr><td>L18 Antihorario</td><td>Av. Ejercito del Norte 700</td><td>56</td><td>13,58</td></tr>
+<tr><td>L18 Antihorario</td><td>Av. Ejercito del Norte 700 </td><td>10</td><td>12,22</td></tr>
+<tr><td>L18 Antihorario</td><td>Av. Ejercito del Nortes 600</td><td>6</td><td>18,08</td></tr>
+<tr><td>L18 Antihorario</td><td>Avenida Americo Vespucio 1700</td><td>3</td><td>11,78</td></tr>
+<tr><td>L18 Antihorario</td><td>Ejercito de Norte 600</td><td>9</td><td>12,25</td></tr>
+<tr><td>L18 Antihorario</td><td>Ejercito del Norte 600</td><td>359</td><td>10,77</td></tr>
+<tr><td>L18 Antihorario</td><td>Ejercito del Norte 600 </td><td>19</td><td>11,97</td></tr>
+<tr><td>L18 Antihorario</td><td>Marcos Paz 600</td><td>11</td><td>11,14</td></tr>
+<tr><td>L18 Antihorario</td><td>Santiago del Estero 200</td><td>15</td><td>9,71</td></tr>
+<tr><td>L18 Horario</td><td> Av Saenz Peña 800</td><td>27</td><td>11,57</td></tr>
+<tr><td>L18 Horario</td><td> Av Saenz Peña 800 </td><td>4</td><td>26,53</td></tr>
+<tr><td>L18 Horario</td><td>Av Saenz Peña 800</td><td>809</td><td>11,52</td></tr>
+<tr><td>L18 Horario</td><td>Av Saenz Peña 800 </td><td>38</td><td>12,35</td></tr>
+<tr><td>L18 Horario</td><td>Av. Ejercito del Norte 600</td><td>335</td><td>12,47</td></tr>
+<tr><td>L18 Horario</td><td>Av. Ejercito del Norte 700</td><td>59</td><td>12,86</td></tr>
+<tr><td>L18 Horario</td><td>Av. Ejercito del Norte 700 </td><td>11</td><td>9,75</td></tr>
+<tr><td>L18 Horario</td><td>Av. Ejercito del Nortes 600</td><td>10</td><td>9,72</td></tr>
+<tr><td>L18 Horario</td><td>Avenida Americo Vespucio 1700</td><td>4</td><td>23,51</td></tr>
+<tr><td>L18 Horario</td><td>Ejercito de Norte 600</td><td>15</td><td>7,96</td></tr>
+<tr><td>L18 Horario</td><td>Ejercito del Norte 600</td><td>342</td><td>11,22</td></tr>
+<tr><td>L18 Horario</td><td>Ejercito del Norte 600 </td><td>18</td><td>12,63</td></tr>
+<tr><td>L18 Horario</td><td>Marcos Paz 600</td><td>8</td><td>13,87</td></tr>
+<tr><td>L18 Horario</td><td>Santiago del Estero 200</td><td>11</td><td>10,26</td></tr>
+<tr><td>L19 Antihorario</td><td> Av. américa 1700</td><td>9</td><td>12,81</td></tr>
+<tr><td>L19 Antihorario</td><td>Av. America 1700</td><td>189</td><td>12,3</td></tr>
+<tr><td>L19 Antihorario</td><td>Av. américa 1700</td><td>554</td><td>11,61</td></tr>
+<tr><td>L19 Antihorario</td><td>Av. América 1700</td><td>200</td><td>12,81</td></tr>
+<tr><td>L19 Antihorario</td><td>Av. Marina Alfaro 1200</td><td>150</td><td>13,43</td></tr>
+<tr><td>L19 Antihorario</td><td>Av. Marina Alfaro 1200 </td><td>22</td><td>11,23</td></tr>
+<tr><td>L19 Antihorario</td><td>Marina Alfaro 1200</td><td>507</td><td>12,28</td></tr>
+<tr><td>L19 Antihorario</td><td>Marina Alfaro 2100</td><td>9</td><td>12,38</td></tr>
+<tr><td>L19 Horario</td><td> Av. américa 1700</td><td>11</td><td>12,19</td></tr>
+<tr><td>L19 Horario</td><td>Amador Lucero 3200</td><td>1</td><td>-</td></tr>
+<tr><td>L19 Horario</td><td>Av Saenz Peña 800</td><td>1</td><td>-</td></tr>
+<tr><td>L19 Horario</td><td>Av. America 1700</td><td>179</td><td>11,97</td></tr>
+<tr><td>L19 Horario</td><td>Av. américa 1700</td><td>551</td><td>11,76</td></tr>
+<tr><td>L19 Horario</td><td>Av. América 1700</td><td>199</td><td>12,62</td></tr>
+<tr><td>L19 Horario</td><td>Av. Marina Alfaro 1200</td><td>162</td><td>12,57</td></tr>
+<tr><td>L19 Horario</td><td>Av. Marina Alfaro 1200 </td><td>9</td><td>12,76</td></tr>
+<tr><td>L19 Horario</td><td>Marina Alfaro 1200</td><td>494</td><td>11,86</td></tr>
+<tr><td>L19 Horario</td><td>Marina Alfaro 2100</td><td>10</td><td>11,61</td></tr>
+<tr><td>L3 Auxiliar</td><td>Berutti 500</td><td>1</td><td>-</td></tr>
+<tr><td>L3 Auxiliar</td><td>General Paz 2300</td><td>6</td><td>30,57</td></tr>
+<tr><td>L3 Lavalle</td><td>Adolfo de la Vega 450</td><td>3</td><td>120,64</td></tr>
+<tr><td>L3 Lavalle</td><td>General Paz 2300</td><td>30</td><td>23,79</td></tr>
+<tr><td>L3 Lavalle</td><td>Lavalle 2200</td><td>6</td><td>21,31</td></tr>
+<tr><td>L3 Lavalle</td><td>Lavalle 2300</td><td>847</td><td>25,27</td></tr>
+<tr><td>L3 Lavalle</td><td>Lavalle 2700</td><td>5</td><td>23,56</td></tr>
+<tr><td>L3 Lavalle</td><td>Piedras 2300</td><td>1</td><td>-</td></tr>
+<tr><td>L3 Marcos Paz</td><td>General Paz 2200</td><td>6</td><td>20,49</td></tr>
+<tr><td>L3 Marcos Paz</td><td>General Paz 2300</td><td>853</td><td>24,82</td></tr>
+<tr><td>L3 Marcos Paz</td><td>General Paz 2700</td><td>6</td><td>18,73</td></tr>
+<tr><td>L3 Marcos Paz</td><td>Lavalle 2300</td><td>16</td><td>25,35</td></tr>
+<tr><td>L3 Marcos Paz</td><td>Lavalle Paz 2300</td><td>1</td><td>-</td></tr>
+<tr><td>L4 Colombres</td><td> Mario Bravo 400</td><td>3</td><td>33,5</td></tr>
+<tr><td>L4 Colombres</td><td>Av. Democracia 50</td><td>5</td><td>23,29</td></tr>
+<tr><td>L4 Colombres</td><td>Av. Mate de Luna 4200</td><td>20</td><td>33,07</td></tr>
+<tr><td>L4 Colombres</td><td>Mario Bravo 400</td><td>284</td><td>40,38</td></tr>
+<tr><td>L4 Colombres</td><td>Mate de Luna 4200</td><td>132</td><td>38,74</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td> Mario Bravo 400</td><td>2</td><td>42,43</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td>Av. Democracia 50</td><td>7</td><td>46,5</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td>Av. Mate de Luna 4200</td><td>13</td><td>39,61</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td>Democracia 50</td><td>1</td><td>-</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td>Mario Bravo 400</td><td>256</td><td>39,14</td></tr>
+<tr><td>L4 Colombres-Costanera</td><td>Mate de Luna 4200</td><td>106</td><td>47,2</td></tr>
+<tr><td>L4 Mercofrut</td><td>Av. Democracia 50</td><td>239</td><td>31,18</td></tr>
+<tr><td>L4 Mercofrut</td><td>Av. Mate de Luna 4200</td><td>12</td><td>31,16</td></tr>
+<tr><td>L4 Mercofrut</td><td>Democracia 50</td><td>127</td><td>32,11</td></tr>
+<tr><td>L4 Mercofrut</td><td>Mario Bravo 400</td><td>5</td><td>26,61</td></tr>
+<tr><td>L4 Mercofrut</td><td>Mate de Luna 4200</td><td>154</td><td>32,27</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>	Av. Democracia 50</td><td>1</td><td>-</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>Av. Democracia 50</td><td>169</td><td>41,15</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>Av. Mate de Luna 4200</td><td>12</td><td>42,23</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>Democracia 50</td><td>65</td><td>42,27</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>Mario Bravo 400</td><td>2</td><td>54,97</td></tr>
+<tr><td>L4 Mercofrut-A. Heredia</td><td>Mate de Luna 4200</td><td>107</td><td>44,81</td></tr>
+<tr><td>L4 Mercofrut-Autopista</td><td>Av. Democracia 50</td><td>213</td><td>32,85</td></tr>
+<tr><td>L4 Mercofrut-Autopista</td><td>Av. Mate de Luna 4200</td><td>21</td><td>26,82</td></tr>
+<tr><td>L4 Mercofrut-Autopista</td><td>Democracia 50</td><td>99</td><td>36,82</td></tr>
+<tr><td>L4 Mercofrut-Autopista</td><td>Mario Bravo 400</td><td>2</td><td>26,53</td></tr>
+<tr><td>L4 Mercofrut-Autopista</td><td>Mate de Luna 4200</td><td>157</td><td>33,19</td></tr>
+<tr><td>L5 Agrimensor</td><td> 25 de mayo 1900</td><td>4</td><td>35,14</td></tr>
+<tr><td>L5 Agrimensor</td><td>25 de mayo 1800</td><td>191</td><td>34,5</td></tr>
+<tr><td>L5 Agrimensor</td><td>25 de mayo 1900</td><td>379</td><td>23,06</td></tr>
+<tr><td>L5 Agrimensor</td><td>25 de Mayo 1900</td><td>195</td><td>25,35</td></tr>
+<tr><td>L5 Agrimensor</td><td>25 de mayo 1900 </td><td>9</td><td>27,77</td></tr>
+<tr><td>L5 Agrimensor</td><td>Buenos Aires 445</td><td>1</td><td>-</td></tr>
+<tr><td>L5 Agrimensor</td><td>Rivadavia 2100</td><td>4</td><td>17,17</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td> 25 de mayo 1900</td><td>3</td><td>33,05</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td>25 de mayo 1800</td><td>193</td><td>31,77</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td>25 de mayo 1900</td><td>237</td><td>35,07</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td>25 de Mayo 1900</td><td>96</td><td>43,3</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td>25 de mayo 1900 </td><td>5</td><td>57,38</td></tr>
+<tr><td>L5 El Molino-SEOC</td><td>Rivadavia 2100</td><td>3</td><td>43,72</td></tr>
+<tr><td>L5 Oeste x 25</td><td> 25 de mayo 1900</td><td>1</td><td>-</td></tr>
+<tr><td>L5 Oeste x 25</td><td>25 de mayo 1800</td><td>194</td><td>31,86</td></tr>
+<tr><td>L5 Oeste x 25</td><td>25 de mayo 1900</td><td>196</td><td>37,16</td></tr>
+<tr><td>L5 Oeste x 25</td><td>25 de Mayo 1900</td><td>45</td><td>51,98</td></tr>
+<tr><td>L5 Oeste x 25</td><td>25 de mayo 1900 </td><td>2</td><td>-</td></tr>
+<tr><td>L5 Oeste x 25</td><td>Rivadavia 2100</td><td>1</td><td>-</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td> 25 de mayo 1900</td><td>3</td><td>26,45</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td>25 de mayo 1800</td><td>89</td><td>46,86</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td>25 de mayo 1900</td><td>129</td><td>38,29</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td>25 de Mayo 1900</td><td>27</td><td>42,46</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td>25 de mayo 1900 </td><td>2</td><td>62,4</td></tr>
+<tr><td>L5 Oeste x Dean Funes</td><td>Rivadavia 2100</td><td>2</td><td>110</td></tr>
+<tr><td>L6 San Alberto</td><td> Buenos Aires 1700</td><td>4</td><td>15,3</td></tr>
+<tr><td>L6 San Alberto</td><td>Av. Democracia 50</td><td>10</td><td>14,76</td></tr>
+<tr><td>L6 San Alberto</td><td>Buenos Aires 1600</td><td>12</td><td>18,81</td></tr>
+<tr><td>L6 San Alberto</td><td>Buenos Aires 1700</td><td>961</td><td>19,08</td></tr>
+<tr><td>L6 San Alberto</td><td>Buenos Aires 445</td><td>1</td><td>-</td></tr>
+<tr><td>L6 San Jose x Cangallo</td><td> Buenos Aires 1700</td><td>8</td><td>23,09</td></tr>
+<tr><td>L6 San Jose x Cangallo</td><td>Av. Democracia 50</td><td>7</td><td>11,66</td></tr>
+<tr><td>L6 San Jose x Cangallo</td><td>Belisario roldan 1200</td><td>6</td><td>18,53</td></tr>
+<tr><td>L6 San Jose x Cangallo</td><td>Buenos Aires 1600</td><td>10</td><td>20,37</td></tr>
+<tr><td>L6 San Jose x Cangallo</td><td>Buenos Aires 1700</td><td>786</td><td>20,39</td></tr>
+<tr><td>L6 San Jose x Democracia</td><td> Buenos Aires 1700</td><td>10</td><td>18,44</td></tr>
+<tr><td>L6 San Jose x Democracia</td><td>Av. Democracia 50</td><td>19</td><td>14,93</td></tr>
+<tr><td>L6 San Jose x Democracia</td><td>Belisario roldan 1200</td><td>4</td><td>24,69</td></tr>
+<tr><td>L6 San Jose x Democracia</td><td>Buenos Aires 1600</td><td>8</td><td>29,94</td></tr>
+<tr><td>L6 San Jose x Democracia</td><td>Buenos Aires 1700</td><td>1.069</td><td>17,82</td></tr>
+<tr><td>L7 AGET</td><td> Mexico 3600</td><td>6</td><td>18,15</td></tr>
+<tr><td>L7 AGET</td><td> Rivadavia 2100</td><td>11</td><td>12,45</td></tr>
+<tr><td>L7 AGET</td><td>25 de mayo 1800</td><td>5</td><td>15,24</td></tr>
+<tr><td>L7 AGET</td><td>9 de Julio 1900</td><td>2</td><td>15,9</td></tr>
+<tr><td>L7 AGET</td><td>Mexico 3600</td><td>118</td><td>20,7</td></tr>
+<tr><td>L7 AGET</td><td>Rivadavia 2100</td><td>919</td><td>18,39</td></tr>
+<tr><td>L7 O' connors</td><td> Mexico 3600</td><td>4</td><td>34,68</td></tr>
+<tr><td>L7 O' connors</td><td> Rivadavia 2100</td><td>3</td><td>50,27</td></tr>
+<tr><td>L7 O' connors</td><td>25 de mayo 1800</td><td>7</td><td>19,79</td></tr>
+<tr><td>L7 O' connors</td><td>Mexico 3600</td><td>83</td><td>23,72</td></tr>
+<tr><td>L7 O' connors</td><td>Rivadavia 2100</td><td>703</td><td>22,55</td></tr>
+<tr><td>L7 O'connors</td><td>Rivadavia 2100</td><td>2</td><td>23,7</td></tr>
+<tr><td>L8 El Bosque</td><td> Isabel la Católica 2900</td><td>1</td><td>-</td></tr>
+<tr><td>L8 El Bosque</td><td>Av Bejamin Araoz 950</td><td>1</td><td>-</td></tr>
+<tr><td>L8 El Bosque</td><td>Av Benjamin Araoz 950</td><td>3</td><td>19,3</td></tr>
+<tr><td>L8 El Bosque</td><td>Av. Araoz 500</td><td>1</td><td>-</td></tr>
+<tr><td>L8 El Bosque</td><td>Av. Araoz 850</td><td>140</td><td>19,4</td></tr>
+<tr><td>L8 El Bosque</td><td>Av. Benjamin Araoz</td><td>8</td><td>17,24</td></tr>
+<tr><td>L8 El Bosque</td><td>Av. Benjamin Araoz 950</td><td>387</td><td>20,12</td></tr>
+<tr><td>L8 El Bosque</td><td>Av. Benjamín Araoz 950</td><td>4</td><td>15,37</td></tr>
+<tr><td>L8 El Bosque</td><td>Isabel La Catolica 2100</td><td>224</td><td>18,87</td></tr>
+<tr><td>L8 El Bosque</td><td>Isabel la Católica 2900</td><td>303</td><td>20,09</td></tr>
+<tr><td>L8 Saenz Peña-Terán</td><td>Berutti 500</td><td>1</td><td>-</td></tr>
+<tr><td>L8 San Cayetano x B. Saenz Peña</td><td>Berutti 500</td><td>1</td><td>-</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td> Berutti 500</td><td>5</td><td>24,76</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Av. Benjamin Araoz 950</td><td>9</td><td>37,73</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Berutti 200</td><td>8</td><td>33,61</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Berutti 500</td><td>299</td><td>29,53</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Berutti 500 </td><td>2</td><td>45,93</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Buenos Aires 1700</td><td>3</td><td>25,5</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Ramirez de Velazco 1700</td><td>123</td><td>32,52</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Ramirez de Velazco 2800</td><td>152</td><td>32,48</td></tr>
+<tr><td>L8 San Cayetano x B. Teran</td><td>Santiago del Estero 200</td><td>3</td><td>39,93</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td> Berutti 500</td><td>11</td><td>22,6</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Av. Benjamin Araoz 950</td><td>8</td><td>33,69</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Berutii 500</td><td>2</td><td>9,07</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Berutti 200</td><td>7</td><td>31,59</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Berutti 500</td><td>275</td><td>31,09</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Berutti 500 </td><td>2</td><td>-</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Buenos Aires 1700</td><td>4</td><td>30,5</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Ramirez de Velazco 1700</td><td>126</td><td>31,27</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Ramirez de Velazco 2800</td><td>155</td><td>31,91</td></tr>
+<tr><td>L8 San Cayetano x S. Peña</td><td>Santiago del Estero 200</td><td>5</td><td>22,48</td></tr>
+<tr><td>L9 Bulnes</td><td>25 de Mayo 1900</td><td>3</td><td>16,2</td></tr>
+<tr><td>L9 Bulnes</td><td>Av. Pres. Néstor Kirchner 2300</td><td>406</td><td>16,37</td></tr>
+<tr><td>L9 Bulnes</td><td>Av. Pres. Néstor Kirchner 2300 </td><td>28</td><td>17,47</td></tr>
+<tr><td>L9 Bulnes</td><td>Castro Barros 1700</td><td>5</td><td>22,65</td></tr>
+<tr><td>L9 Bulnes</td><td>Castro Barros 2600</td><td>629</td><td>19,87</td></tr>
+<tr><td>L9 Bulnes</td><td>Castros Barros 2600</td><td>28</td><td>16,58</td></tr>
+<tr><td>L9 Bulnes</td><td>Rivadavia 2100</td><td>6</td><td>22,71</td></tr>
+<tr><td>L9 Viamonte</td><td>25 de Mayo 1900</td><td>5</td><td>27,39</td></tr>
+<tr><td>L9 Viamonte</td><td>Av. Pres. Néstor Kirchner 2300</td><td>352</td><td>18,56</td></tr>
+<tr><td>L9 Viamonte</td><td>Av. Pres. Néstor Kirchner 2300 </td><td>29</td><td>14,91</td></tr>
+<tr><td>L9 Viamonte</td><td>Castro Barros 1700</td><td>6</td><td>20,65</td></tr>
+<tr><td>L9 Viamonte</td><td>Castro Barros 2600</td><td>595</td><td>19,8</td></tr>
+<tr><td>L9 Viamonte</td><td>Castros Barros 2600</td><td>28</td><td>18,16</td></tr>
+<tr><td>L9 Viamonte</td><td>Rivadavia 2100</td><td>5</td><td>22,66</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 5: ANÁLISIS POR TURNO ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background: linear-gradient(135deg, #06b6d4, #3b82f6)">5</div>
+      <h2 class="section-title">Análisis por Turno</h2>
+    </div>
+    <p class="section-desc">
+      La operatoria se divide en dos <strong>turnos</strong>: <strong>Mañana</strong> (08:00 a 13:00) y 
+      <strong>Tarde</strong> (13:30 a 18:00). 
+      Esta sección compara la productividad y calidad del servicio entre ambos turnos.
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <div class="card-title">☀️ Turno Mañana</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="stat-box">
+            <div class="stat-value">21.368</div>
+            <div class="stat-label">Total Tomas</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">18.72</div>
+            <div class="stat-label">Frec. Prom. (min)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">89</div>
+            <div class="stat-label">Días activos</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">240.1</div>
+            <div class="stat-label">Prom. tomas/día</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🌙 Turno Tarde</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="stat-box">
+            <div class="stat-value">16.588</div>
+            <div class="stat-label">Total Tomas</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">20.92</div>
+            <div class="stat-label">Frec. Prom. (min)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">85</div>
+            <div class="stat-label">Días activos</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">195.2</div>
+            <div class="stat-label">Prom. tomas/día</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 Evolución mensual por turno</div>
+      <div id="chart-turno-mes"></div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 6: PRODUCTIVIDAD POR OPERADOR ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background: linear-gradient(135deg, #f43f5e, #ec4899)">6</div>
+      <h2 class="section-title">Productividad por Operador</h2>
+    </div>
+    <p class="section-desc">
+      Cada <strong>operador</strong> es un inspector que registra el paso de unidades en el sistema. 
+      Esta sección muestra cuántos registros ha generado cada uno, sus días de actividad y productividad promedio.
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <div class="card-title">📊 Registros por operador (acumulado)</div>
+        <div id="chart-operadores"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Detalle por operador</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Operador</th><th>Total tomas</th><th>Días</th><th>Prom/día</th><th>Primer reg.</th><th>Último reg.</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Fernandez, Lucía</td><td>11.427</td><td>87</td><td>131,3</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>Sanchez, Desiree</td><td>9.581</td><td>81</td><td>118,3</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>Veliz Dias, Patricio</td><td>6.643</td><td>84</td><td>79,1</td><td>30/03/2026</td><td>10/08/2026</td></tr>
+<tr><td>Carrer, Lisandro</td><td>5.820</td><td>83</td><td>70,1</td><td>30/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>Moya, María Alejandra</td><td>4.483</td><td>66</td><td>67,9</td><td>30/03/2026</td><td>10/08/2026</td></tr>
+<tr><td>Fernandez, Lucía</td><td>26</td><td>1</td><td>26</td><td>30/03/2026</td><td>30/03/2026</td></tr>
+<tr><td>MCastillo</td><td>3</td><td>3</td><td>1</td><td>30/03/2026</td><td>19/05/2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 7: MÉTRICAS AVANZADAS ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background: linear-gradient(135deg, #f59e0b, #f97316)">7</div>
+      <h2 class="section-title">Análisis Avanzado</h2>
+    </div>
+    <p class="section-desc">
+      Métricas complementarias que aportan una visión más profunda sobre la operación: tendencia del servicio,
+      distribución horaria, unidades más relevadas y tasa de cumplimiento operativo.
+    </p>
+
+    <!-- 7.1 Tendencia con media móvil -->
+    <div class="card">
+      <div class="card-title">📈 Tendencia de frecuencia — Media móvil semanal</div>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">
+        La <strong>media móvil de 4 semanas</strong> suaviza las fluctuaciones y muestra la tendencia real.
+        Si la línea azul oscuro baja, el servicio está mejorando (menor tiempo de espera entre unidades).
+      </p>
+      <div id="chart-media-movil"></div>
+    </div>
+
+    <div class="card-grid-2">
+      <!-- 7.2 Distribución horaria -->
+      <div class="card">
+        <div class="card-title">⏰ Distribución horaria de pasos</div>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">
+          Muestra en qué franjas horarias se concentran más pasos de unidades. Útil para optimizar la asignación de inspectores.
+        </p>
+        <div id="chart-horaria"></div>
+      </div>
+
+      <!-- 7.3 Tasa de cumplimiento -->
+      <div class="card">
+        <div class="card-title">📅 Tasa de cumplimiento operativo</div>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">
+          Mide el porcentaje de días hábiles en los que se completaron ambos turnos de control (Mañana y Tarde).
+        </p>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:16px;">
+          <div class="stat-box">
+            <div class="stat-value" style="color:var(--accent-emerald)">87.6%</div>
+            <div class="stat-label">Tasa de cumplimiento</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">97</div>
+            <div class="stat-label">Total días hábiles</div>
+          </div>
+        </div>
+
+        <div class="cumplimiento-bar">
+          <div class="cumplimiento-segment" style="width:87.62886597938144%; background:var(--accent-emerald);" title="Días completos"></div>
+          <div class="cumplimiento-segment" style="width:4.123711340206185%; background:var(--accent-amber);" title="Días parciales"></div>
+          <div class="cumplimiento-segment" style="width:8.24742268041237%; background:var(--accent-red);" title="Sin control"></div>
+        </div>
+
+        <div style="display:flex; gap:16px; justify-content:center; font-size:0.8rem; color:var(--text-secondary); margin-top:8px;">
+          <span><span style="display:inline-block;width:12px;height:12px;background:var(--accent-emerald);border-radius:3px;margin-right:4px;vertical-align:middle;"></span>Completos: 85</span>
+          <span><span style="display:inline-block;width:12px;height:12px;background:var(--accent-amber);border-radius:3px;margin-right:4px;vertical-align:middle;"></span>Parciales: 4</span>
+          <span><span style="display:inline-block;width:12px;height:12px;background:var(--accent-red);border-radius:3px;margin-right:4px;vertical-align:middle;"></span>Sin control: 8</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7.4 Internos más frecuentes -->
+    <div class="card">
+      <div class="card-title">🚌 Unidades (Internos) más frecuentemente registradas</div>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">
+        Los <strong>internos</strong> son los números identificatorios de cada unidad de transporte.
+        Las unidades que aparecen con mayor frecuencia son aquellas que más pasan por los puntos de control.
+      </p>
+      <div class="table-container" style="max-height: 450px; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr><th>Interno</th><th>Línea</th><th>Apariciones</th><th>Días visto</th><th>Primera vez</th><th>Última vez</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>76</td><td>L18</td><td>269</td><td>82</td><td>30/03/2026</td><td>06/08/2026</td></tr>
+<tr><td>82</td><td>L18</td><td>258</td><td>83</td><td>30/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>53</td><td>L18</td><td>238</td><td>78</td><td>06/04/2026</td><td>11/08/2026</td></tr>
+<tr><td>56</td><td>L18</td><td>220</td><td>78</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>9</td><td>L19</td><td>217</td><td>89</td><td>30/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>22</td><td>L17</td><td>217</td><td>80</td><td>31/03/2026</td><td>10/08/2026</td></tr>
+<tr><td>80</td><td>L18</td><td>216</td><td>74</td><td>01/04/2026</td><td>11/08/2026</td></tr>
+<tr><td>55</td><td>L18</td><td>216</td><td>76</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>10</td><td>L17</td><td>213</td><td>80</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>77</td><td>L18</td><td>209</td><td>72</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>21</td><td>L19</td><td>206</td><td>86</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>20</td><td>L19</td><td>206</td><td>87</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>5</td><td>L19</td><td>206</td><td>87</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>40</td><td>L17</td><td>204</td><td>82</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>7</td><td>L19</td><td>202</td><td>86</td><td>30/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>12</td><td>L19</td><td>202</td><td>87</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>3</td><td>L19</td><td>202</td><td>86</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>1</td><td>L19</td><td>199</td><td>85</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>6</td><td>L19</td><td>197</td><td>84</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>15</td><td>L19</td><td>196</td><td>86</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>8</td><td>L19</td><td>195</td><td>81</td><td>30/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>14</td><td>L17</td><td>189</td><td>77</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>79</td><td>L18</td><td>188</td><td>69</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>81</td><td>L18</td><td>184</td><td>65</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>11</td><td>L19</td><td>182</td><td>77</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>1</td><td>L17</td><td>182</td><td>71</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>33</td><td>L17</td><td>180</td><td>75</td><td>31/03/2026</td><td>11/08/2026</td></tr>
+<tr><td>18</td><td>L17</td><td>179</td><td>70</td><td>31/03/2026</td><td>10/08/2026</td></tr>
+<tr><td>52</td><td>L18</td><td>178</td><td>66</td><td>31/03/2026</td><td>05/08/2026</td></tr>
+<tr><td>17</td><td>L17</td><td>177</td><td>64</td><td>30/03/2026</td><td>10/08/2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ GLOSARIO ═══ -->
+  <div class="section page-break">
+    <div class="section-header">
+      <div class="section-number" style="background: linear-gradient(135deg, #64748b, #475569)">📖</div>
+      <h2 class="section-title">Glosario de Términos</h2>
+    </div>
+    <div class="card">
+      <div class="table-container">
+        <table>
+          <thead><tr><th>Término</th><th>Definición</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Control</strong></td><td>Sesión de trabajo de un inspector en un turno y fecha determinados. Se realizan 2 controles diarios (Mañana y Tarde).</td></tr>
+            <tr><td><strong>Toma / Paso</strong></td><td>Registro individual del paso de una unidad de transporte por un punto de control. Es la unidad mínima de dato.</td></tr>
+            <tr><td><strong>Frecuencia</strong></td><td>Tiempo promedio (en minutos) entre el paso de una unidad y la siguiente en un punto de control. Menor frecuencia = mejor servicio.</td></tr>
+            <tr><td><strong>Línea</strong></td><td>Identificador del servicio de transporte (ej: L1, L3, L11). Agrupa ramales con diferentes recorridos.</td></tr>
+            <tr><td><strong>Ramal</strong></td><td>Recorrido específico de una línea, identificado por la combinación línea + dirección.</td></tr>
+            <tr><td><strong>Interno</strong></td><td>Número identificatorio de una unidad de transporte (colectivo).</td></tr>
+            <tr><td><strong>Punto de control</strong></td><td>Ubicación física (dirección) donde el inspector se posiciona para registrar el paso de unidades.</td></tr>
+            <tr><td><strong>Turno Mañana</strong></td><td>Franja de control de 08:00 a 13:00 hs.</td></tr>
+            <tr><td><strong>Turno Tarde</strong></td><td>Franja de control de 13:30 a 18:00 hs.</td></tr>
+            <tr><td><strong>Operador</strong></td><td>Inspector que registra los pasos de las unidades en el sistema.</td></tr>
+            <tr><td><strong>Media Móvil</strong></td><td>Promedio calculado sobre las últimas 4 semanas, que suaviza fluctuaciones y muestra la tendencia real.</td></tr>
+            <tr><td><strong>Tasa de Cumplimiento</strong></td><td>Porcentaje de días hábiles en los que se completaron ambos turnos de control.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="report-footer">
+    <p>📊 Informe generado automáticamente por el sistema CeMMU — Controles de Frecuencia de Transporte Público</p>
+    <p>Fecha de generación: 11 de agosto de 2026, 01:59 p. m. · Los datos reflejan el estado de la base de datos al momento de la generación.</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ═══ APEXCHARTS RENDER ═══ -->
+<!-- ═══════════════════════════════════════ -->
+<script>
+// ═══ CHART MANAGEMENT ═══
+const chartInstances = [];
+
+function getChartOptions(mode) {
+  const isDark = mode === 'dark';
+  return {
+    chart: { background: 'transparent', toolbar: { show: true, tools: { download: true, selection: false, zoom: false, zoomin: false, zoomout: false, pan: false, reset: false } }, animations: { enabled: true, speed: 800 } },
+    theme: { mode: mode },
+    grid: { borderColor: isDark ? '#2a3a52' : '#e2e8f0', strokeDashArray: 3 },
+    tooltip: { theme: mode }
+  };
+}
+
+function renderAllCharts(mode) {
+  // Destroy existing charts
+  chartInstances.forEach(c => { try { c.destroy(); } catch(e) {} });
+  chartInstances.length = 0;
+  const opts = getChartOptions(mode);
+  const isDark = mode === 'dark';
+  const axisTitleColor = isDark ? '#94a3b8' : '#64748b';
+  const dlColors = isDark ? ['#fff'] : ['#1e293b'];
+
+  // 1. Controles por mes
+  const c1 = new ApexCharts(document.querySelector('#chart-controles-mes'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 320 },
+    series: [
+      { name: 'Controles efectuados', type: 'bar', data: [4,40,37,39,40,14] },
+      { name: 'Tomas registradas', type: 'line', data: [483,8911,8426,8935,8278,2950] }
+    ],
+    xaxis: { categories: ["Marzo 2026","Abril 2026","Mayo 2026","Junio 2026","Julio 2026","Agosto 2026"] },
+    yaxis: [
+      { title: { text: 'Controles', style: { color: axisTitleColor } } },
+      { opposite: true, title: { text: 'Tomas', style: { color: axisTitleColor } } }
+    ],
+    colors: ['#3b82f6', '#8b5cf6'],
+    plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
+    stroke: { width: [0, 3] },
+    dataLabels: { enabled: true, enabledOnSeries: [0], style: { fontSize: '11px' } }
+  });
+  c1.render(); chartInstances.push(c1);
+
+  // 2a. Tomas por mes
+  const c2a = new ApexCharts(document.querySelector('#chart-tomas-mes'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'area', height: 300 },
+    series: [{ name: 'Tomas', data: [483,8911,8426,8935,8278,2950] }],
+    xaxis: { categories: ["Marzo 2026","Abril 2026","Mayo 2026","Junio 2026","Julio 2026","Agosto 2026"] },
+    colors: ['#10b981'],
+    stroke: { curve: 'smooth', width: 3 },
+    fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.05 } },
+    dataLabels: { enabled: true, style: { fontSize: '11px' } }
+  });
+  c2a.render(); chartInstances.push(c2a);
+
+  // 2b. Tomas por semana
+  const c2b = new ApexCharts(document.querySelector('#chart-tomas-semana'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 300 },
+    series: [{ name: 'Tomas', data: [928,2238,2248,2200,1780,2246,2139,2366,1675,2304,1643,1824,2213,2353,1168,1595,1735,2378,2232,718] }],
+    xaxis: { categories: ["30/03/2026","06/04/2026","13/04/2026","20/04/2026","27/04/2026","04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026","06/07/2026","13/07/2026","20/07/2026","27/07/2026","03/08/2026","10/08/2026"], labels: { rotate: -45, style: { fontSize: '10px' } } },
+    colors: ['#06b6d4'],
+    plotOptions: { bar: { borderRadius: 4, columnWidth: '65%' } },
+    dataLabels: { enabled: false }
+  });
+  c2b.render(); chartInstances.push(c2b);
+
+  // 3a. Tomas por línea
+  const c3a = new ApexCharts(document.querySelector('#chart-lineas-bar'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 350 },
+    series: [{ name: 'Tomas', data: [1620,1912,3559,3689,5422,3342,3257,1781,2214,2011,2915,1863,2273,2125] }],
+    xaxis: { categories: ["L1","L10","L11","L12","L17","L18","L19","L3","L4","L5","L6","L7","L8","L9"] },
+    plotOptions: { bar: { horizontal: true, borderRadius: 6, dataLabels: { position: 'top' } } },
+    dataLabels: { enabled: true, offsetX: -6, style: { fontSize: '12px', colors: dlColors } },
+    colors: ['#3b82f6']
+  });
+  c3a.render(); chartInstances.push(c3a);
+
+  // 3b. Ranking frecuencia
+  const c3b = new ApexCharts(document.querySelector('#chart-ranking-freq'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 350 },
+    series: [{ name: 'Frec. Prom (min)', data: [36.68,31.85,25.26,25.11,24.96,22.19,20.31,19.22,18.94,18.81,17.12,16.21,12.11,11.78] }],
+    xaxis: { categories: ["L4","L5","L8","L3","L1","L10","L7","L17","L6","L9","L11","L12","L19","L18"] },
+    plotOptions: { bar: { horizontal: true, borderRadius: 6 } },
+    dataLabels: { enabled: true, formatter: function(val) { return val.toFixed(1) + ' min'; }, offsetX: -6, style: { fontSize: '11px', colors: dlColors } },
+    colors: ['#f59e0b'],
+    annotations: {
+      xaxis: [{ x: 15, borderColor: '#10b981', strokeDashArray: 4, label: { text: 'Óptimo ≤15 min', style: { color: '#10b981', background: 'transparent', fontSize: '10px' } } }]
+    }
+  });
+  c3b.render(); chartInstances.push(c3b);
+
+  // 5. Turno evolución mensual
+  const c5 = new ApexCharts(document.querySelector('#chart-turno-mes'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 320 },
+    series: [
+      { name: 'Mañana', data: [286,4818,4953,5032,4626,1653] },
+      { name: 'Tarde', data: [197,4092,3455,3898,3651,1295] }
+    ],
+    xaxis: { categories: ["2026-03","2026-04","2026-05","2026-06","2026-07","2026-08"] },
+    colors: ['#f59e0b', '#6366f1'],
+    plotOptions: { bar: { borderRadius: 4, columnWidth: '55%' } },
+    dataLabels: { enabled: true, style: { fontSize: '10px' } }
+  });
+  c5.render(); chartInstances.push(c5);
+
+  // 6. Operadores
+  const c6 = new ApexCharts(document.querySelector('#chart-operadores'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 300 },
+    series: [{ name: 'Registros', data: [11427,9581,6643,5820,4483,26,3] }],
+    xaxis: { categories: ["Fernandez, Lucía","Sanchez, Desiree","Veliz Dias, Patricio","Carrer, Lisandro","Moya, María Alejandra","Fernandez, Lucía","MCastillo"] },
+    plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
+    dataLabels: { enabled: true, style: { fontSize: '12px', colors: dlColors } },
+    colors: ['#10b981']
+  });
+  c6.render(); chartInstances.push(c6);
+
+  // 7a. Media móvil
+  const c7a = new ApexCharts(document.querySelector('#chart-media-movil'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'line', height: 320 },
+    series: [
+      { name: 'Frecuencia semanal', data: [19.3,19.28,19.12,19.8,19.88,19.49,19.64,19.82,18.52,19.42,19.18,19.04,19.75,18.71,18.79,23.98,24.01,18.76,19.21,18.48] },
+      { name: 'Media Móvil (4 sem)', data: [19.3,19.29,19.23,19.38,19.52,19.57,19.7,19.71,19.37,19.35,19.24,19.04,19.35,19.17,19.07,20.31,21.37,21.39,21.49,20.12] }
+    ],
+    xaxis: { categories: ["30/03/2026","06/04/2026","13/04/2026","20/04/2026","27/04/2026","04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026","06/07/2026","13/07/2026","20/07/2026","27/07/2026","03/08/2026","10/08/2026"], labels: { rotate: -45, style: { fontSize: '10px' } } },
+    colors: ['#94a3b8', '#3b82f6'],
+    stroke: { width: [1.5, 3.5], dashArray: [4, 0], curve: 'smooth' },
+    markers: { size: [2, 0] },
+    yaxis: { title: { text: 'Minutos', style: { color: axisTitleColor } } }
+  });
+  c7a.render(); chartInstances.push(c7a);
+
+  // 7b. Distribución horaria
+  const c7b = new ApexCharts(document.querySelector('#chart-horaria'), {
+    ...opts,
+    chart: { ...opts.chart, type: 'bar', height: 280 },
+    series: [{ name: 'Pasos', data: [1,3,2,2,148,2124,5330,6850,4690,2049,3687,6512,4715,1611,248,10,1] }],
+    xaxis: { categories: ["0:00","1:00","2:00","4:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"] },
+    plotOptions: { bar: { borderRadius: 4, columnWidth: '60%' } },
+    dataLabels: { enabled: false },
+    colors: ['#8b5cf6']
+  });
+  c7b.render(); chartInstances.push(c7b);
+}
+
+// ═══ THEME TOGGLE LOGIC ═══
+function setTheme(mode) {
+  document.body.setAttribute('data-theme', mode);
+  document.getElementById('btnDark').classList.toggle('active', mode === 'dark');
+  document.getElementById('btnLight').classList.toggle('active', mode === 'light');
+  // Re-render charts with correct theme
+  renderAllCharts(mode);
+}
+
+document.getElementById('btnDark').addEventListener('click', () => setTheme('dark'));
+document.getElementById('btnLight').addEventListener('click', () => setTheme('light'));
+
+// Initial render
+renderAllCharts('dark');
+</script>
+
+</body>
+</html>
