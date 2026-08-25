@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  cemmu-db:
+    image: postgres:15-alpine
+    container_name: cemmu-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-martinc1224}
+      POSTGRES_DB: ${DB_NAME:-cemmu_db}
+      TZ: America/Argentina/Buenos_Aires
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cemmu-network
+
+  cemmu-app:
+    build: .
+    container_name: cemmu-app
+    restart: always
+    depends_on:
+      - cemmu-db
+    environment:
+      - PORT=3000
+      - TZ=America/Argentina/Buenos_Aires
+      - DB_HOST=cemmu-db
+      - DB_PORT=5432
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-martinc1224}
+      - DB_NAME=${DB_NAME:-cemmu_db}
+      - JWT_SECRET=${JWT_SECRET:-cemmu_secret_jwt_key_2026}
+      - EVIDENCE_STORAGE_PATH=/usr/src/app/data/evidencia
+      - EVIDENCE_ENCRYPTION_KEY=${EVIDENCE_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+    volumes:
+      - ./data/evidencia:/usr/src/app/data/evidencia
+    ports:
+      - "3000:3000"
+    networks:
+      - cemmu-network
+
+volumes:
+  pgdata:
+
+networks:
+  cemmu-network:
+    driver: bridge
