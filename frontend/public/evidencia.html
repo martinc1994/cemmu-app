@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CeMMU - Cargar Evidencia Digital</title>
+  <title>CeMMU - Cargar Imagen / Registro Fílmico</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/theme.js"></script>
@@ -133,7 +133,7 @@
 
   <div class="container">
     <div class="nav-buttons">
-      <h2 style="margin: 0;">📤 Cargar Evidencia Digital</h2>
+      <h2 style="margin: 0;">📤 Cargar Imagen / Registro Fílmico</h2>
       <div style="display: flex; gap: 8px;">
         <button class="btn-pill" onclick="location.href='/repositorio'">📂 Repositorio</button>
         <button class="btn-pill" onclick="location.href='/'">Volver</button>
@@ -230,14 +230,16 @@
         </div>
 
         <div class="full-width">
-          <label for="organismo_solicitante">Organismo Solicitante</label>
-          <select id="organismo_solicitante">
-            <option value="">Seleccione o ingrese...</option>
-            <option value="Ministerio Público Fiscal">Ministerio Público Fiscal</option>
-            <option value="Fiscalía General">Fiscalía General</option>
-            <option value="Juzgado de Instrucción N°1">Juzgado de Instrucción N°1</option>
-            <option value="Juzgado de Instrucción N°2">Juzgado de Instrucción N°2</option>
-            <option value="Otro">Otro</option>
+          <label for="organismo_solicitante">Organización Destino / Solicitante *</label>
+          <select id="organismo_solicitante" onchange="onUploadOrgChange()" required>
+            <option value="">Cargando organizaciones...</option>
+          </select>
+        </div>
+
+        <div class="full-width" id="targetUserWrapper" style="display: none;">
+          <label for="target_user_id">Usuario Destinatario Específico (Opcional)</label>
+          <select id="target_user_id">
+            <option value="">-- Todos los usuarios de esta Organización --</option>
           </select>
         </div>
 
@@ -247,7 +249,7 @@
         </div>
 
         <div class="full-width">
-          <label>Archivo de Video / Evidencia *</label>
+          <label>Archivo de Video / Registro Fílmico *</label>
           <div class="drop-zone" id="dropZone">
             <div class="drop-zone-icon">📁</div>
             <div class="drop-zone-text" id="dropZoneText">Arrastrá un archivo aquí o hacé click para seleccionar</div>
@@ -266,7 +268,7 @@
         </div>
       </div>
 
-      <button type="submit" id="submitBtn" style="width: 100%; margin-top: 20px;">🔒 Cargar y Encriptar Evidencia</button>
+      <button type="submit" id="submitBtn" style="width: 100%; margin-top: 20px;">🔒 Cargar y Encriptar Registro Fílmico</button>
     </form>
   </div>
 

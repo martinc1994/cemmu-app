@@ -6,12 +6,20 @@ const pool = require('../config/db');
  */
 async function getUsuarios(req, res) {
   try {
-    const result = await pool.query(
-      `SELECT id, username, full_name, email, role, organization, 
-              is_active, must_change_password, last_login, created_at
-       FROM usuarios 
-       ORDER BY created_at DESC`
-    );
+    const { organization } = req.query;
+    let query = `SELECT id, username, full_name, email, role, organization, 
+                        is_active, must_change_password, last_login, created_at
+                 FROM usuarios WHERE 1=1`;
+    let params = [];
+
+    if (organization) {
+      params.push(organization);
+      query += ` AND organization = $1`;
+    }
+
+    query += ` ORDER BY created_at DESC`;
+
+    const result = await pool.query(query, params);
     res.json({ ok: true, data: result.rows });
   } catch (err) {
     console.error('Error al obtener usuarios:', err);

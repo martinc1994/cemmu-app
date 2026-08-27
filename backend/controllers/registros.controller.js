@@ -29,7 +29,7 @@ async function getRegistros(req, res) {
   }
 }
 
-async function createRegistro(req, res) {
+async function createRegistro(req, res) { 
   try {
     const now = new Date();
     const fecha = req.body.fecha || now.toISOString().slice(0, 10);

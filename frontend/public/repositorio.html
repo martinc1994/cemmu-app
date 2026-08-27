@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CeMMU - Repositorio de Evidencia Digital</title>
+  <title>CeMMU - Repositorio de Imagen / Registro Fílmico</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/theme.js"></script>
@@ -158,10 +158,10 @@
       gap: 6px;
     }
     .btn-download {
-      background: #10b981;
+      background: var(--color-primary);
       color: white;
     }
-    .btn-download:hover { background: #059669; }
+    .btn-download:hover { background: var(--color-primary-hover); }
     .btn-share {
       background: #8b5cf6;
       color: white;
@@ -229,7 +229,7 @@
   <div class="repo-container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
       <div>
-        <h2 style="margin: 0;">📂 Repositorio de Evidencia Digital</h2>
+        <h2 style="margin: 0;">📂 Repositorio de Imagen / Registro Fílmico</h2>
         <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted);">
           Consulta y descarga segura de registros audiovisuales de la flota
         </p>
@@ -239,7 +239,14 @@
           <span>👤 <span id="repoUserText">Cargando...</span></span>
           <button id="btnProfile" style="background: none; border: none; color: var(--color-primary); cursor: pointer; text-decoration: underline; font-weight: 700; padding: 0;" onclick="openProfileModal()">Ver Perfil</button>
         </div>
-        <button class="btn-pill primary" id="btnUploadNav" style="display: none;" onclick="location.href='/evidencia'">📤 Cargar Evidencia</button>
+
+        <!-- Botones Dinámicos para Solicitudes y Registro de Cargas -->
+        <button class="btn-pill primary" id="btnNuevaSolicitud" style="display: none; background: var(--color-primary); border-color: var(--color-primary);" onclick="openNuevaSolicitudModal()">📝 + Nueva Solicitud</button>
+        <button class="btn-pill" id="btnMisSolicitudes" style="display: none;" onclick="openListaSolicitudesModal()">📋 Mis Solicitudes</button>
+        <button class="btn-pill primary" id="btnSolicitudesPendientes" style="display: none; background: #f59e0b; border-color: #f59e0b;" onclick="openListaSolicitudesModal()">📋 Solicitudes (<span id="solicitudesBadge">0</span>)</button>
+        <button class="btn-pill primary" id="btnHistorialCargas" style="display: none; background: #6366f1; border-color: #6366f1;" onclick="openHistorialCargasModal()">📜 FileLogs</button>
+
+        <button class="btn-pill primary" id="btnUploadNav" style="display: none;" onclick="location.href='/evidencia'">📤 Cargar Registro Fílmico</button>
         <button class="btn-pill" id="btnVolver" onclick="location.href='/'">Volver</button>
         <button class="btn-pill" onclick="logout()">Cerrar Sesión</button>
       </div>
@@ -292,36 +299,119 @@
     </div>
   </div>
 
-  <!-- Modal: Generar Link de Descarga -->
+  <!-- Modal: Compartir Evidencia con Usuarios / Organizaciones -->
   <div class="modal-overlay" id="shareModal">
-    <div class="modal">
-      <h3>🔗 Generar Enlace de Descarga Protegido</h3>
+    <div class="modal" style="max-width: 540px;">
+      <h3>🔗 Compartir Imagen / Registro Fílmico</h3>
       <p style="font-size: 0.85rem; color: var(--color-text-muted);">
-        Los enlaces requieren inicio de sesión previo en el sistema a modo de doble verificación.
+        Selecciona la organización de destino y los usuarios específicos a quienes deseas otorgar acceso directo.
       </p>
       <input type="hidden" id="shareEvidenceId" />
 
-      <label for="shareHours">Expiración del enlace</label>
-      <select id="shareHours">
-        <option value="24">24 Horas</option>
-        <option value="48" selected>48 Horas</option>
-        <option value="168">7 Días</option>
+      <label for="shareOrgSelect">1. Organización Destino</label>
+      <select id="shareOrgSelect" onchange="onShareOrgChange()">
+        <option value="">Cargando organizaciones...</option>
       </select>
 
-      <label for="shareMaxDownloads">Límite máximo de descargas</label>
-      <select id="shareMaxDownloads">
-        <option value="1">1 Descarga</option>
-        <option value="3" selected>3 Descargas</option>
-        <option value="5">5 Descargas</option>
-        <option value="10">10 Descargas</option>
-      </select>
+      <label style="margin-top: 15px;">2. Usuarios Destinatarios</label>
+      <div style="background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; padding: 10px; max-height: 160px; overflow-y: auto;" id="shareUsersContainer">
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0;">Selecciona una organización para cargar los usuarios.</p>
+      </div>
 
-      <div class="link-box" id="generatedLinkBox" style="display: none;"></div>
+      <label for="shareNotes">3. Notas / Motivo de compartición (opcional)</label>
+      <input type="text" id="shareNotes" placeholder="Ej: En respuesta al oficio N° 458/2026..." />
 
       <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-        <button class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border);" onclick="closeShareModal()">Cerrar</button>
-        <button class="btn-filter" style="background: #8b5cf6;" id="btnGenerateToken" onclick="generateToken()">Generar Enlace</button>
-        <button class="btn-filter" id="btnCopyLink" style="display: none; background: #10b981;" onclick="copyLink()">📋 Copiar Link</button>
+        <button class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border);" onclick="closeShareModal()">Cancelar</button>
+        <button class="btn-filter" style="background: #8b5cf6;" onclick="submitShareDirect()">🤝 Compartir Registro Fílmico</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Nueva Solicitud de Evidencia -->
+  <div class="modal-overlay" id="modalNuevaSolicitud">
+    <div class="modal" style="max-width: 560px;">
+      <h3>📝 Solicitud de imagenes / registro fílmico.</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        Completa el formulario para solicitar la búsqueda y extracción del archivo digital, al equipo de operadores del CeMMU.
+      </p>
+      
+      <form id="formSolicitud" onsubmit="submitNuevaSolicitud(event)" style="display: flex; flex-direction: column; gap: 12px; border: none; padding: 0; box-shadow: none; width: 100%; max-width: 100%; margin: 15px 0 0 0; background: transparent;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div>
+            <label for="solLinea">Línea / Ramal *</label>
+            <input type="text" id="solLinea" placeholder="Ej: L1, L3..." required />
+          </div>
+          <div>
+            <label for="solInterno">N° Interno (Colectivo) *</label>
+            <input type="number" id="solInterno" placeholder="Ej: 77" required />
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div>
+            <label for="solCamara">Cámara Preferida</label>
+            <select id="solCamara">
+              <option value="frontal">Frontal (calle)</option>
+              <option value="escalera">Escalera ascenso</option>
+              <option value="chofer">Asiento chofer</option>
+              <option value="interior">Fondo interior</option>
+            </select>
+          </div>
+          <div>
+            <label for="solPrioridad">Prioridad</label>
+            <select id="solPrioridad">
+              <option value="NORMAL">NORMAL</option>
+              <option value="URGENTE">⚠️ URGENTE</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div>
+            <label for="solFecha">Fecha del Evento *</label>
+            <input type="date" id="solFecha" required />
+          </div>
+          <div>
+            <label for="solHora">Hora Aproximada</label>
+            <input type="time" id="solHora" step="1" />
+          </div>
+        </div>
+
+        <div>
+          <label for="solExpediente">N° Expediente / Oficio Judicial *</label>
+          <input type="text" id="solExpediente" placeholder="Ej: MPF-2026-00488-I" required />
+        </div>
+
+        <div>
+          <label for="solMotivo">Detalle y Motivo de la Petición *</label>
+          <textarea id="solMotivo" rows="3" placeholder="Describe los hechos y detalles de ubicación para facilitar la búsqueda al operador." required></textarea>
+        </div>
+
+        <div>
+          <label for="solFile">Instrumento Legal / Oficio Judicial (Obligatorio) *</label>
+          <input type="file" id="solFile" accept="image/jpeg,image/png,application/pdf" required style="padding: 8px; border-radius: 8px; border: 1px dashed var(--color-primary); background: var(--color-bg); width: 100%; box-sizing: border-box;" />
+          <small style="color: var(--color-text-muted); font-size: 0.78rem; display: block; margin-top: 2px;">Formatos permitidos: JPG, PNG, PDF (Máximo 3 MB)</small>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+          <button type="button" class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border);" onclick="closeNuevaSolicitudModal()">Cancelar</button>
+          <button type="submit" class="btn-filter" style="background: var(--color-primary); border: none; padding: 10px 20px; font-size: 0.95rem; width: auto; margin: 0;">📤 Enviar Solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Lista y Gestión de Solicitudes -->
+  <div class="modal-overlay" id="modalListaSolicitudes">
+    <div class="modal" style="max-width: 780px; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 12px; margin-bottom: 15px;">
+        <h3 style="margin: 0;" id="solicitudesModalTitle">📋 Solicitudes de Archivos Digitales</h3>
+        <button class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); padding: 4px 10px;" onclick="closeListaSolicitudesModal()">✕</button>
+      </div>
+
+      <div id="solicitudesListContainer" style="overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; padding-right: 5px;">
+        <p style="color: var(--color-text-muted); font-size: 0.9rem;">Cargando solicitudes...</p>
       </div>
     </div>
   </div>
@@ -353,6 +443,46 @@
       <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 25px;">
         <button class="btn-filter" style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: center;" onclick="location.href='/cambiar-clave'">🔑 Cambiar Contraseña</button>
         <button class="btn-nav" style="width: 100%; background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border);" onclick="closeProfileModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Registro / Historial de Cargas para Operadores/Admins -->
+  <div class="modal-overlay" id="modalHistorialCargas">
+    <div class="modal" style="max-width: 900px; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 12px; margin-bottom: 15px;">
+        <h3 style="margin: 0;">📜 Registro Completo de Archivos Subidos (CeMMU)</h3>
+        <button class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); padding: 4px 10px;" onclick="closeHistorialCargasModal()">✕</button>
+      </div>
+      <p style="font-size: 0.83rem; color: var(--color-text-muted); margin-top: 0; margin-bottom: 12px;">
+        Historial completo y trazabilidad de todos los recursos audiovisuales subidos al sistema por operadores de CeMMU.
+      </p>
+      <div id="historialCargasList" style="overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px;">
+        <p style="font-size: 0.85rem; color: var(--color-text-muted);">Cargando registro...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Información de Términos y Disponibilidad -->
+  <div class="modal-overlay" id="modalInfoTerminos">
+    <div class="modal" style="max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; margin-bottom: 12px;">
+        <h3 style="margin: 0; font-size: 1.05rem; color: var(--color-primary);">ℹ️ Términos de Disponibilidad del Recurso</h3>
+        <button class="btn-nav" style="background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); padding: 2px 8px;" onclick="closeInfoTerminosModal()">✕</button>
+      </div>
+      <div style="font-size: 0.88rem; color: var(--color-text); line-height: 1.5; display: flex; flex-direction: column; gap: 10px;">
+        <p><strong>Condiciones de Acceso y Descarga de Archivos Digitales:</strong></p>
+        <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+          <li>⏳ <strong>Plazo de Disponibilidad:</strong> Cada recurso asignado a una solicitud resuelta estará disponible para descarga por un plazo improrrogable de <strong>30 días corridos</strong> desde su resolución.</li>
+          <li>📥 <strong>Límite de Descargas:</strong> Se permite un máximo de <strong>4 descargas autorizadas</strong> por archivo digital.</li>
+          <li>🛡️ <strong>Integridad Guardada:</strong> Cada descarga verifica la cadena de custodia mediante código Hash SHA-256.</li>
+        </ul>
+        <p style="font-size: 0.8rem; color: var(--color-text-muted); background: var(--color-bg); padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border);">
+          * Vencido el plazo o alcanzado el límite, deberá tramitar un pedido formal de renovación ante el equipo de CeMMU.
+        </p>
+      </div>
+      <div style="margin-top: 15px; display: flex; justify-content: flex-end;">
+        <button class="btn-filter" style="padding: 6px 16px; font-size: 0.85rem;" onclick="closeInfoTerminosModal()">Entendido</button>
       </div>
     </div>
   </div>

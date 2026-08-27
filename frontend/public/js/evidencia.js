@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// evidencia.js — Lógica de carga de evidencia digital
+// evidencia.js — Lógica de carga de imágenes / registros fílmicos
 // ═══════════════════════════════════════════════════════════
 
 const token = localStorage.getItem('cemmu_token');
@@ -11,8 +11,8 @@ if (!token || !userData) {
 
 const user = JSON.parse(userData || '{}');
 
-// Solo operator o admin pueden acceder a esta página
-if (user.role !== 'operator' && user.role !== 'admin') {
+// Solo operador o admin pueden acceder a esta página
+if (user.role !== 'operador' && user.role !== 'admin') {
   window.location.href = '/repositorio';
 }
 
@@ -23,8 +23,68 @@ function showToast(message, type = "success") {
   setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
+function authHeaders() {
+  return { 'Authorization': `Bearer ${token}` };
+}
+
 // Set fecha por defecto
 document.getElementById('fecha_evento').value = new Date().toISOString().slice(0, 10);
+
+// ═══════════════════════════════════════════════════════════
+// CARGAR ORGANIZACIONES Y USUARIOS DINÁMICOS
+// ═══════════════════════════════════════════════════════════
+async function loadOrganizationsForUpload() {
+  const orgSelect = document.getElementById('organismo_solicitante');
+  try {
+    const res = await fetch('/api/usuarios/organizaciones', { headers: authHeaders() });
+    const json = await res.json();
+
+    if (json.ok && Array.isArray(json.data)) {
+      let options = '<option value="">-- Seleccionar Organización Destino --</option>';
+      json.data.forEach(org => {
+        options += `<option value="${org.nombre}">${org.nombre} (${org.tipo})</option>`;
+      });
+      orgSelect.innerHTML = options;
+    }
+  } catch (e) {
+    orgSelect.innerHTML = '<option value="">Error al cargar organizaciones</option>';
+  }
+}
+
+async function onUploadOrgChange() {
+  const orgName = document.getElementById('organismo_solicitante').value;
+  const userWrapper = document.getElementById('targetUserWrapper');
+  const userSelect = document.getElementById('target_user_id');
+
+  if (!orgName) {
+    userWrapper.style.display = 'none';
+    userSelect.innerHTML = '<option value="">-- Todos los usuarios de esta Organización --</option>';
+    return;
+  }
+
+  userSelect.innerHTML = '<option value="">⏳ Cargando usuarios de ' + orgName + '...</option>';
+  userWrapper.style.display = 'block';
+
+  try {
+    const res = await fetch(`/api/usuarios?organization=${encodeURIComponent(orgName)}`, { headers: authHeaders() });
+    const json = await res.json();
+
+    if (json.ok && Array.isArray(json.data)) {
+      let options = `<option value="">-- Todos los usuarios de ${orgName} --</option>`;
+      json.data.forEach(u => {
+        const fullNameStr = u.full_name ? ` (${u.full_name})` : '';
+        options += `<option value="${u.id}">👤 ${u.username}${fullNameStr}</option>`;
+      });
+      userSelect.innerHTML = options;
+    } else {
+      userSelect.innerHTML = `<option value="">-- Todos los usuarios de ${orgName} --</option>`;
+    }
+  } catch (e) {
+    userSelect.innerHTML = `<option value="">-- Todos los usuarios de ${orgName} --</option>`;
+  }
+}
+
+loadOrganizationsForUpload();
 
 // File drag & drop logic
 const dropZone = document.getElementById('dropZone');
@@ -83,7 +143,13 @@ document.getElementById('evidenciaForm').addEventListener('submit', async (e) =>
   e.preventDefault();
 
   if (!selectedFile) {
-    showToast('Debés seleccionar un archivo de evidencia', 'error');
+    showToast('Debés seleccionar un archivo de video o registro fílmico', 'error');
+    return;
+  }
+
+  const orgSelected = document.getElementById('organismo_solicitante').value;
+  if (!orgSelected) {
+    showToast('Seleccioná la Organización Destino', 'error');
     return;
   }
 
@@ -102,7 +168,8 @@ document.getElementById('evidenciaForm').addEventListener('submit', async (e) =>
   formData.append('fecha_evento', document.getElementById('fecha_evento').value);
   formData.append('hora_evento', document.getElementById('hora_evento').value);
   formData.append('expediente', document.getElementById('expediente').value.trim());
-  formData.append('organismo_solicitante', document.getElementById('organismo_solicitante').value);
+  formData.append('organismo_solicitante', orgSelected);
+  formData.append('target_user_id', document.getElementById('target_user_id').value);
   formData.append('descripcion', document.getElementById('descripcion').value.trim());
 
   const progressContainer = document.getElementById('progressContainer');
@@ -127,18 +194,20 @@ document.getElementById('evidenciaForm').addEventListener('submit', async (e) =>
 
   xhr.onload = () => {
     submitBtn.disabled = false;
-    submitBtn.textContent = '🔒 Cargar y Encriptar Evidencia';
+    submitBtn.textContent = '🔒 Cargar y Encriptar Registro Fílmico';
     progressContainer.style.display = 'none';
 
     if (xhr.status === 201) {
       const json = JSON.parse(xhr.responseText);
-      showToast(`✅ Evidencia cargada y encriptada (SHA-256: ${json.data.checksum_sha256.slice(0, 8)}...)`);
+      showToast(`✅ Registro Fílmico encriptado y asignado (SHA-256: ${json.data.checksum_sha256.slice(0, 8)}...)`);
       clearFile();
       document.getElementById('descripcion').value = '';
       document.getElementById('expediente').value = '';
       document.getElementById('interno').value = '';
+      document.getElementById('organismo_solicitante').value = '';
+      document.getElementById('targetUserWrapper').style.display = 'none';
     } else {
-      let err = 'Error al subir evidencia';
+      let err = 'Error al subir registro fílmico';
       try {
         const json = JSON.parse(xhr.responseText);
         err = json.error || err;
@@ -149,7 +218,7 @@ document.getElementById('evidenciaForm').addEventListener('submit', async (e) =>
 
   xhr.onerror = () => {
     submitBtn.disabled = false;
-    submitBtn.textContent = '🔒 Cargar y Encriptar Evidencia';
+    submitBtn.textContent = '🔒 Cargar y Encriptar Registro Fílmico';
     progressContainer.style.display = 'none';
     showToast('Error de conexión con el servidor local', 'error');
   };

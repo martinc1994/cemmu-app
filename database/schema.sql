@@ -34,8 +34,8 @@ SELECT
                 direccion, 
                 linea,
                 CASE 
-                    WHEN created_at::time >= '08:00:00' AND created_at::time <= '13:00:00' THEN 'Mañana'
-                    WHEN created_at::time >= '13:30:00' AND created_at::time <= '18:00:00' THEN 'Tarde'
+                    WHEN created_at::time >= '07:00:00' AND created_at::time < '13:30:00' THEN 'Mañana'
+                    WHEN created_at::time >= '13:30:00' AND created_at::time <= '19:00:00' THEN 'Tarde'
                     ELSE 'Fuera de turno'
                 END
             ORDER BY hora
@@ -45,8 +45,8 @@ SELECT
     
     -- Calcula el Turno estrictamente de acuerdo a la hora en la que fue persistido el dato (created_at)
     CASE 
-        WHEN created_at::time >= '08:00:00' AND created_at::time <= '13:00:00' THEN 'Mañana'
-        WHEN created_at::time >= '13:30:00' AND created_at::time <= '18:00:00' THEN 'Tarde'
+        WHEN created_at::time >= '07:00:00' AND created_at::time < '13:30:00' THEN 'Mañana'
+        WHEN created_at::time >= '13:30:00' AND created_at::time <= '19:00:00' THEN 'Tarde'
         ELSE 'Fuera de turno'
     END as turno_guardado,
 

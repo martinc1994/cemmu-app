@@ -2,7 +2,12 @@ const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // "Bearer <token>"
+  let token = authHeader && authHeader.split(' ')[1]; // "Bearer <token>"
+
+  // Permitir token desde query string para descargas directas en nueva pestaña
+  if (!token && req.query && req.query.token) {
+    token = req.query.token;
+  }
 
   if (!token) {
     return res.status(401).json({ ok: false, error: 'Token no proporcionado.' });

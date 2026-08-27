@@ -7,6 +7,7 @@ const authRoutes = require('./backend/routes/auth.routes');
 const registrosRoutes = require('./backend/routes/registros.routes');
 const usuariosRoutes = require('./backend/routes/usuarios.routes');
 const evidenciaRoutes = require('./backend/routes/evidencia.routes');
+const solicitudesRoutes = require('./backend/routes/solicitudes.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/registros', registrosRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/evidencia', evidenciaRoutes);
+app.use('/api/solicitudes', solicitudesRoutes);
 
 // Routing
 const views = {

@@ -9,8 +9,11 @@ const {
   getEvidenciaById,
   generateDownloadToken,
   downloadByToken,
+  compartirEvidencia,
+  descargarEvidenciaDirecta,
   deleteEvidencia,
-  getAuditLog
+  getAuditLog,
+  getCargasHistorial
 } = require('../controllers/evidencia.controller');
 
 const {
@@ -85,14 +88,23 @@ router.post('/upload',
 // Audit log — solo admin (DEBE ir antes de /:id para no colisionar)
 router.get('/audit', authenticateToken, requireAdmin, getAuditLog);
 
+// Historial completo de cargas — solo operadores y admin
+router.get('/historial', authenticateToken, requireOperatorOrAdmin, getCargasHistorial);
+
 // Descargar por token — requiere JWT (doble verificación: login + token)
 router.get('/download/:token', authenticateToken, requireAnyAuthenticated, downloadByToken);
+
+// Descarga directa autorizada
+router.get('/:id/descargar', authenticateToken, requireAnyAuthenticated, descargarEvidenciaDirecta);
 
 // Listar evidencias — cualquier usuario autenticado
 router.get('/', authenticateToken, requireAnyAuthenticated, getEvidencias);
 
 // Detalle de evidencia — cualquier usuario autenticado
 router.get('/:id', authenticateToken, requireAnyAuthenticated, getEvidenciaById);
+
+// Compartir con usuario u organización
+router.post('/:id/compartir', authenticateToken, requireOperatorOrAdmin, compartirEvidencia);
 
 // Generar token de descarga — solo operadores y admin
 router.post('/:id/share', authenticateToken, requireOperatorOrAdmin, generateDownloadToken);

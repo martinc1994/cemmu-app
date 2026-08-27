@@ -86,17 +86,35 @@ async function uploadEvidencia(req, res) {
       ]
     );
 
-    // 7. Audit log
+    // 7. Si se especificó organización u usuario destino, crear registro de compartición directa
+    const insertedEvId = result.rows[0].id;
+    const { target_user_id } = req.body;
+
+    if (organismo_solicitante || target_user_id) {
+      await pool.query(
+        `INSERT INTO evidencia_compartida (evidencia_id, target_org, target_user_id, shared_by, notes)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [
+          insertedEvId,
+          organismo_solicitante || null,
+          (target_user_id && target_user_id !== '') ? parseInt(target_user_id) : null,
+          req.user.id,
+          'Asignación directa realizada durante la carga por el operador'
+        ]
+      );
+    }
+
+    // 8. Audit log
     await pool.query(
       `INSERT INTO audit_log (user_id, username, action, resource_type, resource_id, details, ip_address)
        VALUES ($1, $2, 'upload', 'evidencia', $3, $4, $5)`,
       [
-        req.user.id, req.user.username, result.rows[0].id,
+        req.user.id, req.user.username, insertedEvId,
         JSON.stringify({
           filename: req.file.originalname,
           size_bytes: req.file.size,
           checksum,
-          linea, interno, camara, expediente
+          linea, interno, camara, expediente, organismo_solicitante, target_user_id
         }),
         req.ip
       ]
@@ -136,6 +154,19 @@ async function getEvidencias(req, res) {
                  WHERE e.status = 'active'`;
     let params = [];
     let paramCount = 0;
+
+    // Si es usuario externo, filtrar sólo las evidencias a las que tiene acceso legítimo
+    if (req.user.role === 'externo') {
+      paramCount++;
+      params.push(req.user.id);
+      paramCount++;
+      params.push(req.user.organization || '');
+      query += ` AND (
+        e.uploaded_by = $${paramCount - 1} 
+        OR e.id IN (SELECT evidencia_id FROM evidencia_compartida WHERE target_user_id = $${paramCount - 1} OR target_org = $${paramCount})
+        OR e.id IN (SELECT evidencia_id FROM solicitudes_evidencia WHERE (solicitante_id = $${paramCount - 1} OR organismo = $${paramCount}) AND estado = 'COMPLETADA')
+      )`;
+    }
 
     if (linea) {
       paramCount++;
@@ -411,12 +442,20 @@ async function deleteEvidencia(req, res) {
 
     const result = await pool.query(
       `UPDATE evidencia SET status = 'deleted', updated_at = NOW() WHERE id = $1 AND status = 'active' 
-       RETURNING id, nombre_archivo_original`,
+       RETURNING id, nombre_archivo_original, nombre_archivo_storage`,
       [id]
     );
 
     if (result.rows.length === 0) {
       return res.status(404).json({ ok: false, error: 'Evidencia no encontrada.' });
+    }
+
+    // Eliminación física del archivo encriptado del disco rígido del servidor
+    if (result.rows[0].nombre_archivo_storage) {
+      const encryptedFilePath = path.join(getStoragePath(), result.rows[0].nombre_archivo_storage);
+      if (fs.existsSync(encryptedFilePath)) {
+        fs.unlinkSync(encryptedFilePath);
+      }
     }
 
     // Desactivar tokens asociados
@@ -436,7 +475,7 @@ async function deleteEvidencia(req, res) {
       ]
     );
 
-    res.json({ ok: true, message: `Evidencia #${id} eliminada.` });
+    res.json({ ok: true, message: `Archivo digital #${id} y recurso físico eliminados.` });
 
   } catch (err) {
     console.error('Error al eliminar evidencia:', err);
@@ -483,12 +522,196 @@ async function getAuditLog(req, res) {
   }
 }
 
+/**
+ * POST /api/evidencia/:id/compartir — Compartir evidencia con usuarios u organización específica
+ */
+async function compartirEvidencia(req, res) {
+  try {
+    const { id } = req.params;
+    const { target_org, target_user_ids = [], notes } = req.body;
+
+    const evidenceRes = await pool.query('SELECT id, nombre_archivo_original FROM evidencia WHERE id = $1 AND status = \'active\'', [id]);
+    if (evidenceRes.rows.length === 0) {
+      return res.status(404).json({ ok: false, error: 'Evidencia no encontrada.' });
+    }
+
+    if ((!target_user_ids || target_user_ids.length === 0) && !target_org) {
+      return res.status(400).json({ ok: false, error: 'Seleccioná una organización o al menos un usuario para compartir.' });
+    }
+
+    let createdRecords = [];
+
+    // Si se especificaron usuarios puntuales
+    if (Array.isArray(target_user_ids) && target_user_ids.length > 0) {
+      for (const userId of target_user_ids) {
+        const insertRes = await pool.query(
+          `INSERT INTO evidencia_compartida (evidencia_id, target_org, target_user_id, shared_by, notes)
+           VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+          [id, target_org || null, parseInt(userId), req.user.id, notes || null]
+        );
+        createdRecords.push(insertRes.rows[0]);
+      }
+    } else if (target_org) {
+      // Compartir a toda la organización
+      const insertRes = await pool.query(
+        `INSERT INTO evidencia_compartida (evidencia_id, target_org, target_user_id, shared_by, notes)
+         VALUES ($1, $2, NULL, $3, $4) RETURNING *`,
+        [id, target_org, req.user.id, notes || null]
+      );
+      createdRecords.push(insertRes.rows[0]);
+    }
+
+    // Audit log
+    await pool.query(
+      `INSERT INTO audit_log (user_id, username, action, resource_type, resource_id, details, ip_address)
+       VALUES ($1, $2, 'compartir', 'evidencia', $3, $4, $5)`,
+      [
+        req.user.id, req.user.username, id,
+        JSON.stringify({ target_org, target_user_ids, notes, filename: evidenceRes.rows[0].nombre_archivo_original }),
+        req.ip
+      ]
+    );
+
+    res.json({ ok: true, message: 'Evidencia compartida correctamente.', data: createdRecords });
+
+  } catch (err) {
+    console.error('Error al compartir evidencia:', err);
+    res.status(500).json({ ok: false, error: 'Error al compartir evidencia.' });
+  }
+}
+
+/**
+ * GET /api/evidencia/:id/descargar — Descarga directa autorizada para cualquier usuario con permiso
+ */
+async function descargarEvidenciaDirecta(req, res) {
+  try {
+    const { id } = req.params;
+
+    const result = await pool.query(
+      `SELECT * FROM evidencia WHERE id = $1 AND status = 'active'`,
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ ok: false, error: 'Evidencia no encontrada.' });
+    }
+
+    const evidence = result.rows[0];
+    let hasAccess = false;
+
+    if (req.user.role === 'admin' || req.user.role === 'operador') {
+      hasAccess = true;
+    } else if (evidence.uploaded_by === req.user.id) {
+      hasAccess = true;
+    } else {
+      // Verificar si fue compartida con este usuario u organización
+      const sharedCheck = await pool.query(
+        `SELECT id FROM evidencia_compartida 
+         WHERE evidencia_id = $1 AND (target_user_id = $2 OR target_org = $3)`,
+        [id, req.user.id, req.user.organization || '']
+      );
+
+      if (sharedCheck.rows.length > 0) {
+        hasAccess = true;
+      } else {
+        // Verificar si está vinculada a una solicitud completada de este usuario u organismo
+        const solCheck = await pool.query(
+          `SELECT id, expires_at, max_downloads, downloads_count FROM solicitudes_evidencia 
+           WHERE evidencia_id = $1 AND (solicitante_id = $2 OR organismo = $3) AND estado = 'COMPLETADA'`,
+          [id, req.user.id, req.user.organization || '']
+        );
+        if (solCheck.rows.length > 0) {
+          const solRow = solCheck.rows[0];
+
+          // 1. Verificar si pasaron los 30 días
+          if (solRow.expires_at && new Date() > new Date(solRow.expires_at)) {
+            return res.status(403).json({ ok: false, error: 'El plazo de disponibilidad de 30 días para este archivo digital ha expirado.' });
+          }
+
+          // 2. Verificar si superó las 4 descargas
+          if (solRow.max_downloads && solRow.downloads_count >= solRow.max_downloads) {
+            return res.status(403).json({ ok: false, error: `Ha alcanzado el límite máximo de ${solRow.max_downloads} descargas permitidas para este archivo digital.` });
+          }
+
+          // Incrementar contador de descargas
+          await pool.query('UPDATE solicitudes_evidencia SET downloads_count = downloads_count + 1 WHERE id = $1', [solRow.id]);
+          hasAccess = true;
+        }
+      }
+    }
+
+    if (!hasAccess) {
+      return res.status(403).json({ ok: false, error: 'No tenés permiso para descargar este archivo digital.' });
+    }
+
+    // Buscar archivo físico encriptado
+    const encryptedFilePath = path.join(getStoragePath(), evidence.nombre_archivo_storage);
+    if (!fs.existsSync(encryptedFilePath)) {
+      return res.status(404).json({ ok: false, error: 'El archivo no se encuentra en el almacenamiento.' });
+    }
+
+    // Audit log
+    await pool.query(
+      `INSERT INTO audit_log (user_id, username, action, resource_type, resource_id, details, ip_address)
+       VALUES ($1, $2, 'download_direct', 'evidencia', $3, $4, $5)`,
+      [
+        req.user.id, req.user.username, id,
+        JSON.stringify({ filename: evidence.nombre_archivo_original, size_bytes: evidence.tamano_bytes }),
+        req.ip
+      ]
+    );
+
+    // Desencriptar y enviar en stream
+    const { stream, cleanup } = await decryptFileStream(encryptedFilePath);
+
+    res.setHeader('Content-Type', evidence.mime_type);
+    res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(evidence.nombre_archivo_original)}"`);
+
+    stream.pipe(res);
+    stream.on('end', () => cleanup());
+    stream.on('error', (err) => {
+      console.error('Error al desencriptar archivo:', err);
+      cleanup();
+      if (!res.headersSent) {
+        res.status(500).json({ ok: false, error: 'Error al procesar el archivo.' });
+      }
+    });
+
+  } catch (err) {
+    console.error('Error al descargar evidencia directa:', err);
+    res.status(500).json({ ok: false, error: 'Error al procesar la descarga.' });
+  }
+}
+
+/**
+ * GET /api/evidencia/historial — Registro completo de todas las cargas (solo Operadores / Admin)
+ */
+async function getCargasHistorial(req, res) {
+  try {
+    const result = await pool.query(
+      `SELECT e.id, e.linea, e.interno, e.camara, e.fecha_evento, e.hora_evento, e.descripcion,
+              e.expediente, e.organismo_solicitante, e.nombre_archivo_original, e.tamano_bytes,
+              e.checksum_sha256, e.status, e.created_at, u.username as uploader_username
+       FROM evidencia e
+       LEFT JOIN usuarios u ON e.uploaded_by = u.id
+       ORDER BY e.created_at DESC`
+    );
+    res.json({ ok: true, data: result.rows });
+  } catch (err) {
+    console.error('Error al obtener historial de cargas:', err);
+    res.status(500).json({ ok: false, error: 'Error al obtener el registro de cargas.' });
+  }
+}
+
 module.exports = {
   uploadEvidencia,
   getEvidencias,
   getEvidenciaById,
   generateDownloadToken,
   downloadByToken,
+  compartirEvidencia,
+  descargarEvidenciaDirecta,
   deleteEvidencia,
-  getAuditLog
+  getAuditLog,
+  getCargasHistorial
 };
