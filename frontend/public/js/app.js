@@ -45,9 +45,6 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById('adminBtn').style.display = 'inline-block';
       document.getElementById('usersBtn').style.display = 'inline-block';
     }
-    if (user.role === 'admin' || user.role === 'operador') {
-      document.getElementById('evidenciaBtn').style.display = 'inline-block';
-    }
   }
   limpiarHistorialDiario();
   renderHistorial();
