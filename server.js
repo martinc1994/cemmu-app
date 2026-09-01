@@ -8,6 +8,7 @@ const registrosRoutes = require('./backend/routes/registros.routes');
 const usuariosRoutes = require('./backend/routes/usuarios.routes');
 const evidenciaRoutes = require('./backend/routes/evidencia.routes');
 const solicitudesRoutes = require('./backend/routes/solicitudes.routes');
+const unidadesRoutes = require('./backend/routes/unidades.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use('/api/registros', registrosRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/evidencia', evidenciaRoutes);
 app.use('/api/solicitudes', solicitudesRoutes);
+app.use('/api/unidades-servicio', unidadesRoutes);
 
 // Routing
 const views = {
@@ -33,6 +35,7 @@ const views = {
   '/admin':         'admin.html',
   '/dashboard':     'dashboard.html',
   '/reporte':       'reporte.html',
+  '/reporte-unidades': 'reporte_unidades.html',
   '/usuarios':      'usuarios.html',
   '/cambiar-clave': 'cambiar-clave.html',
   '/evidencia':     'evidencia.html',

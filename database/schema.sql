@@ -93,3 +93,18 @@ FROM vw_registros_flota
 WHERE interno = 81 -- Reemplaza por el número del interno que buscas
   AND fecha = CURRENT_DATE
 ORDER BY hora ASC;
+
+
+-- Tabla para registro de unidades en servicio de la flota total
+CREATE TABLE IF NOT EXISTS unidades_servicio (
+    id SERIAL PRIMARY KEY,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    turno VARCHAR(50) NOT NULL,
+    lineas_datos JSONB NOT NULL,
+    total_unidades INTEGER NOT NULL,
+    operador VARCHAR(255) NOT NULL,
+    observaciones TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

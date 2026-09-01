@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CeMMU - Reporte de Unidades en Servicio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #0f172a;
+      background: #f8fafc;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .controls-bar {
+      max-width: 210mm;
+      margin: 0 auto 20px auto;
+      background: #ffffff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #e2e8f0;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print { background-color: #2563eb; color: white; }
+    .btn-print:hover { background-color: #1d4ed8; }
+    .btn-close { background-color: #64748b; color: white; }
+    .btn-close:hover { background-color: #475569; }
+
+    .report-container {
+      max-width: 210mm;
+      min-height: 280mm;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 25mm 20mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .header-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 15px;
+    }
+
+    .logo-cemmu {
+      width: 85px;
+      height: auto;
+      filter: grayscale(100%) contrast(1.3);
+    }
+
+    .header-text h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+    }
+
+    .header-text h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+      color: #334155;
+    }
+
+    .header-text p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .meta-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 25px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    .units-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    .units-table th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      text-align: center;
+    }
+
+    .units-table td {
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+      text-align: center;
+      color: #1e293b;
+    }
+
+    .units-table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .units-table td.line-cell {
+      font-weight: 700;
+      color: #0f172a;
+      background-color: #f8fafc;
+    }
+
+    .units-table td.count-cell {
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .total-banner {
+      background: #f1f5f9;
+      border: 2px solid #0f172a;
+      border-radius: 8px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .total-banner-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #0f172a;
+    }
+
+    .total-banner-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0f172a;
+      font-family: monospace;
+    }
+
+    .obs-box {
+      border: 1px dashed #94a3b8;
+      border-radius: 6px;
+      padding: 12px 16px;
+      background: #fafafa;
+      margin-bottom: 35px;
+    }
+
+    .obs-box h4 {
+      margin: 0 0 4px 0;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .obs-box p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    .signatures {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .sig-line {
+      flex: 1;
+      border-top: 1px solid #475569;
+      padding-top: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .report-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 20mm;
+      right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+    }
+
+    .report-footer img {
+      height: 35px;
+      filter: grayscale(100%);
+      opacity: 0.85;
+    }
+
+    .report-footer-text {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .controls-bar { display: none !important; }
+      .report-container {
+        box-shadow: none;
+        max-width: 100%;
+        min-height: auto;
+        padding: 0;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls-bar">
+    <div>
+      <h3 style="margin:0; font-size:1rem;">Vista Previa de Impresión (Formato A4)</h3>
+      <p style="margin:0; font-size:0.8rem; color:#64748b;">Ajuste los márgenes a "Ninguno" o "Predeterminado" en la ventana de impresión.</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn btn-close" onclick="window.close()">Volver</button>
+      <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir (Ctrl+P)</button>
+    </div>
+  </div>
+
+  <div class="report-container">
+    <table class="header-table">
+      <tr>
+        <td style="width: 100px; vertical-align: middle;">
+          <img src="img/logo_02.png" alt="CeMMU" class="logo-cemmu" />
+        </td>
+        <td class="header-text" style="vertical-align: middle; padding-left: 15px;">
+          <h1>CeMMU</h1>
+          <h2>Centro de Monitoreo Movilidad Urbana</h2>
+          <p>Municipalidad de San Miguel de Tucumán &bull; Registro de Unidades en Servicio</p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="meta-box">
+      <div class="meta-item">
+        <span class="meta-label">Fecha</span>
+        <span class="meta-val" id="valFecha">-</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Horario Registro</span>
+        <span class="meta-val" id="valHora">-</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Turno</span>
+        <span class="meta-val" id="valTurno">-</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Operador Admin</span>
+        <span class="meta-val" id="valOperador">-</span>
+      </div>
+    </div>
+
+    <table class="units-table">
+      <thead>
+        <tr>
+          <th>Línea</th>
+          <th>Unidades en Servicio</th>
+          <th>Línea</th>
+          <th>Unidades en Servicio</th>
+        </tr>
+      </thead>
+      <tbody id="unitsGridBody">
+        <tr><td colspan="4" style="padding: 20px;">Cargando reporte...</td></tr>
+      </tbody>
+    </table>
+
+    <div class="total-banner">
+      <span class="total-banner-text">Total Flota en Servicio en el Momento:</span>
+      <span class="total-banner-number" id="valTotalNum">0</span>
+    </div>
+
+    <div class="obs-box" id="obsContainer" style="display:none;">
+      <h4>Observaciones / Novedades</h4>
+      <p id="valObs">-</p>
+    </div>
+
+    <div class="signatures">
+      <div class="sig-line">
+        Operador Responsable / CeMMU
+      </div>
+      <div class="sig-line">
+        Supervisión de Transporte
+      </div>
+    </div>
+
+    <div class="report-footer">
+      <span class="report-footer-text">Documento Oficial de Monitoreo de Flota &bull; CeMMU</span>
+      <img src="img/smt_black.png" alt="Municipalidad de San Miguel de Tucumán" />
+    </div>
+  </div>
+
+  <script>
+    const ALL_LINES = ['1', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '17', '18', '19'];
+    const params = new URLSearchParams(window.location.search);
+    const snapshotId = params.get('id');
+    const token = localStorage.getItem('cemmu_token');
+
+    async function loadSnapshot() {
+      if (!snapshotId) {
+        alert("ID de registro no especificado.");
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/unidades-servicio/${snapshotId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401 || res.status === 403) {
+          alert("Sesión no autorizada o expirada.");
+          window.location.href = '/login';
+          return;
+        }
+
+        const json = await res.json();
+        if (!json.ok || !json.data) {
+          alert("Registro no encontrado.");
+          return;
+        }
+
+        renderData(json.data);
+      } catch (e) {
+        console.error("Error al cargar reporte:", e);
+        alert("Error de conexión al obtener el reporte.");
+      }
+    }
+
+    function renderData(rec) {
+      const fechaFormat = rec.fecha ? rec.fecha.slice(0, 10).split('-').reverse().join('/') : '-';
+      document.getElementById('valFecha').innerText = fechaFormat;
+      document.getElementById('valHora').innerText = rec.hora ? rec.hora.slice(0, 5) + ' hs' : '-';
+      document.getElementById('valTurno').innerText = rec.turno || '-';
+      document.getElementById('valOperador').innerText = rec.operador || '-';
+      document.getElementById('valTotalNum').innerText = rec.total_unidades || '0';
+
+      if (rec.observaciones && rec.observaciones.trim() !== '') {
+        document.getElementById('valObs').innerText = rec.observaciones;
+        document.getElementById('obsContainer').style.display = 'block';
+      }
+
+      let rawLineas = rec.lineas_datos;
+      if (typeof rawLineas === 'string') {
+        try { rawLineas = JSON.parse(rawLineas); } catch(e) { rawLineas = {}; }
+      }
+      rawLineas = rawLineas || {};
+
+      let html = '';
+      for (let i = 0; i < ALL_LINES.length; i += 2) {
+        const l1 = ALL_LINES[i];
+        const val1 = rawLineas[l1] !== undefined ? rawLineas[l1] : 0;
+
+        const l2 = ALL_LINES[i + 1];
+        const val2 = l2 ? (rawLineas[l2] !== undefined ? rawLineas[l2] : 0) : null;
+
+        html += `
+          <tr>
+            <td class="line-cell">Línea ${l1}</td>
+            <td class="count-cell">${val1}</td>
+            ${l2 ? `<td class="line-cell">Línea ${l2}</td><td class="count-cell">${val2}</td>` : `<td>-</td><td>-</td>`}
+          </tr>
+        `;
+      }
+
+      document.getElementById('unitsGridBody').innerHTML = html;
+    }
+
+    loadSnapshot();
+  </script>
+</body>
+</html>

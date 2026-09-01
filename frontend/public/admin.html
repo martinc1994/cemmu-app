@@ -3,60 +3,420 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CeMMU - Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <title>CeMMU - Panel de Administración</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/theme.js"></script>
   <style>
-    table { width: 95%; max-width: 1200px; margin: 0 auto 20px auto; border-collapse: collapse; background: var(--color-card); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--color-border); }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem;}
-    th { background-color: var(--color-bg); color: var(--color-text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--color-border); }
-    td input { padding: 4px; font-size: 0.85rem; border: 1px solid var(--color-border); width: 100%; box-sizing: border-box; }
-    .header-panel { display:flex; justify-content:space-between; align-items:center; width:95%; max-width: 1200px; margin: 20px auto; background: var(--color-card); padding: 18px 22px; border-radius: 12px; box-shadow: var(--shadow); box-sizing: border-box; flex-wrap: wrap; gap: 15px; border: 1px solid var(--color-border); }
-    form { display: none; }
+    .admin-container {
+      width: 95%;
+      max-width: 1200px;
+      margin: 20px auto 40px auto;
+    }
+
+    /* Tab Switcher */
+    .tab-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+
+    .tab-btn.active {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Header Panel */
+    .header-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-card);
+      padding: 18px 22px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      gap: 15px;
+      border: 1px solid var(--color-border);
+      margin-bottom: 20px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--color-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--color-border);
+      margin-bottom: 25px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.88rem;
+    }
+
+    th {
+      background-color: var(--color-bg);
+      color: var(--color-text-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    td input {
+      padding: 6px 8px;
+      font-size: 0.85rem;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    /* Formulario Unidades en Servicio */
+    .unidades-card {
+      background: var(--color-card);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .unidades-card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .unidades-card p.desc {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .lines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .line-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .line-card:focus-within {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .line-card label {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .line-card input {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--color-card);
+      color: var(--color-text);
+    }
+
+    .total-live-box {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+      border: 2px solid var(--color-primary);
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .total-live-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .total-live-val {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      font-family: monospace;
+    }
+
+    .btn-save-unidades {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-save-unidades:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .snapshot-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--color-primary);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
   </style>
 </head>
 <body>
   <button id="themeToggle">🌙</button>
 
-  <div class="header-panel">
-    <div style="display:flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
-      <div>
-        <label style="font-size:0.8rem; font-weight:600;">Fecha:</label><br>
-        <input type="date" id="filterFecha" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);" />
-      </div>
-      <div>
-        <label style="font-size:0.8rem; font-weight:600;">Turno:</label><br>
-        <select id="filterTurno" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);">
-            <option value="Todos">Todos</option>
-            <option value="Mañana">Mañana</option>
-            <option value="Tarde">Tarde</option>
-        </select>
-      </div>
-      <button class="btn-pill primary" onclick="loadRegistros()">🔍 Filtrar</button>
-      <button class="btn-pill" onclick="openReporte()">📄 Reporte (PDF)</button>
-    </div>
-    <div style="display:flex; gap:8px;">
+  <div class="admin-container">
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tabBtnFrecuencias" onclick="switchTab('frecuencias')">
+        📋 Registros de Frecuencias
+      </button>
+      <button class="tab-btn" id="tabBtnUnidades" onclick="switchTab('unidades')">
+        🚌 Unidades en Servicio (Flota Total)
+      </button>
+      <div style="margin-left: auto; display: flex; gap: 8px;">
         <button class="btn-pill" onclick="location.href='/dashboard'">📊 Dashboard</button>
         <button class="btn-pill" onclick="location.href='/'">Volver</button>
+      </div>
     </div>
-  </div>
 
-  <table id="adminTable">
-    <thead>
-      <tr>
-        <th>Fecha / Turno</th>
-        <th>Hora</th>
-        <th>Línea</th>
-        <th>Dirección</th>
-        <th>Interno</th>
-        <th>Intervalo</th>
-        <th>Operador</th>
-        <th>Gestión</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"> </tbody>
-  </table>
+    <!-- TAB 1: REGISTROS DE FRECUENCIAS -->
+    <div id="tabFrecuencias" class="tab-content active">
+      <div class="header-panel">
+        <div style="display:flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">Fecha:</label><br>
+            <input type="date" id="filterFecha" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);" />
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">Turno:</label><br>
+            <select id="filterTurno" style="padding: 8px 12px; font-size: 0.88em; width: auto; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);">
+                <option value="Todos">Todos</option>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+            </select>
+          </div>
+          <button class="btn-pill primary" onclick="loadRegistros()">🔍 Filtrar</button>
+          <button class="btn-pill" onclick="openReporte()">📄 Reporte (PDF)</button>
+        </div>
+      </div>
+
+      <table id="adminTable">
+        <thead>
+          <tr>
+            <th>Fecha / Turno</th>
+            <th>Hora</th>
+            <th>Línea</th>
+            <th>Dirección</th>
+            <th>Interno</th>
+            <th>Intervalo</th>
+            <th>Operador</th>
+            <th>Gestión</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"> </tbody>
+      </table>
+    </div>
+
+    <!-- TAB 2: UNIDADES EN SERVICIO -->
+    <div id="tabUnidades" class="tab-content">
+      
+      <!-- Card de Carga del Estado Actual -->
+      <div class="unidades-card">
+        <h2>🚌 Carga de Unidades en Servicio (Flota Total)</h2>
+        <p class="desc">Ingresa la cantidad de colectivos/internos en circulación por cada línea en este horario específico.</p>
+        
+        <form id="formUnidades" onsubmit="saveUnidadesSnapshot(event)" style="display:block; width:100%; max-width:100%; padding:0; background:none; box-shadow:none; border:none; margin:0;">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha de Carga</label>
+              <input type="date" id="uFecha" required />
+            </div>
+            <div class="form-group">
+              <label>Horario Específico</label>
+              <input type="time" id="uHora" step="1" required />
+            </div>
+            <div class="form-group">
+              <label>Turno</label>
+              <select id="uTurno" required>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Observaciones / Novedades</label>
+              <input type="text" id="uObservaciones" placeholder="Ej: L3 con 2 unidades en taller" />
+            </div>
+          </div>
+
+          <label style="font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">Cantidad de Unidades Activas por Línea</label>
+
+          <div class="lines-grid" id="linesInputsContainer">
+            <!-- Renderizado dinámico de casilleros para las 14 líneas -->
+          </div>
+
+          <div class="total-live-box">
+            <span class="total-live-title">Total de Unidades en Servicio (Suma de Flota):</span>
+            <span class="total-live-val" id="liveTotalUnits">0</span>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px;">
+            <button type="button" class="btn-pill" onclick="resetUnidadesForm()">🧹 Limpiar</button>
+            <button type="submit" class="btn-save-unidades">💾 Guardar Carga de Unidades</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Selector por Fecha Específica & Historial de Snapshots -->
+      <div class="header-panel" style="margin-top: 30px;">
+        <div style="display:flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
+          <div>
+            <h3 style="margin:0 0 4px 0; font-size:1rem;">📂 Selector de Registros por Fecha</h3>
+            <span style="font-size:0.8rem; color:var(--color-text-muted);">Filtra extracciones guardadas anteriormente</span>
+          </div>
+        </div>
+        <div style="display:flex; gap: 10px; align-items: flex-end;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">Fecha:</label><br>
+            <input type="date" id="filterSnapshotFecha" style="padding: 7px 10px; font-size: 0.88em; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);" />
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">Turno:</label><br>
+            <select id="filterSnapshotTurno" style="padding: 7px 10px; font-size: 0.88em; border-radius:8px; border:1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);">
+                <option value="Todos">Todos</option>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+            </select>
+          </div>
+          <button class="btn-pill primary" onclick="loadUnidadesSnapshots()">🔍 Buscar</button>
+        </div>
+      </div>
+
+      <!-- Tabla de Historico de Unidades -->
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha / Horario</th>
+            <th>Turno</th>
+            <th>Total Flota</th>
+            <th>Operador Responsable</th>
+            <th>Observaciones</th>
+            <th>Gestión / Impresión</th>
+          </tr>
+        </thead>
+        <tbody id="snapshotsTableBody">
+          <tr><td colspan="6" style="padding: 20px; text-align: center;">Cargando historial de cargas...</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
 
   <div id="toast" class="toast"></div>
 
@@ -78,6 +438,19 @@
       setTimeout(() => toast.classList.remove("show"), 3000);
     }
 
+    // Switch de Pestañas
+    function switchTab(tabName) {
+      document.getElementById('tabBtnFrecuencias').classList.toggle('active', tabName === 'frecuencias');
+      document.getElementById('tabBtnUnidades').classList.toggle('active', tabName === 'unidades');
+      document.getElementById('tabFrecuencias').classList.toggle('active', tabName === 'frecuencias');
+      document.getElementById('tabUnidades').classList.toggle('active', tabName === 'unidades');
+
+      if (tabName === 'unidades') {
+        loadUnidadesSnapshots();
+      }
+    }
+
+    // --- TAB FRECUENCIAS ---
     document.getElementById('filterFecha').value = new Date().toISOString().slice(0, 10);
 
     async function loadRegistros() {
@@ -196,7 +569,199 @@
         window.open(`/reporte?fecha=${f}&turno=${t}`, '_blank');
     }
 
+    // --- TAB UNIDADES EN SERVICIO ---
+    const TARGET_LINES = ['1', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '17', '18', '19'];
+    let activeEditingId = null;
+
+    function renderLinesGrid() {
+      const container = document.getElementById('linesInputsContainer');
+      let html = '';
+      TARGET_LINES.forEach(line => {
+        html += `
+          <div class="line-card">
+            <label for="inputLine-${line}">Línea ${line}</label>
+            <input type="number" id="inputLine-${line}" data-line="${line}" class="line-unit-input" min="0" placeholder="0" oninput="recalculateTotal()" />
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function recalculateTotal() {
+      let total = 0;
+      const inputs = document.querySelectorAll('.line-unit-input');
+      inputs.forEach(inp => {
+        const val = parseInt(inp.value, 10);
+        if (!isNaN(val) && val > 0) {
+          total += val;
+        }
+      });
+      document.getElementById('liveTotalUnits').innerText = total;
+    }
+
+    function initUnidadesForm() {
+      const now = new Date();
+      document.getElementById('uFecha').value = now.toISOString().slice(0, 10);
+      document.getElementById('uHora').value = now.toTimeString().slice(0, 8);
+      document.getElementById('uTurno').value = now.getHours() < 14 ? 'Mañana' : 'Tarde';
+      document.getElementById('uObservaciones').value = '';
+      activeEditingId = null;
+      renderLinesGrid();
+      recalculateTotal();
+    }
+
+    function resetUnidadesForm() {
+      initUnidadesForm();
+      showToast("Formulario de unidades reiniciado", "success");
+    }
+
+    async function saveUnidadesSnapshot(e) {
+      e.preventDefault();
+      const fecha = document.getElementById('uFecha').value;
+      const hora = document.getElementById('uHora').value;
+      const turno = document.getElementById('uTurno').value;
+      const observaciones = document.getElementById('uObservaciones').value;
+
+      const lineas_datos = {};
+      const inputs = document.querySelectorAll('.line-unit-input');
+      inputs.forEach(inp => {
+        const line = inp.dataset.line;
+        const val = parseInt(inp.value, 10);
+        lineas_datos[line] = isNaN(val) ? 0 : val;
+      });
+
+      const payload = { fecha, hora, turno, lineas_datos, observaciones };
+
+      try {
+        const url = activeEditingId ? `/api/unidades-servicio/${activeEditingId}` : '/api/unidades-servicio';
+        const method = activeEditingId ? 'PUT' : 'POST';
+
+        const res = await fetch(url, {
+          method,
+          headers: authHeaders(),
+          body: JSON.stringify(payload)
+        });
+
+        const json = await res.json();
+        if (res.ok && json.ok) {
+          showToast(activeEditingId ? "Registro actualizado correctamente" : "Carga de unidades guardada con éxito");
+          initUnidadesForm();
+          loadUnidadesSnapshots();
+        } else {
+          showToast(json.error || "Error al guardar carga de unidades", "error");
+        }
+      } catch (err) {
+        showToast("Error de conexión al guardar", "error");
+      }
+    }
+
+    async function loadUnidadesSnapshots() {
+      const fecha = document.getElementById('filterSnapshotFecha').value;
+      const turno = document.getElementById('filterSnapshotTurno').value;
+
+      let url = '/api/unidades-servicio';
+      const query = [];
+      if (fecha) query.push(`fecha=${fecha}`);
+      if (turno && turno !== 'Todos') query.push(`turno=${turno}`);
+      if (query.length > 0) url += '?' + query.join('&');
+
+      try {
+        const res = await fetch(url, { headers: authHeaders() });
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = '/login';
+          return;
+        }
+        const json = await res.json();
+
+        let html = '';
+        if (!json.data || json.data.length === 0) {
+          html = '<tr><td colspan="6" style="padding:20px; text-align:center; color:var(--color-text-muted);">No se encontraron cargas de unidades registradas para este filtro.</td></tr>';
+        } else {
+          json.data.forEach(rec => {
+            const fechaFormat = rec.fecha ? rec.fecha.slice(0, 10).split('-').reverse().join('/') : '-';
+            const horaFormat = rec.hora ? rec.hora.slice(0, 5) : '-';
+
+            html += `
+              <tr id="snapshot-${rec.id}">
+                <td><strong>${fechaFormat}</strong><br><small style="color:var(--color-text-muted);">${horaFormat} hs</small></td>
+                <td><span class="snapshot-badge">${rec.turno}</span></td>
+                <td><strong style="font-size:1.1rem; color:var(--color-primary);">${rec.total_unidades}</strong> <small>unidades</small></td>
+                <td>${rec.operador}</td>
+                <td>${rec.observaciones ? rec.observaciones : '<span style="color:var(--color-text-muted); italic;">-</span>'}</td>
+                <td style="min-width: 180px;">
+                  <button class="btn-small btn-edit" onclick="loadSnapshotIntoForm('${rec.id}')">👁️ Cargar</button>
+                  <button class="btn-small" style="background:rgba(16,185,129,0.12); color:#059669; border:1px solid rgba(16,185,129,0.3);" onclick="printUnidadesSnapshot('${rec.id}')">🖨️ Imprimir A4</button>
+                  <button class="btn-small btn-delete" onclick="deleteUnidadesSnapshot('${rec.id}')">❌</button>
+                </td>
+              </tr>
+            `;
+          });
+        }
+        document.getElementById('snapshotsTableBody').innerHTML = html;
+      } catch (err) {
+        showToast("Error al cargar historial de unidades", "error");
+      }
+    }
+
+    async function loadSnapshotIntoForm(id) {
+      try {
+        const res = await fetch(`/api/unidades-servicio/${id}`, { headers: authHeaders() });
+        const json = await res.json();
+        if (json.ok && json.data) {
+          const rec = json.data;
+          activeEditingId = rec.id;
+          document.getElementById('uFecha').value = rec.fecha ? rec.fecha.slice(0, 10) : '';
+          document.getElementById('uHora').value = rec.hora ? rec.hora.slice(0, 8) : '';
+          document.getElementById('uTurno').value = rec.turno || 'Mañana';
+          document.getElementById('uObservaciones').value = rec.observaciones || '';
+
+          let rawLineas = rec.lineas_datos;
+          if (typeof rawLineas === 'string') {
+            try { rawLineas = JSON.parse(rawLineas); } catch(e) { rawLineas = {}; }
+          }
+          rawLineas = rawLineas || {};
+
+          TARGET_LINES.forEach(line => {
+            const inp = document.getElementById(`inputLine-${line}`);
+            if (inp) {
+              inp.value = rawLineas[line] !== undefined ? rawLineas[line] : 0;
+            }
+          });
+
+          recalculateTotal();
+          showToast(`Snapshot del ${rec.fecha.slice(0,10)} cargado en formulario para edición`, "success");
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } catch (e) {
+        showToast("Error al obtener snapshot", "error");
+      }
+    }
+
+    function printUnidadesSnapshot(id) {
+      window.open(`/reporte-unidades?id=${id}`, '_blank');
+    }
+
+    async function deleteUnidadesSnapshot(id) {
+      if (!confirm("¿Desea eliminar este registro de unidades en servicio permanentemente?")) return;
+      try {
+        const res = await fetch(`/api/unidades-servicio/${id}`, {
+          method: 'DELETE',
+          headers: authHeaders()
+        });
+        if (res.ok) {
+          showToast("Snapshot eliminado correctamente");
+          loadUnidadesSnapshots();
+        } else {
+          showToast("Error al eliminar snapshot", "error");
+        }
+      } catch (e) {
+        showToast("Error al eliminar", "error");
+      }
+    }
+
+    // Inicializaciones
     loadRegistros();
+    initUnidadesForm();
   </script>
 
   <div class="footer-municipio-logo">
