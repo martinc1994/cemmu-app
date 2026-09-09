@@ -45,7 +45,11 @@
     .line-block {
       margin-bottom: 20px;
       page-break-inside: avoid;
-      /* page-break-before: always; -- se puede activar si desean hojas en blanco*/
+    }
+
+    .line-block-continuation {
+      page-break-before: always;
+      break-before: page;
     }
 
     .line-title {
@@ -86,15 +90,17 @@
     /* FOOTER FLOTANTE CON LOGO */
     .print-footer {
       position: fixed;
-      bottom: 10px;
-      right: 15px;
+      bottom: 2mm;
+      right: 8mm;
       display: none;
       /* solo se ve en impresión */
+      z-index: 1000;
+      pointer-events: none;
     }
 
     .print-footer img {
-      width: 80px;
-      opacity: 0.8;
+      width: 75px;
+      opacity: 0.85;
     }
 
     .controls {
@@ -136,6 +142,14 @@
 
       .print-footer {
         display: block;
+        position: fixed;
+        bottom: 2mm;
+        right: 8mm;
+      }
+
+      .print-footer img {
+        width: 75px;
+        opacity: 0.85;
       }
 
       .report-container {
@@ -143,9 +157,22 @@
         max-width: 100%;
       }
 
+      .line-block {
+        margin-bottom: 15px;
+        page-break-inside: avoid;
+      }
+
+      .line-block-continuation {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+
       @page {
-        margin: 15mm 15mm 30mm 15mm;
-        /* Margen inferior ampliado a 30mm para que la tabla no toque el logo */
+        margin: 10mm 12mm 12mm 12mm;
         size: A4;
       }
     }
@@ -235,6 +262,7 @@
       });
 
       let html = "";
+      const MAX_ROWS = 24;
 
       // 3. Renderizar cada bloque de línea
       lineKeys.forEach(key => {
@@ -249,39 +277,46 @@
           return 0;
         });
 
-        html += `
-          <div class="line-block">
-            <div class="line-title">Línea ${key.replace('L', '')}</div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Ramal</th>
-                  <th>Punto de control</th>
-                  <th>Interno</th>
-                  <th>Hora</th>
-                  <th>Intervalo</th>
-                </tr>
-              </thead>
-              <tbody>
-        `;
+        // Limitar a MAX_ROWS filas por página para que no choque con el logo inferior
+        for (let i = 0; i < rows.length; i += MAX_ROWS) {
+          const chunk = rows.slice(i, i + MAX_ROWS);
+          const isContinuation = i > 0;
+          const extraClass = isContinuation ? 'line-block-continuation' : '';
 
-        rows.forEach(r => {
           html += `
-             <tr>
-               <td>${r.linea}</td>
-               <td>${r.direccion}</td>
-               <td>${r.interno}</td>
-               <td>${r.hora}</td>
-               <td><strong>${r.intervalo_formateado}</strong></td>
-             </tr>
+            <div class="line-block ${extraClass}">
+              <div class="line-title">Línea ${key.replace('L', '')}${isContinuation ? ' (cont.)' : ''}</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ramal</th>
+                    <th>Punto de control</th>
+                    <th>Interno</th>
+                    <th>Hora</th>
+                    <th>Intervalo</th>
+                  </tr>
+                </thead>
+                <tbody>
           `;
-        });
 
-        html += `
-              </tbody>
-            </table>
-          </div>
-        `;
+          chunk.forEach(r => {
+            html += `
+               <tr>
+                 <td>${r.linea}</td>
+                 <td>${r.direccion}</td>
+                 <td>${r.interno}</td>
+                 <td>${r.hora}</td>
+                 <td><strong>${r.intervalo_formateado}</strong></td>
+               </tr>
+            `;
+          });
+
+          html += `
+                </tbody>
+              </table>
+            </div>
+          `;
+        }
       });
 
       document.getElementById('reportContent').innerHTML = html;
