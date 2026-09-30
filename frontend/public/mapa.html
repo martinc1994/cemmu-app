@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CeMMU - Monitor Cartográfico de Puntos de Control</title>
+  <title>CeMMU - Mapa</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/theme.js"></script>
@@ -607,7 +607,7 @@
     <div class="nav-left">
       <!-- Botón Volver Solicitado -->
       <button class="btn-back-admin" onclick="location.href='/admin'" title="Volver al Panel de Administración">
-        ← Volver a Admin
+        ← Volver
       </button>
 
       <div class="brand-divider"></div>
@@ -615,15 +615,15 @@
       <div class="brand-box">
         <img src="img/logo.png" alt="CeMMU" />
         <div class="brand-texts">
-          <h1>Monitor Cartográfico de Puntos de Control</h1>
-          <p>San Miguel de Tucumán · CeMMU Transporte</p>
+          <h1>Mapa de Puntos de Control</h1>
+          <p>Centro de Monitoreo de Movilidad Urbana</p>
         </div>
       </div>
     </div>
 
     <!-- KPIs Rápidos en el centro -->
     <div class="nav-center-kpis">
-      <span class="kpi-badge primary" id="kpiTotalPuntos">📍 40 Puntos Oficiales</span>
+      <span class="kpi-badge primary" id="kpiTotalPuntos">📍 40 Puntos de control</span>
       <span class="kpi-badge highlight" id="kpiActivosHoy">🟢 0 con actividad</span>
       <span class="kpi-badge" id="kpiTotalPasos">⏱️ 0 pasos registrados</span>
     </div>
@@ -635,8 +635,6 @@
         <input type="date" id="fechaFiltro" />
         <button class="btn-today" onclick="setHoy()">Hoy</button>
       </div>
-
-      <button type="button" class="btn-pill" onclick="location.href='/dashboard'" style="padding: 6px 12px; font-size: 0.82rem;">📊 Dashboard</button>
       <button type="button" id="themeToggle" style="position: static; width: 34px; height: 34px; padding: 0; font-size: 0.95rem; border-radius: 8px;">🌙</button>
     </div>
   </header>
@@ -731,7 +729,7 @@
 
       <!-- Botón flotante para recientes -->
       <button class="btn-recenter-map" onclick="recenterMap()">
-        🎯 Centrar en Tucumán
+        Centrar en Tuc.
       </button>
     </main>
 
