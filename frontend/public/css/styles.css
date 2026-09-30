@@ -159,6 +159,18 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
+input[readonly] {
+  background-color: var(--color-border);
+  opacity: 0.85;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+input[readonly]:focus {
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+
 /* Botones de Navegación Uniformes y Elegantes (Pills) */
 .btn-pill {
   padding: 8px 16px;

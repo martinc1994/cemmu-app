@@ -36,55 +36,81 @@
     <label for="hora">Hora del paso</label>
     <input type="time" id="hora" step="1" required />
 
-    <label for="direccion">Punto de control</label>
-    <input type="text" id="direccion" placeholder="Ej: Av. Mitre y Salta" required />
-
-    <label for="linea">Linea / Ramal</label>
+    <label for="linea">Línea / Ramal</label>
     <select id="linea" required>
-      <option value="">Seleccione...</option>
-      <option value="L1 Mitre">L1 Mitre</option>
-      <option value="L1 Salta">L1 Salta</option>
-      <option value="L3 Marcos Paz">L3 Marcos Paz</option>
-      <option value="L3 Lavalle">L3 Lavalle</option>
-      <option value="L3 Auxiliar">L3 Auxiliar</option>
-      <option value="L4 Mercofrut">L4 Mercofrut</option>
-      <option value="L4 Colombres">L4 Colombres</option>
-      <option value="L4 Colombres-Costanera">L4 Colombres-Costanera</option>
-      <option value="L4 Mercofrut-Autopista">L4 Mercofrut-Autopista</option>
-      <option value="L4 Mercofrut-A. Heredia">L4 Mercofrut-A. Heredia</option>
-      <option value="L5 El Molino-SEOC">L5 El Molino-SEOC</option>
-      <option value="L5 Oeste x 25">L5 Oeste x 25</option>
-      <option value="L5 Oeste x Dean Funes">L5 Oeste x Dean Funes</option>
-      <option value="L5 Agrimensor">L5 Agrimensor</option>
-      <option value="L6 San Alberto">L6 San Alberto</option>
-      <option value="L6 San Jose x Cangallo">L6 San Jose x Cangallo</option>
-      <option value="L6 San Jose x Democracia">L6 San Jose x Democracia</option>
-      <option value="L7 O' connors">L7 O' connors</option>
-      <option value="L7 AGET">L7 AGET</option>
-      <option value="L8 El Bosque">L8 El Bosque</option>
-      <option value="L8 San Cayetano x S. Peña">L8 San Cayetano x S. Peña</option>
-      <option value="L8 San Cayetano x B. Teran">L8 San Cayetano x B. Teran</option>
-      <option value="L9 Viamonte">L9 Viamonte</option>
-      <option value="L9 Bulnes">L9 Bulnes</option>
-      <option value="L10 San Cayetano">L10 San Cayetano</option>
-      <option value="L10 V. Amalia">L10 V. Amalia</option>
-      <option value="L11 V. Angelina">L11 V. Angelina</option>
-      <option value="L11 B 11 de Marzo">L11 B 11 de Marzo</option>
-      <option value="L11 Manantial Sur">L11 Manantial Sur</option>
-      <option value="L12 SMATA Manantial Sur">L12 SMATA Manantial Sur</option>
-      <option value="L12 SMATA San Miguel">L12 SMATA San Miguel</option>
-      <option value="L12 Municipal">L12 Municipal</option>
-      <option value="L17 Chañaritos">L17 Chañaritos</option>
-      <option value="L17 Alem-Universidad">L17 Alem-Universidad</option>
-      <option value="L17 Roca-Universidad">L17 Roca-Universidad</option>
-      <option value="L17 Teran-San Lorenzo">L17 Teran-San Lorenzo</option>
-      <option value="L17 Teran-Roca">L17 Teran-Roca</option>
-      <option value="L17 Ejercito Arg">L17 Ejercito Arg</option>
-      <option value="L18 Horario">L18 Horario</option>
-      <option value="L18 Antihorario">L18 Antihorario</option>
-      <option value="L19 Horario">L19 Horario</option>
-      <option value="L19 Antihorario">L19 Antihorario</option>
+      <option value="">Seleccione línea / ramal...</option>
+      <optgroup label="Línea 1">
+        <option value="L1 Mitre" data-direccion="9 de Julio 1900">L1 Mitre</option>
+        <option value="L1 Salta" data-direccion="9 de Julio 1900">L1 Salta</option>
+      </optgroup>
+      <optgroup label="Línea 3">
+        <option value="L3 Lavalle" data-direccion="Lavalle 2300">L3 Lavalle</option>
+        <option value="L3 Piedras" data-direccion="General Paz 2300">L3 Piedras</option>
+      </optgroup>
+      <optgroup label="Línea 4">
+        <option value="L4 Colombres" data-direccion="Mario Bravo 400">L4 Colombres</option>
+        <option value="L4 Colombres Costanera" data-direccion="Mario Bravo 400">L4 Colombres Costanera</option>
+        <option value="L4 Mercofrut" data-direccion="Av. Democracia 50">L4 Mercofrut</option>
+        <option value="L4 Mercofrut Alejandro Heredia" data-direccion="Av. Democracia 50">L4 Mercofrut Alejandro Heredia</option>
+        <option value="L4 Mercofrut Autopista" data-direccion="Av. Democracia 50">L4 Mercofrut Autopista</option>
+      </optgroup>
+      <optgroup label="Línea 5">
+        <option value="L5 Agrimensor" data-direccion="25 de Mayo 1900">L5 Agrimensor</option>
+        <option value="L5 B. Oeste (25 de Mayo)" data-direccion="25 de Mayo 1900">L5 B. Oeste (25 de Mayo)</option>
+        <option value="L5 B. Oeste (Funes)" data-direccion="25 de Mayo 1900">L5 B. Oeste (Funes)</option>
+        <option value="L5 El Molino (SEOC)" data-direccion="25 de Mayo 1900">L5 El Molino (SEOC)</option>
+      </optgroup>
+      <optgroup label="Línea 6">
+        <option value="L6 San Alberto" data-direccion="Buenos Aires 1700">L6 San Alberto</option>
+        <option value="L6 San José (Cangallo)" data-direccion="Buenos Aires 1700">L6 San José (Cangallo)</option>
+        <option value="L6 San José (Democracia)" data-direccion="Buenos Aires 1700">L6 San José (Democracia)</option>
+      </optgroup>
+      <optgroup label="Línea 7">
+        <option value="L7 AGET" data-direccion="Rivadavia 2100">L7 AGET</option>
+        <option value="L7 Occonors" data-direccion="Rivadavia 2100">L7 Occonors</option>
+      </optgroup>
+      <optgroup label="Línea 8">
+        <option value="L8 El Bosque" data-direccion="Av. Benjamín Aráoz 950">L8 El Bosque</option>
+        <option value="L8 San Cayetano (Sáenz Peña)" data-direccion="Berutti 500">L8 San Cayetano (Sáenz Peña)</option>
+        <option value="L8 San Cayetano (Terán)" data-direccion="Berutti 500">L8 San Cayetano (Terán)</option>
+      </optgroup>
+      <optgroup label="Línea 9">
+        <option value="L9 Bulnes" data-direccion="Av. Pres. Néstor Kirchner 2300">L9 Bulnes</option>
+        <option value="L9 Viamonte" data-direccion="Av. Pres. Néstor Kirchner 2300">L9 Viamonte</option>
+      </optgroup>
+      <optgroup label="Línea 10">
+        <option value="L10 San Cayetano" data-direccion="Berutti 200">L10 San Cayetano</option>
+        <option value="L10 Villa Amalia" data-direccion="Congreso 2700">L10 Villa Amalia</option>
+      </optgroup>
+      <optgroup label="Línea 11">
+        <option value="L11 11 de Marzo" data-direccion="Av. Américo Vespucio 1700">L11 11 de Marzo</option>
+        <option value="L11 Manantial Sur" data-direccion="Antonio Perez Palavecino 2899">L11 Manantial Sur</option>
+        <option value="L11 Villa Angelina" data-direccion="Jujuy 4300">L11 Villa Angelina</option>
+      </optgroup>
+      <optgroup label="Línea 12">
+        <option value="L12 Municipal" data-direccion="Ramírez de Velazco 1700">L12 Municipal</option>
+        <option value="L12 Smata" data-direccion="Santiago del Estero 200">L12 Smata</option>
+      </optgroup>
+      <optgroup label="Línea 17">
+        <option value="L17 Alem Universidad" data-direccion="Alem 1200">L17 Alem Universidad</option>
+        <option value="L17 Chañaritos" data-direccion="Amador Lucero 3200">L17 Chañaritos</option>
+        <option value="L17 Ejército Argentino" data-direccion="Alem 1200">L17 Ejército Argentino</option>
+        <option value="L17 Roca Universidad" data-direccion="Alem 1200">L17 Roca Universidad</option>
+        <option value="L17 Terán Roca" data-direccion="Alem 1200">L17 Terán Roca</option>
+        <option value="L17 Terán San Lorenzo" data-direccion="Alem 1200">L17 Terán San Lorenzo</option>
+      </optgroup>
+      <optgroup label="Línea 18">
+        <option value="L18 Antihorario" data-direccion="Av. Sáenz Peña 800">L18 Antihorario</option>
+        <option value="L18 Horario" data-direccion="Av. Sáenz Peña 800">L18 Horario</option>
+      </optgroup>
+      <optgroup label="Línea 19">
+        <option value="L19 Antihorario" data-direccion="Av. América 1700">L19 Antihorario</option>
+        <option value="L19 Horario" data-direccion="Av. América 1700">L19 Horario</option>
+      </optgroup>
     </select>
+
+    <label for="direccion">Punto de control <small style="font-weight: normal; color: var(--color-text-muted); font-size: 0.8rem;">(asignado según recorrido)</small></label>
+    <input type="text" id="direccion" readonly placeholder="Se autocompleta con el recorrido..." required />
 
     <label for="interno">Interno</label>
     <input type="number" id="interno" required />
@@ -104,6 +130,7 @@
 
   <div id="toast" class="toast"></div>
 
+  <script src="js/recorridos.js"></script>
   <script src="js/app.js"></script>
 
   <div class="footer-municipio-logo">

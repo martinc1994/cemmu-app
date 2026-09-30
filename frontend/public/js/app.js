@@ -50,19 +50,49 @@ window.addEventListener("DOMContentLoaded", () => {
   renderHistorial();
 });
 
+function actualizarPuntoDeControl() {
+  const valorLinea = lineaInput.value;
+  if (!valorLinea) {
+    direccionInput.value = "";
+    localStorage.removeItem("puntoControl");
+    return;
+  }
+
+  // 1. Obtener dirección asignada desde data-direccion de la opción
+  const opt = lineaInput.selectedOptions ? lineaInput.selectedOptions[0] : null;
+  let dir = opt ? opt.getAttribute("data-direccion") : null;
+
+  // 2. Si no estuviera en el DOM, buscar en el catálogo oficial de recorridos
+  if (!dir && typeof obtenerPuntoDeControl === "function") {
+    dir = obtenerPuntoDeControl(valorLinea);
+  }
+
+  if (dir) {
+    direccionInput.value = dir;
+    localStorage.setItem("puntoControl", dir);
+  } else {
+    direccionInput.value = "";
+    localStorage.removeItem("puntoControl");
+  }
+  localStorage.setItem("linea", valorLinea);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  const puntoGuardado = localStorage.getItem("puntoControl");
-  const lineaGuardada = localStorage.getItem("linea");
-  if (puntoGuardado) direccionInput.value = puntoGuardado;
-  if (lineaGuardada) lineaInput.value = lineaGuardada;
+  let lineaGuardada = localStorage.getItem("linea");
+
+  // Normalizar si venía de un nombre/alias anterior
+  if (lineaGuardada && typeof RECORRIDOS_ALIASES !== "undefined" && RECORRIDOS_ALIASES[lineaGuardada]) {
+    lineaGuardada = RECORRIDOS_ALIASES[lineaGuardada];
+    localStorage.setItem("linea", lineaGuardada);
+  }
+
+  if (lineaGuardada) {
+    lineaInput.value = lineaGuardada;
+  }
+  actualizarPuntoDeControl();
 });
 
-direccionInput.addEventListener("change", () => {
-  localStorage.setItem("puntoControl", direccionInput.value);
-});
-lineaInput.addEventListener("change", () => {
-  localStorage.setItem("linea", lineaInput.value);
-});
+lineaInput.addEventListener("change", actualizarPuntoDeControl);
 
 // local data history
 function obtenerHistorial() {

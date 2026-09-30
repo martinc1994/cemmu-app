@@ -93,4 +93,15 @@ async function deleteRegistro(req, res) {
   }
 }
 
-module.exports = { getRegistros, createRegistro, updateRegistro, deleteRegistro };
+async function getRecorridos(req, res) {
+  try {
+    const { RECORRIDOS } = require('../../frontend/public/js/recorridos');
+    res.json({ ok: true, data: RECORRIDOS });
+  } catch (err) {
+    console.error('Error al obtener recorridos:', err);
+    res.status(500).json({ ok: false, error: 'Error al obtener recorridos.' });
+  }
+}
+
+module.exports = { getRegistros, createRegistro, updateRegistro, deleteRegistro, getRecorridos };
+
