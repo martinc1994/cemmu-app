@@ -33,6 +33,7 @@ const views = {
   '/':              'index.html',
   '/login':         'login.html',
   '/admin':         'admin.html',
+  '/mapa':          'mapa.html',
   '/dashboard':     'dashboard.html',
   '/reporte':       'reporte.html',
   '/reporte-unidades': 'reporte_unidades.html',
